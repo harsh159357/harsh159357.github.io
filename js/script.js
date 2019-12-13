@@ -18,7 +18,7 @@ $(document).ready(function() {
 	});
 
 	var typed = new Typed(".typed", {
-		strings: ["Technology Analyst.", "Android Developer.", "Flutter Developer."],
+		strings: ["Technology Analyst.", "Senior Android Developer.", "Flutter Developer."],
 		typeSpeed: 70,
 		loop: true,
 		startDelay: 1000,
