@@ -59,7 +59,7 @@ html {
 .option {
     background-size: cover;
     background-color: white;
-    padding: 20px;
+    padding: 10px;
     height: 50px;
     width: 150px;
     display: flex;
@@ -75,7 +75,7 @@ html {
 .option.--is-active {
     background-color: red;
     color: white;
-    padding: 20px;
+    padding: 10px;
     width: 150px;
     cursor: default;
 }
@@ -161,5 +161,67 @@ html {
     to {
         -webkit-transform: translateX(0);
         transform: translateX(0);
+    }
+}
+
+@media only screen and (min-width: 360px) {
+    .option{
+        width:50px;
+    }
+
+    .option.--is-active {
+        width:50px;
+    }
+}
+
+
+@media only screen and (max-width: 359px) {
+    .option{
+        width:50px;
+    }
+
+    .option.--is-active {
+        width:50px;
+    }
+}
+
+@media only screen and (min-width: 360px) {
+    .option{
+        width:70px;
+    }
+
+    .option.--is-active {
+        width:70px;
+    }
+}
+
+
+@media only screen and (min-width: 420px) {
+    .option{
+        width:80px;
+    }
+
+    .option.--is-active {
+        width:80px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .option{
+        width:120px;
+    }
+
+    .option.--is-active {
+        width:120px;
+    }
+}
+
+@media only screen and (min-width: 760px) {
+    .option{
+        width:150px;
+    }
+
+    .option.--is-active {
+        width:150px;
     }
 }

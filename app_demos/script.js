@@ -228,7 +228,7 @@ const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.shadowMap.enabled = true;
 renderer.setPixelRatio(window.devicePixelRatio);
 
-var cameraFar = 10;
+var cameraFar = 15;
 
 document.body.appendChild(renderer.domElement);
 
