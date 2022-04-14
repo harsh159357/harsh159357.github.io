@@ -18,7 +18,7 @@ $(document).ready(function() {
 	});
 
 	var typed = new Typed(".typed", {
-		strings: ["I design, code and I'm passionate about solving problems.","Senior Android Developer.", "Flutter Developer."],
+		strings: ["I design, code and passionate about solving problems.","Senior Android Developer.", "Flutter Developer."],
 		typeSpeed: 70,
 		loop: true,
 		startDelay: 1000,
