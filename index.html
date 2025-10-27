@@ -1,668 +1,1010 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-	<title>Harsh Sharma</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Harsh Sharma – Senior Software Engineer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%236366f1%22>HS</text></svg>" type="image/svg+xml">
+  <meta name="description" content="Harsh Sharma – Staff-track Senior Software Engineer (SDE-3) with 10+ years in Android, Flutter, fintech, and high-throughput CX platforms at CoinDCX, Jio, and Infosys.">
+  <meta property="og:title" content="Harsh Sharma – Senior Software Engineer">
+  <meta property="og:description" content="Android | Flutter | Fintech | Performance | Reliability | Architecture">
+  <meta property="og:type" content="website">	
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0f0f0f;
+      --bg-secondary: #1a1a1a;
+      --bg-tertiary: #252525;
+      --text-primary: #f0f0f0;
+      --text-secondary: #b0b0b0;
+      --accent: #6366f1;
+      --accent-hover: #4f46e5;
+      --border: #333;
+      --card-bg: #1e1e1e;
+      --timeline-line: #333;
+      --timeline-dot: #6366f1;
+      --shadow: rgba(0, 0, 0, 0.4);
+    }
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    .light-mode {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-tertiary: #f1f5f9;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --accent: #4f46e5;
+      --accent-hover: #4338ca;
+      --border: #e2e8f0;
+      --card-bg: #ffffff;
+      --timeline-line: #cbd5e1;
+      --timeline-dot: #4f46e5;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
 
-	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="css/superslides.css">
-	<link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
-		integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" />
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
 
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--bg-secondary);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 10px var(--shadow);
+    }
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      padding: 10rem 2rem 4rem;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    .contact-info {
+      margin: 1.5rem 0;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+    }
+
+    .hero-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.5);
+      opacity: 0;
+      border-radius: 100%;
+      transform: scale(1, 1) translate(-50%);
+      transform-origin: 50% 50%;
+    }
+
+    .btn:active::after {
+      animation: ripple 0.6s ease-out;
+    }
+
+    @keyframes ripple {
+      0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(50, 50);
+        opacity: 0;
+      }
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 2.25rem;
+      margin-bottom: 2rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background-color: var(--accent);
+      border-radius: 2px;
+    }
+
+    .section-content {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .section-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .profile-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .highlight, .counter, strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+      margin-top: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background-color: var(--timeline-line);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -36px;
+      top: 5px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: var(--timeline-dot);
+      border: 3px solid var(--bg-primary);
+    }
+
+    .timeline-date {
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-role {
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-company {
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .timeline-bullets {
+      padding-left: 1.25rem;
+    }
+
+    .timeline-bullets li {
+      margin-bottom: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .skill-category {
+      background-color: var(--card-bg);
+      padding: 1.25rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .skill-category:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px var(--shadow);
+    }
+
+    .skill-category h3 {
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .skill-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .chip {
+      background-color: var(--bg-tertiary);
+      color: var(--text-primary);
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      transition: background-color 0.2s;
+    }
+
+    .chip:hover {
+      background-color: var(--accent);
+      color: white;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .project-card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px var(--shadow);
+    }
+
+    .project-card-header {
+      padding: 1.25rem 1.25rem 0.75rem;
+    }
+
+    .project-card-header h3 {
+      margin: 0;
+      font-size: 1.25rem;
+    }
+
+    .project-card-body {
+      padding: 0 1.25rem 1.25rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card-body p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .project-link {
+      margin-top: auto;
+      text-align: center;
+    }
+
+    .education-item, .strengths-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .education-degree, .strengths-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .education-details, .strengths-desc {
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+
+    .contact-section {
+      text-align: center;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .fab {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px var(--shadow);
+      cursor: pointer;
+      z-index: 999;
+      transition: background-color 0.2s, transform 0.2s;
+      font-size: 1.25rem;
+      text-decoration: none;
+    }
+
+    .fab:hover {
+      background-color: var(--accent-hover);
+      transform: scale(1.1);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .theme-toggle:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .hero {
+        padding: 9rem 1.5rem 3rem;
+      }
+
+      .hero h1 {
+        font-size: 2.25rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      section {
+        padding: 3rem 1.5rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .timeline {
+        padding-left: 20px;
+      }
+
+      .timeline::before {
+        left: -10px;
+      }
+
+      .timeline-item::before {
+        left: -26px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.95rem;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+      }
+
+      .project-card-header h3 {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-	<div class="loader">
-		<div class="inner"></div>
-	</div>
-
-	<div id="slides">
-
-		<div class="overlay"></div>
-
-		<div class="slides-container">
-			<img src="img/slide1.jpg" alt="">
-			<img src="img/slide2.jpeg" alt="">
-			<img src="img/slide3.jpeg" alt="">
-		</div>
-
-		<div class="titleMessage">
-			<div class="heading">
-				<p class="main">Harsh Sharma</p>
-				<p class="sub typed"></p>
-			</div>
-		</div>
-
-
-		<nav class="slides-navigation">
-			<a href="#" class="next"></a>
-			<a href="#" class="prev"></a>
-		</nav>
-
-
-	</div>
-
-	<nav id="navigation" class="navbar navbar-expand-lg">
-		<a class="navbar-brand" href="index.html">Harsh Sharma</a>
-
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item active">
-					<a class="nav-link" href="#about">About <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#skills">Skills</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#stats">Stats</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#contact">Contact</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#portfolio">Portfolio</a>
-				</li>
-			</ul>
-		</div>
-
-	</nav>
-
-	<div id="about" class="section">
-
-		<div class="container">
-
-			<div class="row">
-
-				<div class="col-md-4">
-					<img class="aboutImage" src="img/about.jpeg">
-				</div>
-
-				<div class="col-md-7">
-
-
-					<h4>My name is Harsh Sharma</h4>
-
-
-					<p>I'm from <a target="_blank" href="https://en.wikipedia.org/wiki/Punjab">Punjab</a>, India. I currently work as a <b>Senior Android Developer</b> at <a
-							href="https://www.jio.com/">Jio</a> in Bangalore.</p>
-					<p>I have <b>7 years</b> of experience in Android Application Development.</p>
-					<p><b>Runner's Up</b> in <a target="_blank" href="http://bit.ly/ixigohackwinners">App Hackathon</a> organized by Ixigo in 2017.</p>
-					<p>Developed <b>7+ Android Apps</b> and numerous <b>open-source</b> projects.</p>
-					<p>Currently working on <b><a target="_blank" href="bit.ly/jio_design_system">Jio Design System</a></b> for <b>Jio apps</b> (My Jio, Jio Chat, Jio TV etc)</p>
-					<p>Developed some <b>plugins</b> like <b>Powerset</b> and Theme Generator for devs <b>productivity</b>.</p>
-					<p>Worked for <b>Telstra</b> client on <a target="_blank" href="bit.ly/my_telstra">My Telstra Android App </a></p>
-					<p><b>Implemented</b> an alternative to the already used <b>AR SDK</b> in the <b>safe2Go</b> app for <b>British Petroleum</b> which <b>saved</b> around <b>1000+ $ annually</b>. (At <a target="_blank" href="https://www.infosys.com/">Infosys</a>)</p>
-					<p><b>1500+ Employees</b> live made <b>hassle free</b> by shifting attendance management system from <b>Biometric to Mobile Apps</b>. (At <a target="_blank" href="https://www.teamcomputers.com/">Team Computers</a>)</p>
-					<p>Passionate to update my knowledge and skills through continuous self-learning.</p>
-					<p>Loves to make Open Source Contributions.</p>
-					<p>As an Individual I love Chess, Cricket, Guitar, Singing and Gaming.</p>
-
-					<div class="icons-social">
-						<a target="_blank" href="http://bit.ly/stackharsh"><i class="fab fa-stack-overflow"></i></a>
-						<a target="_blank" href="http://bit.ly/lnkdharsh"><i class="fab fa-linkedin"></i></a>
-						<a target="_blank" href="http://bit.ly/githarsh"><i class="fab fa-github"></i></a>
-						<a target="_blank" href="http://bit.ly/harshfb"><i class="fab fa-facebook"></i></a>
-						<a target="_blank" href="http://bit.ly/youharsh"><i class="fab fa-youtube"></i></a>
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
-
-	</div>
-
-	<div id="skills" class="skillsSection section">
-
-		<div class="container">
-
-			<div class="row">
-
-				<div class="col-md-12 text-center">
-					<h2>TECHNICAL SKILLS</h2>
-					<p>My proficiency in each skill (drag to scroll)</p>
-					<br />
-					<br />
-				</div>
-
-
-				<div class="owl-carousel owl-theme">
-
-					<div class="skill">
-						<span class="chart" data-percent="90">
-							<span class="percent">90</span>
-							<canvas height="152" width="152"></canvas>
-						</span>
-						<br />
-						<br />
-						<h4>Java</h4>
-						<p>Used in most of my Android Apps</p>
-					</div>
-
-					<div class="skill">
-						<span class="chart" data-percent="90">
-							<span class="percent">90</span>
-							<canvas height="152" width="152"></canvas>
-						</span>
-						<br />
-						<br />
-						<h4>Kotlin</h4>
-						<p>Used in 3 Android Apps</p>
-					</div>
-
-					<div class="skill">
-						<span class="chart" data-percent="80">
-							<span class="percent">80</span>
-							<canvas height="152" width="152"></canvas>
-						</span>
-						<br />
-						<br />
-						<h4>Dart</h4>
-						<p>Used in Open Source projects</p>
-					</div>
-
-
-					<div class="skill">
-						<span class="chart" data-percent="50">
-							<span class="percent">50</span>
-							<canvas height="152" width="152"></canvas>
-						</span>
-						<br />
-						<br />
-						<h4>Swift</h4>
-						<p>A new skill i am learning for iOS Apps</p>
-					</div>
-
-				</div>
-
-
-
-			</div>
-
-		</div>
-
-	</div>
-
-	<div id="stats" class="statsSection section">
-
-		<div class="container">
-
-			<div class="row">
-
-
-				<div class="col-md-3 col-sm-6">
-					<div class="squareItem">
-						<div class="squareInnerContainer">
-							<div class="squareIcon">
-								<i class="fa fa-clock"></i>
-							</div>
-							<div class="squareContent">
-								<h2 class="counter">7</h2>
-								<h3>Years Experience</h3>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-3 col-sm-6">
-					<div class="squareItem">
-						<div class="squareInnerContainer">
-							<div class="squareIcon">
-								<i class="fab fa-google-play"></i>
-							</div>
-							<div class="squareContent">
-								<h2 class="counter">8</h2>
-								<h3>Android Apps</h3>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-3 col-sm-6">
-					<div class="squareItem">
-						<div class="squareInnerContainer">
-							<div class="squareIcon">
-								<i class="fab fa-github"></i>
-							</div>
-							<div class="squareContent">
-								<h2 class="counter">3</h2>
-								<h3>Open Souce Apps</h3>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-3 col-sm-6">
-					<div class="squareItem">
-						<div class="squareInnerContainer">
-							<div class="squareIcon">
-								<i class="fas fa-trophy"></i>
-							</div>
-							<div class="squareContent">
-								<h2 class="counter">1</h2>
-								<h3>Hackathon Won</h3>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-			</div>
-
-		</div>
-
-	</div>
-
-	<div id="contact" class="contactSection section">
-
-		<div class="col-md-12 text-center">
-
-			<p class="subHeading">Like what you see?</p>
-			<h2>I'd love to hear from you!</h2>
-			<a href="mailTo:harsh159357@gmail.com" class="contactButton">GET IN TOUCH!</a>
-
-		</div>
-
-	</div>
-
-	<div id="portfolio" class="section">
-
-		<div class="container">
-
-			<div class="row">
-
-				<div class="heading">
-					<h2>PORTFOLIO</h2>
-				</div>
-
-				<div class="filter">
-
-					<ul id="filters">
-
-						<li><a href="#" data-filter="*" class="current">ALL</a></li>
-						<li><a href="#" data-filter=".apps">Apps</a></li>
-						<li><a href="#" data-filter=".me">Open Source</a></li>
-						<li><a href="#" data-filter=".java">Java</a></li>
-						<li><a href="#" data-filter=".kotlin">Kotlin</a></li>
-						<li><a href="#" data-filter=".dart">Dart</a></li>
-						
-						
-					</ul>
-
-				</div>
-
-				<div class="itemsContainer">
-
-					<ul class="items">
-
-						<li class="apps kotlin col-xs-6 col-sm-4 col-md-3 col-lg-3">
-
-
-							<div class="item">
-
-								<img src="https://play-lh.googleusercontent.com/SDR0B84O0d37O_E7qG4agTaYe9Hq_QeV12k07ScweHU9YWwVScKPDZsprSjoOXnPDysI=s180-rw">
-
-
-								<div class="icons">
-									<a href="img/portfolio/my_telstra.jpg" title="View image" class="openButton" data-fancybox
-									   data-caption="My Telstra">
-										<i class="fa fa-search"></i>
-									</a>
-
-									<a href="http://bit.ly/my_telstra" target="_blank" class="projectLink">
-										<i class="fa fa-link"></i>
-									</a>
-								</div>
-
-								<div class="imageOverlay"></div>
-
-							</div>
-
-
-						</li>
-
-						<li class="apps kotlin col-xs-6 col-sm-4 col-md-3 col-lg-3">
-
-
-							<div class="item">
-
-								<img src="https://i.stack.imgur.com/IhZ9W.png">
-
-
-								<div class="icons">
-									<a href="img/portfolio/bhagavad_gita.jpg" title="View image" class="openButton" data-fancybox
-										data-caption="Bhagavad Gita">
-										<i class="fa fa-search"></i>
-									</a>
-
-									<a href="http://bit.ly/bhagavad-gita-android-app" target="_blank" class="projectLink">
-										<i class="fa fa-link"></i>
-									</a>
-								</div>
-
-								<div class="imageOverlay"></div>
-
-							</div>
-
-
-						</li>
-
-						<li class="apps kotlin col-xs-6 col-sm-4 col-md-3 col-lg-3">
-
-
-							<div class="item">
-
-								<img src="https://i.stack.imgur.com/TLYwI.jpg">
-
-
-								<div class="icons">
-									<a href="img/portfolio/pixa.jpg" title="View image" class="openButton" data-fancybox
-										data-caption="Pixa Live">
-										<i class="fa fa-search"></i>
-									</a>
-
-									<a href="http://bit.ly/apppixa" target="_blank" class="projectLink">
-										<i class="fa fa-link"></i>
-									</a>
-								</div>
-
-								<div class="imageOverlay"></div>
-
-							</div>
-
-
-						</li>
-						
-						<li class="me dart col-xs-6 col-sm-4 col-md-3 col-lg-3">
-
-
-							<div class="item">
-
-								<img src="https://i.stack.imgur.com/Iou9E.png">
-
-
-								<div class="icons">
-									<a href="img/portfolio/contacts.jpg" title="View image" class="openButton" data-fancybox
-										data-caption="Contacts">
-										<i class="fa fa-search"></i>
-									</a>
-
-									<a href="http://bit.ly/appcontacts" target="_blank" class="projectLink">
-										<i class="fa fa-link"></i>
-									</a>
-								</div>
-
-								<div class="imageOverlay"></div>
-
-							</div>
-
-
-						</li>
-
-						<li class="apps java col-xs-6 col-sm-4 col-md-3 col-lg-3">
-
-
-							<div class="item">
-
-								<img src="https://i.stack.imgur.com/mjXpv.png">
-
-
-								<div class="icons">
-									<a href="img/portfolio/team_works.jpg" title="View image" class="openButton" data-fancybox
-										data-caption="TeamWorks">
-										<i class="fa fa-search"></i>
-									</a>
-
-									<a href="http://bit.ly/appteamworks" target="_blank" class="projectLink">
-										<i class="fa fa-link"></i>
-									</a>
-								</div>
-
-								<div class="imageOverlay"></div>
-
-							</div>
-
-
-						</li>
-
-						<li class="apps java col-xs-6 col-sm-4 col-md-3 col-lg-3">
-						
-					
-							<div class="item">
-
-								<img src="https://i.stack.imgur.com/RTVG4.png">
-
-
-								<div class="icons">
-									<a href="img/portfolio/matchstix.jpg" title="View image" class="openButton" data-fancybox
-										data-caption="MatchStix">
-										<i class="fa fa-search"></i>
-									</a>
-
-									<a href="http://bit.ly/appmatchstix" target="_blank" class="projectLink">
-										<i class="fa fa-link"></i>
-									</a>
-								</div>
-
-								<div class="imageOverlay"></div>
-
-							</div>
-
-
-						</li>
-
-						<li class="me java col-xs-6 col-sm-4 col-md-3 col-lg-3">
-
-
-							<div class="item">
-
-								<img src="https://i.stack.imgur.com/TeU9S.png">
-
-
-								<div class="icons">
-									<a href="img/portfolio/insta_tag.jpg" title="View image" class="openButton" data-fancybox
-										data-caption="InstaTag">
-										<i class="fa fa-search"></i>
-									</a>
-
-									<a href="http://bit.ly/insta_tag" target="_blank" class="projectLink">
-										<i class="fa fa-link"></i>
-									</a>
-								</div>
-
-								<div class="imageOverlay"></div>
-
-							</div>
-
-
-						</li>
-
-						<li class="apps java col-xs-6 col-sm-4 col-md-3 col-lg-3">
-
-
-							<div class="item">
-
-								<img src="https://i.stack.imgur.com/ocv1P.png">
-
-
-								<div class="icons">
-									<a href="img/portfolio/chatna.jpg" title="View image" class="openButton" data-fancybox
-										data-caption="Chat Na">
-										<i class="fa fa-search"></i>
-									</a>
-
-									<a href="http://bit.ly/appchatna" target="_blank" class="projectLink">
-										<i class="fa fa-link"></i>
-									</a>
-								</div>
-
-								<div class="imageOverlay"></div>
-
-							</div>
-
-
-						</li>
-
-						<li class="apps java col-xs-6 col-sm-4 col-md-3 col-lg-3">
-
-
-							<div class="item">
-
-								<img src="https://i.stack.imgur.com/gPSqO.jpg">
-
-
-								<div class="icons">
-									<a href="img/portfolio/wedoshoes.jpg" title="View image" class="openButton" data-fancybox
-										data-caption="Wedo Shoes">
-										<i class="fa fa-search"></i>
-									</a>
-
-									<a href="http://bit.ly/appwedo" target="_blank" class="projectLink">
-										<i class="fa fa-link"></i>
-									</a>
-								</div>
-
-								<div class="imageOverlay"></div>
-
-							</div>
-
-
-						</li>
-
-						<li class="apps java col-xs-6 col-sm-4 col-md-3 col-lg-3">
-
-
-							<div class="item">
-
-								<img src="https://i.stack.imgur.com/yHfkZ.png">
-
-
-								<div class="icons">
-									<a href="img/portfolio/nulta_patients.jpg" title="View image" class="openButton" data-fancybox
-										data-caption="Nulta for Patients">
-										<i class="fa fa-search"></i>
-									</a>
-
-									<a href="http://bit.ly/appnultapatient" target="_blank" class="projectLink">
-										<i class="fa fa-link"></i>
-									</a>
-								</div>
-
-								<div class="imageOverlay"></div>
-
-							</div>
-
-
-						</li>
-
-						<li class="me dart col-xs-6 col-sm-4 col-md-3 col-lg-3">
-
-
-							<div class="item">
-
-								<img src="https://i.stack.imgur.com/RGJgC.png">
-
-
-								<div class="icons">
-									<a href="img/portfolio/flutter_client_php_backend.jpg" title="View image" class="openButton" data-fancybox
-										data-caption="Flutter Client PHP Backend">
-										<i class="fa fa-search"></i>
-									</a>
-
-									<a href="http://bit.ly/appfcpb" target="_blank" class="projectLink">
-										<i class="fa fa-link"></i>
-									</a>
-								</div>
-
-								<div class="imageOverlay"></div>
-
-							</div>
-
-
-						</li>
-
-						<li class="apps java col-xs-6 col-sm-4 col-md-3 col-lg-3">
-
-
-							<div class="item">
-
-								<img src="https://i.stack.imgur.com/lO1Vx.png">
-
-
-								<div class="icons">
-									<a href="img/portfolio/nulta_doctors.jpg" title="View image" class="openButton" data-fancybox
-										data-caption="Nulta for Doctors">
-										<i class="fa fa-search"></i>
-									</a>
-
-									<a href="http://bit.ly/appnultadoctors" target="_blank" class="projectLink">
-										<i class="fa fa-link"></i>
-									</a>
-								</div>
-
-								<div class="imageOverlay"></div>
-
-							</div>
-
-
-						</li>
-
-					
-					</ul>
-
-				</div>
-
-
-			</div>
-
-		</div>
-
-	</div>
-
-	<div class="copyrightSection">
-
-		<div class="col-md-12 text-center">
-			<p>&copy; Copyright Harsh Sharma 2019</p>
-		</div>
-
-	</div>
-
-	
-	<script src="js/countUp.js"></script>
-	<script src="js/countUp-jquery.js"></script>
-	<script src="js/jquery.superslides.min.js"></script>
-	<script src="js/jquery.easypiechart.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/typed.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous"></script>
-	<script type="text/javascript" src="https://unpkg.com/isotope-layout@3.0.5/dist/isotope.pkgd.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
-
-	<script src="js/script.js"></script>
-
+  <header>
+    <div class="logo">Harsh Sharma</div>
+    <nav>
+      <ul>
+        <li><a href="#profile">Profile</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#strengths">Strengths</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">☀️</button>
+  </header>
+
+  <section class="hero">
+    <h1>Harsh Sharma</h1>
+    <p>Staff-track Senior Software Engineer II (SDE-3) | Fintech & Telecom | Android & Flutter</p>
+    <div class="contact-info">
+      📱 +91‑9599305737 | ✉️ harsh159357@gmail.com
+    </div>
+    <div class="hero-links">
+      <a href="https://bit.ly/githarsh" class="btn" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://bit.ly/lnkdharsh" class="btn" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://bit.ly/stackharsh" class="btn" target="_blank" rel="noopener">StackOverflow</a>
+    </div>
+  </section>
+
+  <section id="profile">
+    <h2>Profile</h2>
+    <div class="section-content">
+      <p class="profile-text">
+        Staff‑track <strong>Senior Software Engineer II (SDE‑3)</strong> with <strong>10+ years</strong> of experience spanning fintech, telecom, and enterprise mobility, specialising in <strong>Customer Experience (CX)</strong> and <strong>Help & Support platforms</strong> for high‑throughput trading systems.
+      </p>
+      <p class="profile-text">
+        Career arc: Built Android apps at Craterzone and Team Computers → delivered large‑scale telecom apps at Infosys (Telstra, BP) → architected design systems at Jio → led CX/Help platforms at CoinDCX.
+      </p>
+      <p class="profile-text">
+        <strong>Architecture & Platforms</strong>: Designed reusable frameworks (Help Center, deep link infra, design systems) adopted across squads.
+      </p>
+      <p class="profile-text">
+        <strong>Production Excellence</strong>: Raised Crash‑Free Rate from <strong>99.60%</strong> → <span class="counter" data-target="99.88">0</span>%, reduced non‑fatal errors by <strong>20%</strong>, and cut ANR rate by <strong>12%</strong>.
+      </p>
+      <p class="profile-text">
+        <strong>Performance Optimization</strong>: Achieved up to <span class="counter" data-target="73">0</span>% latency reduction across key screens, surpassing competitor benchmarks.
+      </p>
+      <p class="profile-text">
+        <strong>Release Leadership</strong>: Directed <strong>8+ major app releases</strong> with zero rollbacks, ensuring predictable delivery across QA, backend, and product.
+      </p>
+      <p class="profile-text">
+        <strong>Team Enablement</strong>: Mentored engineers, authored onboarding guides, and ran tech talks to scale team capability.
+      </p>
+      <p class="profile-text">
+        Now targeting <strong>Staff/Principal roles</strong> in fintech/infra, where customer experience, reliability, and cross‑team leadership drive business outcomes.
+      </p>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="section-content">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">Jul 2022 – Present</div>
+          <div class="timeline-role"><strong>Senior Software Engineer II (SDE‑3)</strong></div>
+          <div class="timeline-company"><strong>CoinDCX</strong> – Bengaluru</div>
+          <ul class="timeline-bullets">
+            <li>Help & Support Platform Ownership: Architected a reusable Help Center → reduced support tickets by <strong>15%</strong> and boosted chatbot engagement by <strong>25%</strong>.</li>
+            <li>Compliance & Reliability: Delivered Re‑KYC, PAN verification with <strong>zero post‑release bugs</strong>.</li>
+            <li>Production Excellence: Raised Crash‑Free Rate from 99.60% → <strong>99.88%</strong>, cut non‑fatal errors by <strong>20%</strong>, reduced ANR rate by <strong>12%</strong>.</li>
+            <li>Performance Optimization: Delivered up to <strong>73% latency reduction</strong> across key screens, including <strong>51% faster splash→PIN</strong> and <strong>55% faster Futures Market load</strong>.</li>
+            <li>Release Leadership: Directed <strong>8+ major app releases</strong> with <strong>zero rollbacks</strong>.</li>
+            <li>Feature Velocity: Shipped <strong>30+ high‑impact features</strong> under hackathon timelines.</li>
+            <li>Team Enablement: Mentored engineers, ran Flutter performance tech talks, authored internal guides adopted across squads.</li>
+            <li>Innovation: Deployed a Flutter Web project (<strong>95% uptime</strong>) and built Pine Script trading indicators validated via backtesting.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">Jun 2021 – Jul 2022</div>
+          <div class="timeline-role"><strong>Senior Android Developer</strong></div>
+          <div class="timeline-company"><strong>Jio Platforms</strong> – Bengaluru</div>
+          <ul class="timeline-bullets">
+            <li>Jio Design System Ownership: Built reusable UI library (XML + Jetpack Compose) powering flagship apps like MyJio, JioChat, JioTV.</li>
+            <li>Developer Productivity: Created internal plugins that reduced UI setup time by <strong>30%+</strong>.</li>
+            <li>Reusable Components: Delivered typography, theming, and UI frameworks adopted across multiple Jio apps.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">Dec 2018 – Jun 2021</div>
+          <div class="timeline-role"><strong>Technology Analyst</strong></div>
+          <div class="timeline-company"><strong>Infosys</strong> (Telstra, BP clients) – Bengaluru</div>
+          <ul class="timeline-bullets">
+            <li>Enterprise‑Scale Delivery: Contributed to the <strong>My Telstra Android App</strong> serving millions of users.</li>
+            <li>Cost Optimization: Implemented alternative AR SDK for BP’s Safe2Go app → saved client <strong>$1000+ annually</strong>.</li>
+            <li>High‑Throughput Apps: Delivered features in telecom and energy apps with millions of active users.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">Feb 2017 – Nov 2018</div>
+          <div class="timeline-role"><strong>Android Developer</strong></div>
+          <div class="timeline-company"><strong>Team Computers</strong> – Gurugram</div>
+          <ul class="timeline-bullets">
+            <li>HR Transformation: Migrated attendance management from biometric to mobile → streamlined HR ops for <strong>1500+ employees</strong>.</li>
+            <li>End‑to‑End Ownership: Independently managed Android app lifecycle from prototyping to deployment.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">Jun 2015 – Feb 2017</div>
+          <div class="timeline-role"><strong>Android Developer</strong></div>
+          <div class="timeline-company"><strong>Craterzone Pvt Ltd</strong> – Noida</div>
+          <ul class="timeline-bullets">
+            <li>Feature Delivery: Implemented and updated Android apps under senior guidance.</li>
+            <li>Independent Execution: Delivered features both individually and in team settings.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="section-content">
+      <div class="skills-container">
+        <div class="skill-category">
+          <h3>Architecture & Systems</h3>
+          <div class="skill-chips">
+            <span class="chip">Clean Architecture</span>
+            <span class="chip">Modularization</span>
+            <span class="chip">Feature Toggles</span>
+            <span class="chip">Dependency Injection</span>
+            <span class="chip">Reusable Frameworks</span>
+            <span class="chip">API Centralization</span>
+            <span class="chip">Deep Link Infra</span>
+            <span class="chip">Design Systems</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Mobile Platforms</h3>
+          <div class="skill-chips">
+            <span class="chip">Android (Kotlin/Java)</span>
+            <span class="chip">Jetpack Compose</span>
+            <span class="chip">Views/XML</span>
+            <span class="chip">Flutter</span>
+            <span class="chip">Material Design</span>
+            <span class="chip">Accessibility</span>
+            <span class="chip">Play Store Deployment</span>
+            <span class="chip">App Signing</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Concurrency & Data</h3>
+          <div class="skill-chips">
+            <span class="chip">Kotlin Coroutines/Flows</span>
+            <span class="chip">RxJava</span>
+            <span class="chip">LiveData</span>
+            <span class="chip">WorkManager</span>
+            <span class="chip">Room/SQLite</span>
+            <span class="chip">DataStore</span>
+            <span class="chip">Caching Strategies</span>
+            <span class="chip">Offline-first</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Networking & APIs</h3>
+          <div class="skill-chips">
+            <span class="chip">Retrofit/OkHttp</span>
+            <span class="chip">GraphQL</span>
+            <span class="chip">WebSockets</span>
+            <span class="chip">gRPC (familiar)</span>
+            <span class="chip">Pagination</span>
+            <span class="chip">Request Batching</span>
+            <span class="chip">Error Handling</span>
+            <span class="chip">Retry/Backoff</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Performance Engineering</h3>
+          <div class="skill-chips">
+            <span class="chip">Profiling (CPU/Memory/Network)</span>
+            <span class="chip">Rendering Optimization</span>
+            <span class="chip">List Diffing</span>
+            <span class="chip">Cold/Warm Start Tuning</span>
+            <span class="chip">ANR/Crash RCA</span>
+            <span class="chip">Memory Management</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Testing & QA</h3>
+          <div class="skill-chips">
+            <span class="chip">JUnit</span>
+            <span class="chip">Espresso</span>
+            <span class="chip">Mockito</span>
+            <span class="chip">Appium</span>
+            <span class="chip">UI Automation</span>
+            <span class="chip">Unit/Integration Tests</span>
+            <span class="chip">Contract Tests</span>
+            <span class="chip">Hermetic Tests</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>CI/CD & Release</h3>
+          <div class="skill-chips">
+            <span class="chip">Gradle</span>
+            <span class="chip">Build Variants</span>
+            <span class="chip">Jenkins/GitHub Actions</span>
+            <span class="chip">Code Quality Gates</span>
+            <span class="chip">Automated Pipelines</span>
+            <span class="chip">Rollout Strategies</span>
+            <span class="chip">Release Management</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Observability & Reliability</h3>
+          <div class="skill-chips">
+            <span class="chip">Crashlytics</span>
+            <span class="chip">Sentry</span>
+            <span class="chip">Firebase Performance</span>
+            <span class="chip">Logs/Metrics Tracing</span>
+            <span class="chip">Incident Triage</span>
+            <span class="chip">Feature Flags</span>
+            <span class="chip">Runtime Safeguards</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Security & Compliance</h3>
+          <div class="skill-chips">
+            <span class="chip">KYC/PAN Flows</span>
+            <span class="chip">OAuth/JWT</span>
+            <span class="chip">Secure Storage</span>
+            <span class="chip">Certificate Pinning</span>
+            <span class="chip">Data Privacy</span>
+            <span class="chip">Regulatory UX</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Cross‑Platform & iOS</h3>
+          <div class="skill-chips">
+            <span class="chip">Flutter Channel Bridging</span>
+            <span class="chip">Platform Views</span>
+            <span class="chip">iOS Build/Signing</span>
+            <span class="chip">Swift Interop (basic)</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Libraries & Frameworks</h3>
+          <div class="skill-chips">
+            <span class="chip">Retrofit</span>
+            <span class="chip">OkHttp</span>
+            <span class="chip">Moshi/GSON</span>
+            <span class="chip">Glide/Coil</span>
+            <span class="chip">Dagger/Hilt</span>
+            <span class="chip">Timber</span>
+            <span class="chip">LeakCanary</span>
+            <span class="chip">Jetpack Suite</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3>Leadership & Productivity</h3>
+          <div class="skill-chips">
+            <span class="chip">Code Reviews</span>
+            <span class="chip">Mentorship</span>
+            <span class="chip">Onboarding Guides</span>
+            <span class="chip">Tech Talks</span>
+            <span class="chip">Internal Tooling</span>
+            <span class="chip">Cross-team Collaboration</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects & Open Source</h2>
+    <div class="section-content">
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-card-header">
+            <h3>CoinDCX App</h3>
+          </div>
+          <div class="project-card-body">
+            <p>Play Store – Help & Support platform, performance-optimized trading app with 99.88% crash-free rate.</p>
+            <div class="project-link">
+              <a href="https://play.google.com/store/apps/details?id=com.coindcx.btc" class="btn" target="_blank" rel="noopener">View</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-card-header">
+            <h3>MyJio</h3>
+          </div>
+          <div class="project-card-body">
+            <p>Play Store – Flagship Jio app powered by reusable design system and Jetpack Compose components.</p>
+            <div class="project-link">
+              <a href="https://play.google.com/store/apps/details?id=com.jio.myjio" class="btn" target="_blank" rel="noopener">View</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-card-header">
+            <h3>Bhagavad Gita App</h3>
+          </div>
+          <div class="project-card-body">
+            <p>Play Store – Spiritual reference app with clean UX and offline access.</p>
+            <div class="project-link">
+              <a href="https://play.google.com/store/apps/details?id=com.harshsharma.bhagavadgita.pro" class="btn" target="_blank" rel="noopener">View</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-card-header">
+            <h3>My Telstra</h3>
+          </div>
+          <div class="project-card-body">
+            <p>Play Store – Enterprise-scale telecom app for Australian market (Infosys delivery).</p>
+            <div class="project-link">
+              <a href="https://play.google.com/store/apps/details?id=com.telstra.mobile.android.mytelstra" class="btn" target="_blank" rel="noopener">View</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-card-header">
+            <h3>Flutter Web Project</h3>
+          </div>
+          <div class="project-card-body">
+            <p>Coding portfolio site with 95% uptime and 50+ visitors in 3 months.</p>
+            <div class="project-link">
+              <a href="https://bit.ly/appcontacts" class="btn" target="_blank" rel="noopener">View</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-card-header">
+            <h3>Trading Indicators (Pine Script)</h3>
+          </div>
+          <div class="project-card-body">
+            <p>Custom moving averages, SuperTrend, validated via backtests for trading strategies.</p>
+            <!-- No link -->
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-card-header">
+            <h3>InstaTag (Android Library)</h3>
+          </div>
+          <div class="project-card-body">
+            <p>Utility library for quick tagging and metadata handling.</p>
+            <div class="project-link">
+              <a href="https://bit.ly/insta_tag" class="btn" target="_blank" rel="noopener">View</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-card-header">
+            <h3>Contacts (Flutter App)</h3>
+          </div>
+          <div class="project-card-body">
+            <p>Cross-platform contacts manager with clean architecture and 4 storage implementations.</p>
+            <div class="project-link">
+              <a href="https://bit.ly/appcontacts" class="btn" target="_blank" rel="noopener">View</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="section-content">
+      <div class="education-item">
+        <div class="education-degree">B.Tech, Computer Science Engineering</div>
+        <div class="education-details">CT Institute of Technology, Jalandhar (2011–2015) – 76%</div>
+      </div>
+      <div class="education-item">
+        <div class="education-degree">Senior Secondary</div>
+        <div class="education-details">2011 – 75% | C.J.S Public School, Jalandhar</div>
+      </div>
+      <div class="education-item">
+        <div class="education-degree">Higher Secondary</div>
+        <div class="education-details">2009 – 72% | C.J.S Public School, Jalandhar</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="strengths">
+    <h2>Strengths</h2>
+    <div class="section-content">
+      <div class="strengths-item">
+        <div class="strengths-title">Rapid learner, adaptable across mobile, cross‑platform, and infra domains</div>
+      </div>
+      <div class="strengths-item">
+        <div class="strengths-title">Strong in debugging and production issue resolution under high‑throughput conditions</div>
+      </div>
+      <div class="strengths-item">
+        <div class="strengths-title">Balances execution speed with long‑term reliability and compliance</div>
+      </div>
+      <div class="strengths-item">
+        <div class="strengths-title">Passionate about mentorship, architecture, and scaling engineering excellence</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <h2>Contact</h2>
+    <div class="section-content">
+      <p>📱 +91‑9599305737 | ✉️ harsh159357@gmail.com</p>
+      <div class="contact-links">
+        <a href="https://bit.ly/githarsh" class="btn" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://bit.ly/lnkdharsh" class="btn" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://bit.ly/stackharsh" class="btn" target="_blank" rel="noopener">StackOverflow</a>
+      </div>
+    </div>
+  </section>
+
+  <a href="#contact" class="fab" aria-label="Contact me">✉️</a>
+
+  <script>
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    const isDark = savedTheme === 'dark';
+    body.classList.toggle('light-mode', !isDark);
+    themeToggle.textContent = isDark ? '☀️' : '🌙';
+
+    themeToggle.addEventListener('click', () => {
+      const isNowLight = body.classList.contains('light-mode');
+      body.classList.toggle('light-mode', !isNowLight);
+      const newTheme = isNowLight ? 'dark' : 'light';
+      localStorage.setItem('theme', newTheme);
+      themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    });
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        if (this.getAttribute('href') === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section-content').forEach(el => observer.observe(el));
+
+    // Counter Animation (only once)
+    const counters = document.querySelectorAll('.counter');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseFloat(el.getAttribute('data-target'));
+          let count = 0;
+          const step = target / 100;
+          const timer = setInterval(() => {
+            count += step;
+            if (count >= target) {
+              el.textContent = target + '%';
+              clearInterval(timer);
+            } else {
+              el.textContent = Math.ceil(count) + '%';
+            }
+          }, 15);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+  </script>
 </body>
-
 </html>
