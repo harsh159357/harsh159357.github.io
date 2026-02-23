@@ -116,7 +116,7 @@
         0 20px 40px rgba(0, 0, 0, 0.4);
       position: relative;
       transform-style: preserve-3d;
-      transition: transform 0.1s ease;
+      transition: transform 0.1s ease, width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), border-radius 0.4s ease, padding 0.4s ease;
     }
 
     /* Subtle glare on the chassis */
@@ -1223,6 +1223,62 @@
       border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
+    /* =========================================
+       DEVICE SWITCHER (Floating Toolbar)
+    ========================================= */
+    .device-switcher {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      display: flex;
+      gap: 6px;
+      background: rgba(30, 30, 35, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 8px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .device-switcher-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .device-switcher-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .device-switcher-btn:active {
+      transform: scale(0.92);
+    }
+
+    .device-switcher-btn.active {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+
+    .device-switcher-btn i {
+      font-size: 22px;
+    }
+
+    .device-switcher-btn span {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
     /* Media queries to handle actual mobile devices (remove chassis, full bleed) */
     @media (max-width: 480px) {
       .environment {
@@ -1251,6 +1307,10 @@
       .device::after {
         display: none;
       }
+
+      .device-switcher {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -1260,6 +1320,27 @@
   <!-- Data attributes control the Dual OS theme and Material You colors -->
   <div data-os="ios" data-theme="dark" id="systemContainer">
     <div class="environment" id="environment">
+
+      <!-- Device Switcher Floating Toolbar -->
+      <div class="device-switcher" id="deviceSwitcher">
+        <div class="device-switcher-btn active" data-device="iphone" onclick="switchDevice('iphone')">
+          <i class="ph-fill ph-device-mobile"></i>
+          <span>iPhone</span>
+        </div>
+        <div class="device-switcher-btn" data-device="pixel" onclick="switchDevice('pixel')">
+          <i class="ph ph-device-mobile"></i>
+          <span>Pixel</span>
+        </div>
+        <div class="device-switcher-btn" data-device="galaxy" onclick="switchDevice('galaxy')">
+          <i class="ph-bold ph-device-mobile"></i>
+          <span>Galaxy</span>
+        </div>
+        <div class="device-switcher-btn" data-device="ipad" onclick="switchDevice('ipad')">
+          <i class="ph-fill ph-device-tablet-speaker"></i>
+          <span>iPad</span>
+        </div>
+      </div>
+
       <div class="device" id="device">
         <!-- Hardware Buttons -->
         <div class="hardware-btn btn-mute"></div>
@@ -2174,6 +2255,54 @@
 
       // Close CC to show off wallpaper
       setTimeout(() => { controlCenter.classList.remove('active'); }, 300);
+    }
+
+    // --- Device Switcher ---
+    const deviceProfiles = {
+      iphone: { w: 390, h: 844, r: 45, sr: 38, pad: 12, island: 'dynamic-island', label: 'iPhone 15 Pro' },
+      pixel: { w: 380, h: 830, r: 40, sr: 34, pad: 10, island: 'hole-punch', label: 'Pixel 8' },
+      galaxy: { w: 385, h: 840, r: 35, sr: 30, pad: 10, island: 'hole-punch', label: 'Galaxy S24' },
+      ipad: { w: 520, h: 740, r: 25, sr: 20, pad: 14, island: 'none', label: 'iPad Mini' }
+    };
+
+    let currentDevice = 'iphone';
+
+    function switchDevice(name) {
+      if (currentDevice === name) return;
+      currentDevice = name;
+      const p = deviceProfiles[name];
+      const root = document.documentElement;
+
+      // Smoothly morph CSS custom properties
+      root.style.setProperty('--device-width', p.w + 'px');
+      root.style.setProperty('--device-height', p.h + 'px');
+      root.style.setProperty('--device-radius', p.r + 'px');
+      root.style.setProperty('--screen-radius', p.sr + 'px');
+
+      // Update device padding
+      device.style.padding = p.pad + 'px';
+
+      // Handle notch visibility
+      const island = document.getElementById('dynamicIsland');
+      if (p.island === 'none') {
+        island.style.opacity = '0';
+        island.style.pointerEvents = 'none';
+      } else {
+        island.style.opacity = '1';
+        island.style.pointerEvents = 'auto';
+      }
+
+      // If the device is a Pixel or Galaxy, auto-switch to Android mode
+      if (name === 'pixel' || name === 'galaxy') {
+        if (currentOS === 'ios') switchOS();
+      } else if (name === 'iphone' || name === 'ipad') {
+        if (currentOS === 'android') switchOS();
+      }
+
+      // Update active button styling
+      document.querySelectorAll('.device-switcher-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.device === name);
+      });
     }
 
   </script>
