@@ -199,8 +199,7 @@
       justify-content: space-between;
       padding: 0 10px;
       box-shadow: inset 0 -1px 2px rgba(255, 255, 255, 0.1);
-      transition: all 0.3s cubic-bezier(0.5, 1.5, 0.4, 1);
-      /* Island animations */
+      transition: all 0.4s cubic-bezier(0.5, 1.5, 0.4, 1);
       cursor: pointer;
     }
 
@@ -210,6 +209,25 @@
       border-radius: 50%;
       background: #111;
       box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Android Mode: Hole Punch Camera */
+    [data-os="android"] .dynamic-island {
+      width: 24px;
+      height: 24px;
+      top: 12px;
+      border-radius: 50%;
+      padding: 0;
+      justify-content: center;
+      background: #111;
+      box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.8), 0 0 2px rgba(255, 255, 255, 0.1);
+    }
+
+    [data-os="android"] .camera-lens {
+      width: 10px;
+      height: 10px;
+      background: #050505;
+      box-shadow: none;
     }
 
     /* Status Bar (Time & Icons) */
@@ -229,6 +247,12 @@
       color: white;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
       pointer-events: none;
+    }
+
+    /* Android Mode: Status bar adjustments */
+    [data-os="android"] .status-bar {
+      padding: 0 20px 0 24px;
+      font-weight: 500;
     }
 
     .status-right {
@@ -254,12 +278,20 @@
       z-index: 800;
       cursor: pointer;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-      transition: height 0.2s, bottom 0.2s;
+      transition: height 0.2s, bottom 0.2s, opacity 0.3s;
     }
 
     .home-indicator:active {
       height: 8px;
       bottom: 6px;
+    }
+
+    /* Android Mode: Thinner pill or hidden depending on 'gesture navigation' */
+    [data-os="android"] .home-indicator {
+      width: 100px;
+      height: 3px;
+      bottom: 6px;
+      background: rgba(255, 255, 255, 0.6);
     }
 
     /* =========================================
@@ -430,6 +462,18 @@
       transform: scale(0.95);
     }
 
+    /* Android Mode: Ripple instead of scale, circular icons */
+    [data-os="android"] .app-icon {
+      border-radius: 50%;
+    }
+
+    [data-os="android"] .app-icon-container:active .app-icon {
+      transform: scale(1);
+      /* No scale down on Android, usually a ripple */
+      filter: brightness(0.85);
+      /* Simulate ripple overlay */
+    }
+
     .app-label {
       font-size: 11px;
       font-weight: 500;
@@ -466,7 +510,7 @@
       background: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%);
     }
 
-    /* The Dock */
+    /* The Dock (iOS) */
     .dock {
       position: absolute;
       bottom: 24px;
@@ -482,9 +526,273 @@
       justify-content: space-around;
       align-items: center;
       padding: 0 10px;
+      transition: opacity 0.3s, transform 0.3s;
     }
 
-    /* 3. OPEN APP LAYER */
+    /* Hide iOS dock in Android mode */
+    [data-os="android"] .dock {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+    }
+
+    /* Android Search Widget (Replaces Dock) */
+    .android-search-widget {
+      position: absolute;
+      bottom: 24px;
+      left: 16px;
+      right: 16px;
+      height: 52px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+      transition: opacity 0.3s, transform 0.3s;
+      cursor: pointer;
+    }
+
+    .android-search-widget i {
+      color: #5f6368;
+      font-size: 24px;
+    }
+
+    .android-search-widget .g-logo {
+      font-family: 'Inter', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #4285f4;
+      display: flex;
+      gap: 2px;
+    }
+
+    .g-logo span:nth-child(2) {
+      color: #ea4335;
+    }
+
+    .g-logo span:nth-child(3) {
+      color: #fbbc05;
+    }
+
+    .g-logo span:nth-child(4) {
+      color: #4285f4;
+    }
+
+    [data-os="android"] .android-search-widget {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* 4. HOME WIDGET (Status / Now Playing style) */
+    .home-widget {
+      grid-column: span 4;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-radius: 22px;
+      padding: 16px;
+      border: 1px solid var(--glass-border);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s, filter 0.2s;
+    }
+
+    .home-widget:active {
+      transform: scale(0.96);
+      filter: brightness(0.8);
+    }
+
+    .widget-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .widget-icon {
+      color: #FF2D55;
+      /* iTunes pinkish red */
+    }
+
+    [data-os="android"] .widget-icon {
+      color: var(--sys-green);
+      /* Spotify/Android green */
+    }
+
+    .widget-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .widget-subtitle {
+      font-size: 13px;
+      color: var(--sys-gray-light);
+    }
+
+    .widget-ticker {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .ticker-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sys-green);
+      animation: pulseLock 1.5s infinite;
+    }
+
+    /* 5. BOOT SEQUENCE SCREEN */
+    .boot-screen {
+      z-index: 999;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    .boot-logo {
+      font-size: 60px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--sys-blue), #a855f7);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: bootPulse 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes bootPulse {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+        filter: blur(10px);
+      }
+
+      50% {
+        transform: scale(1.05);
+        opacity: 1;
+        filter: blur(0px);
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* 6. CONTROL CENTER / QUICK SETTINGS */
+    .control-center {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(20, 20, 25, 0.85);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      z-index: 850;
+      padding: 60px 20px 30px;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      transform: translateY(-100%);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .control-center.active {
+      transform: translateY(0);
+    }
+
+    .cc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .cc-module {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .cc-module:active {
+      transform: scale(0.95);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .cc-icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: white;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .cc-module.active .cc-icon-box {
+      background: var(--sys-blue);
+    }
+
+    [data-os="android"] .cc-module.active .cc-icon-box {
+      background: var(--sys-green);
+    }
+
+    .cc-label {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .cc-sublabel {
+      font-size: 11px;
+      color: var(--sys-gray-light);
+    }
+
+    .cc-row-module {
+      grid-column: span 2;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+    }
+
+    /* Pull indicator to close settings */
+    .cc-pull-indicator {
+      width: 40px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+      margin: 20px auto 0;
+    }
+
+    /* 7. OPEN APP LAYER */
     .app-view {
       z-index: 60;
       background: var(--os-bg);
@@ -918,365 +1226,457 @@
 
 <body>
 
-  <div class="environment" id="environment">
-    <div class="device" id="device">
-      <!-- Hardware Buttons -->
-      <div class="hardware-btn btn-mute"></div>
-      <div class="hardware-btn btn-vol-up"></div>
-      <div class="hardware-btn btn-vol-down"></div>
-      <div class="hardware-btn btn-power"></div>
+  <!-- Data attributes control the Dual OS theme and Material You colors -->
+  <div data-os="ios" data-theme="dark" id="systemContainer">
+    <div class="environment" id="environment">
+      <div class="device" id="device">
+        <!-- Hardware Buttons -->
+        <div class="hardware-btn btn-mute"></div>
+        <div class="hardware-btn btn-vol-up"></div>
+        <div class="hardware-btn btn-vol-down"></div>
+        <div class="hardware-btn btn-power"></div>
 
-      <!-- The Screen -->
-      <div class="screen">
+        <!-- The Screen -->
+        <div class="screen">
 
-        <!-- Status Bar -->
-        <div class="status-bar">
-          <div class="status-time" id="statusTime">9:41</div>
-          <div class="status-right">
-            <i class="ph-fill ph-cell-signal-full"></i>
-            <i class="ph-fill ph-wifi-high"></i>
-            <i class="ph-fill ph-battery-full"></i>
+          <!-- Status Bar -->
+          <div class="status-bar">
+            <div class="status-time" id="statusTime">9:41</div>
+            <div class="status-right">
+              <i class="ph-fill ph-cell-signal-full"></i>
+              <i class="ph-fill ph-wifi-high"></i>
+              <i class="ph-fill ph-battery-full"></i>
+            </div>
           </div>
-        </div>
 
-        <!-- Dynamic Island -->
-        <div class="dynamic-island" id="dynamicIsland">
-          <div class="camera-lens"></div>
-          <!-- Island content dynamically injected -->
-        </div>
+          <!-- Dynamic Island -->
+          <div class="dynamic-island" id="dynamicIsland">
+            <div class="camera-lens"></div>
+            <!-- Island content dynamically injected -->
+          </div>
 
-        <!-- LAYER: LOCK SCREEN -->
-        <div class="layer lock-screen" id="lockScreen">
-          <i class="ph-fill ph-lock-key lock-icon" id="padlock"></i>
-          <div class="lock-time" id="lockTime">09:41</div>
-          <div class="lock-date" id="lockDate">Wednesday, October 24</div>
+          <!-- LAYER: CONTROL CENTER (Quick Settings) -->
+          <div class="control-center" id="controlCenter">
+            <h3 style="font-size: 20px; margin-bottom: 20px; padding-left: 4px;">Quick Settings</h3>
 
-          <div class="notification-stack">
-            <div class="notification">
-              <div class="notif-icon recruiter">
-                <i class="ph-fill ph-linkedin-logo"></i>
-              </div>
-              <div class="notif-content">
-                <div class="notif-header">
-                  <span class="notif-title">Recruitment</span>
-                  <span class="notif-time">now</span>
+            <div class="cc-grid">
+
+              <!-- OS Switcher Toggle -->
+              <div class="cc-module active" id="toggleOS" onclick="switchOS()">
+                <div class="cc-icon-box" id="osIconBox">
+                  <i class="ph-fill ph-apple-logo" id="osIcon"></i>
                 </div>
-                <div class="notif-body">
-                  "Wow, 99.88% crash-free rate at CoinDCX? We need to talk about a Staff role."
+                <div>
+                  <div class="cc-label" id="osLabel">iOS Mode</div>
+                  <div class="cc-sublabel">System Base</div>
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div class="swipe-hint">
-            <i class="ph ph-caret-up"></i>
-            Swipe up to view portfolio
-          </div>
-        </div>
-
-        <!-- LAYER: HOME SCREEN -->
-        <div class="layer home-screen" id="homeScreen">
-          <div class="app-grid">
-            <!-- Profile App -->
-            <div class="app-icon-container" onclick="openApp('app-profile-view')">
-              <div class="app-icon app-profile">
-                <i class="ph-fill ph-user-circle"></i>
-              </div>
-              <div class="app-label">Profile</div>
-            </div>
-
-            <!-- Experience App -->
-            <div class="app-icon-container" onclick="openApp('app-experience-view')">
-              <div class="app-icon app-experience">
-                <i class="ph-fill ph-briefcase"></i>
-              </div>
-              <div class="app-label">Career</div>
-            </div>
-
-            <!-- Skills App -->
-            <div class="app-icon-container" onclick="openApp('app-skills-view')">
-              <div class="app-icon app-skills">
-                <i class="ph-fill ph-chart-polar"></i>
-              </div>
-              <div class="app-label">Tech</div>
-            </div>
-
-            <!-- Projects App -->
-            <div class="app-icon-container" onclick="openApp('app-projects-view')">
-              <div class="app-icon app-projects">
-                <i class="ph-fill ph-app-window"></i>
-              </div>
-              <div class="app-label">Work</div>
-            </div>
-          </div>
-
-          <!-- Dock -->
-          <div class="dock">
-            <div class="app-icon-container" onclick="window.open('https://bit.ly/githarsh', '_blank')">
-              <div class="app-icon app-github">
-                <i class="ph-fill ph-github-logo"></i>
-              </div>
-            </div>
-            <div class="app-icon-container" onclick="window.open('https://bit.ly/lnkdharsh', '_blank')">
-              <div class="app-icon app-linkedin">
-                <i class="ph-fill ph-linkedin-logo"></i>
-              </div>
-            </div>
-            <div class="app-icon-container" onclick="window.location.href='mailto:harsh159357@gmail.com'">
-              <div class="app-icon app-mail">
-                <i class="ph-fill ph-envelope-simple"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- APP VIEWS -->
-
-        <!-- 1. Profile / Contacts App -->
-        <div class="layer app-view" id="app-profile-view">
-          <div class="app-header">
-            <div class="back-btn" onclick="closeApp()">
-              <i class="ph-bold ph-caret-left"></i> Home
-            </div>
-          </div>
-          <div class="app-body">
-            <div class="profile-hero">
-              <div class="profile-avatar"><i class="ph-fill ph-user"></i></div>
-              <div class="profile-name">Harsh Sharma</div>
-              <div class="profile-title">Senior Software Engineer II (SDE-3)</div>
-
-              <div class="contact-action-row">
-                <div class="contact-btn" onclick="window.location.href='mailto:harsh159357@gmail.com'">
-                  <i class="ph-fill ph-envelope-simple"></i>
+              <!-- Wallpaper / Material You Switcher -->
+              <div class="cc-module" onclick="cycleWallpaper()">
+                <div class="cc-icon-box" style="background: linear-gradient(135deg, #FF416C, #FF4B2B);">
+                  <i class="ph-fill ph-palette"></i>
                 </div>
-                <div class="contact-btn" onclick="window.open('https://bit.ly/lnkdharsh', '_blank')">
+                <div>
+                  <div class="cc-label">Wallpapers</div>
+                  <div class="cc-sublabel">Material You</div>
+                </div>
+              </div>
+
+              <!-- Action: Download Resume -->
+              <div class="cc-module cc-row-module" onclick="window.open('https://bit.ly/githarsh', '_blank')">
+                <div style="display: flex; gap: 12px; align-items: center;">
+                  <div class="cc-icon-box" style="background: rgba(255,255,255,0.15);">
+                    <i class="ph-fill ph-file-pdf"></i>
+                  </div>
+                  <div class="cc-label">Download Resume</div>
+                </div>
+                <i class="ph-bold ph-download-simple" style="color: var(--sys-gray-light)"></i>
+              </div>
+
+              <!-- Action: Email -->
+              <div class="cc-module cc-row-module" onclick="window.location.href='mailto:harsh159357@gmail.com'">
+                <div style="display: flex; gap: 12px; align-items: center;">
+                  <div class="cc-icon-box" style="background: rgba(255,255,255,0.15);">
+                    <i class="ph-fill ph-envelope-simple"></i>
+                  </div>
+                  <div class="cc-label">Contact Developer</div>
+                </div>
+                <i class="ph-bold ph-arrow-right" style="color: var(--sys-gray-light)"></i>
+              </div>
+
+            </div>
+
+            <div class="cc-pull-indicator" id="ccCloseHandle"></div>
+          </div>
+
+          <!-- LAYER: LOCK SCREEN -->
+          <div class="layer lock-screen" id="lockScreen">
+            <i class="ph-fill ph-lock-key lock-icon" id="padlock"></i>
+            <div class="lock-time" id="lockTime">09:41</div>
+            <div class="lock-date" id="lockDate">Wednesday, October 24</div>
+
+            <div class="notification-stack">
+              <div class="notification">
+                <div class="notif-icon recruiter">
                   <i class="ph-fill ph-linkedin-logo"></i>
                 </div>
-                <div class="contact-btn" onclick="window.open('https://bit.ly/githarsh', '_blank')">
-                  <i class="ph-fill ph-github-logo"></i>
-                </div>
-              </div>
-            </div>
-
-            <h3 style="font-size: 18px; margin-bottom: 12px; margin-left: 8px;">About</h3>
-            <div class="info-card">
-              <div class="info-row">
-                <div class="info-val">Staff‑track Engineer with 10+ years spanning fintech, telecom, and enterprise
-                  mobility. Specialist in high-throughput customer experience platforms.</div>
-              </div>
-            </div>
-
-            <h3 style="font-size: 18px; margin-bottom: 12px; margin-left: 8px;">Key Impacts</h3>
-            <div class="info-card">
-              <div class="info-row">
-                <span class="info-label">Stability</span>
-                <span class="info-val">Raised Crash-Free Rate from 99.60% to 99.88%.</span>
-              </div>
-              <div class="info-row">
-                <span class="info-label">Speed</span>
-                <span class="info-val">73% latency reduction on key trading screens.</span>
-              </div>
-              <div class="info-row">
-                <span class="info-label">Delivery</span>
-                <span class="info-val">Directed 8+ major releases with zero rollbacks.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2. Career / Timeline App -->
-        <div class="layer app-view" id="app-experience-view">
-          <div class="app-header">
-            <div class="back-btn" onclick="closeApp()">
-              <i class="ph-bold ph-caret-left"></i> Home
-            </div>
-            <span style="font-size: 18px;">Career History</span>
-          </div>
-          <div class="app-body">
-            <div class="career-track">
-              <!-- CoinDCX -->
-              <div class="career-node">
-                <div class="c-date">Jul 2022 – Present</div>
-                <div class="c-role">Senior Software Engineer II</div>
-                <div class="c-comp">CoinDCX, Bengaluru</div>
-                <div class="c-desc">Architected reusable Help Center (tickets ↓15%). Boosted Crash-Free Rate to 99.88%.
-                  Achieved 73% latency reduction. Deployed Flutter Web projects & Pine Script indicators.</div>
-              </div>
-
-              <!-- Jio -->
-              <div class="career-node">
-                <div class="c-date">Jun 2021 – Jul 2022</div>
-                <div class="c-role">Senior Android Developer</div>
-                <div class="c-comp">Jio Platforms, Bengaluru</div>
-                <div class="c-desc">Maintained Jio Design System. Built reusable Compose/XML libraries powering flagship
-                  apps (MyJio, JioTV). Created productivity plugins saving 30% setup time.</div>
-              </div>
-
-              <!-- Infosys -->
-              <div class="career-node">
-                <div class="c-date">Dec 2018 – Jun 2021</div>
-                <div class="c-role">Technology Analyst</div>
-                <div class="c-comp">Infosys (Telstra, BP), Bengaluru</div>
-                <div class="c-desc">Delivered enterprise telecom features for My Telstra app. Optimized AR SDK costs for
-                  BP by $1000/yr.</div>
-              </div>
-
-              <!-- Team Computers -->
-              <div class="career-node">
-                <div class="c-date">Feb 2017 – Nov 2018</div>
-                <div class="c-role">Android Developer</div>
-                <div class="c-comp">Team Computers, Gurugram</div>
-                <div class="c-desc">Digitized HR attendance from biometric devices to mobile apps for 1500+ employees.
-                  Full lifecycle ownership.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 3. Skills / Tech App -->
-        <div class="layer app-view" id="app-skills-view">
-          <div class="app-header">
-            <div class="back-btn" onclick="closeApp()">
-              <i class="ph-bold ph-caret-left"></i> Home
-            </div>
-            <span style="font-size: 18px;">Tech Analytics</span>
-          </div>
-          <div class="app-body">
-
-            <div class="info-card" style="padding: 24px;">
-              <div class="skill-ring-container">
-                <div class="ring ring-1"><span>Android</span></div>
-                <div class="ring ring-2"><span>Arch</span></div>
-                <div class="ring ring-3"><span>Flutter</span></div>
-              </div>
-              <p style="text-align: center; color: var(--sys-gray); font-size: 13px;">Proficiency Distribution</p>
-            </div>
-
-            <h3 style="font-size: 16px; margin-bottom: 8px; margin-top: 24px;">Mobile Platforms</h3>
-            <div class="tech-list">
-              <div class="tech-tag">Android (Kotlin/Java)</div>
-              <div class="tech-tag">Jetpack Compose</div>
-              <div class="tech-tag">Flutter</div>
-              <div class="tech-tag">App Signing & Play Store</div>
-            </div>
-
-            <h3 style="font-size: 16px; margin-bottom: 8px;">Architecture</h3>
-            <div class="tech-list">
-              <div class="tech-tag">Clean Architecture</div>
-              <div class="tech-tag">Modularization</div>
-              <div class="tech-tag">Design Systems</div>
-              <div class="tech-tag">Feature Toggles</div>
-            </div>
-
-            <h3 style="font-size: 16px; margin-bottom: 8px;">Performance & Data</h3>
-            <div class="tech-list">
-              <div class="tech-tag">Coroutines/Flows</div>
-              <div class="tech-tag">CPU Profiling</div>
-              <div class="tech-tag">Offline-First (Room)</div>
-              <div class="tech-tag">Crashlytics / Sentry</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4. Projects / Work App -->
-        <div class="layer app-view" id="app-projects-view">
-          <div class="app-header">
-            <div class="back-btn" onclick="closeApp()">
-              <i class="ph-bold ph-caret-left"></i> Home
-            </div>
-          </div>
-          <div class="app-body">
-            <div class="store-header">Work Highlights</div>
-
-            <!-- CoinDCX -->
-            <div class="store-card">
-              <div class="store-card-main">
-                <div class="store-icon" style="background: linear-gradient(135deg, #0052D4, #4364F7);">
-                  <i class="ph-fill ph-currency-btc"></i>
-                </div>
-                <div class="store-info">
-                  <div class="store-title">CoinDCX App</div>
-                  <div class="store-sub">Fintech Trading Platform</div>
-                  <div class="get-btn"
-                    onclick="window.open('https://play.google.com/store/apps/details?id=com.coindcx.btc', '_blank')">
-                    View</div>
-                </div>
-              </div>
-              <div class="store-desc">
-                Core engineering for high-throughput trading. Architected the Help/Support platform. Reached 99.88%
-                crash-free rate.
-              </div>
-            </div>
-
-            <!-- MyJio -->
-            <div class="store-card">
-              <div class="store-card-main">
-                <div class="store-icon" style="background: linear-gradient(135deg, #E60000, #FF4500);">
-                  <i class="ph-fill ph-wifi-high"></i>
-                </div>
-                <div class="store-info">
-                  <div class="store-title">MyJio</div>
-                  <div class="store-sub">Flagship Telecom App</div>
-                  <div class="get-btn"
-                    onclick="window.open('https://play.google.com/store/apps/details?id=com.jio.myjio', '_blank')">View
+                <div class="notif-content">
+                  <div class="notif-header">
+                    <span class="notif-title">Recruitment</span>
+                    <span class="notif-time">now</span>
+                  </div>
+                  <div class="notif-body">
+                    "Wow, 99.88% crash-free rate at CoinDCX? We need to talk about a Staff role."
                   </div>
                 </div>
               </div>
-              <div class="store-desc">
-                Developed UI components using XML and Jetpack Compose for the internal Jio Design System utilized across
-                the ecosystem.
-              </div>
             </div>
 
-            <!-- Gita App -->
-            <div class="store-card">
-              <div class="store-card-main">
-                <div class="store-icon" style="background: linear-gradient(135deg, #FF8008, #FFC837);">
-                  <i class="ph-fill ph-book-open"></i>
-                </div>
-                <div class="store-info">
-                  <div class="store-title">Bhagavad Gita</div>
-                  <div class="store-sub">Spiritual Reference</div>
-                  <div class="get-btn"
-                    onclick="window.open('https://play.google.com/store/apps/details?id=com.harshsharma.bhagavadgita.pro', '_blank')">
-                    View</div>
-                </div>
-              </div>
-              <div class="store-desc">
-                Built with clean architecture, offline-first Room database, and smooth typography for long-form reading.
-              </div>
+            <div class="swipe-hint">
+              <i class="ph ph-caret-up"></i>
+              Swipe up to view portfolio
             </div>
-
-            <!-- Flutter Contacts -->
-            <div class="store-card">
-              <div class="store-card-main">
-                <div class="store-icon" style="background: #24292e;">
-                  <i class="ph-fill ph-address-book"></i>
-                </div>
-                <div class="store-info">
-                  <div class="store-title">Flutter Contacts Base</div>
-                  <div class="store-sub">Open Source Architecture</div>
-                  <div class="get-btn" onclick="window.open('https://bit.ly/appcontacts', '_blank')">Repo</div>
-                </div>
-              </div>
-              <div class="store-desc">
-                Cross-platform application demonstrating clean architecture principles with 4 interchangeable storage
-                implementations.
-              </div>
-            </div>
-
           </div>
+
+          <!-- LAYER: HOME SCREEN -->
+          <div class="layer home-screen" id="homeScreen">
+            <div class="app-grid">
+              <!-- Profile App -->
+              <div class="app-icon-container" onclick="openApp('app-profile-view')">
+                <div class="app-icon app-profile">
+                  <i class="ph-fill ph-user-circle"></i>
+                </div>
+                <div class="app-label">Profile</div>
+              </div>
+
+              <!-- Experience App -->
+              <div class="app-icon-container" onclick="openApp('app-experience-view')">
+                <div class="app-icon app-experience">
+                  <i class="ph-fill ph-briefcase"></i>
+                </div>
+                <div class="app-label">Career</div>
+              </div>
+
+              <!-- Skills App -->
+              <div class="app-icon-container" onclick="openApp('app-skills-view')">
+                <div class="app-icon app-skills">
+                  <i class="ph-fill ph-chart-polar"></i>
+                </div>
+                <div class="app-label">Tech</div>
+              </div>
+
+              <!-- Projects App -->
+              <div class="app-icon-container" onclick="openApp('app-projects-view')">
+                <div class="app-icon app-projects">
+                  <i class="ph-fill ph-app-window"></i>
+                </div>
+                <div class="app-label">Work</div>
+              </div>
+            </div>
+
+            <!-- Dock -->
+            <div class="dock">
+              <div class="app-icon-container" onclick="window.open('https://bit.ly/githarsh', '_blank')">
+                <div class="app-icon app-github">
+                  <i class="ph-fill ph-github-logo"></i>
+                </div>
+              </div>
+              <div class="app-icon-container" onclick="window.open('https://bit.ly/lnkdharsh', '_blank')">
+                <div class="app-icon app-linkedin">
+                  <i class="ph-fill ph-linkedin-logo"></i>
+                </div>
+              </div>
+              <div class="app-icon-container" onclick="window.location.href='mailto:harsh159357@gmail.com'">
+                <div class="app-icon app-mail">
+                  <i class="ph-fill ph-envelope-simple"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Android Search Widget (Replaces Dock in Android Mode) -->
+            <div class="android-search-widget" onclick="window.open('https://bit.ly/githarsh', '_blank')">
+              <div class="g-logo">
+                <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
+              </div>
+              <div style="display: flex; gap: 16px;">
+                <i class="ph-fill ph-microphone"></i>
+                <i class="ph-fill ph-camera"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- APP VIEWS -->
+
+          <!-- 1. Profile / Contacts App -->
+          <div class="layer app-view" id="app-profile-view">
+            <div class="app-header">
+              <div class="back-btn" onclick="closeApp()">
+                <i class="ph-bold ph-caret-left"></i> Home
+              </div>
+            </div>
+            <div class="app-body">
+              <div class="profile-hero">
+                <div class="profile-avatar"><i class="ph-fill ph-user"></i></div>
+                <div class="profile-name">Harsh Sharma</div>
+                <div class="profile-title">Senior Software Engineer II (SDE-3)</div>
+
+                <div class="contact-action-row">
+                  <div class="contact-btn" onclick="window.location.href='mailto:harsh159357@gmail.com'">
+                    <i class="ph-fill ph-envelope-simple"></i>
+                  </div>
+                  <div class="contact-btn" onclick="window.open('https://bit.ly/lnkdharsh', '_blank')">
+                    <i class="ph-fill ph-linkedin-logo"></i>
+                  </div>
+                  <div class="contact-btn" onclick="window.open('https://bit.ly/githarsh', '_blank')">
+                    <i class="ph-fill ph-github-logo"></i>
+                  </div>
+                </div>
+              </div>
+
+              <h3 style="font-size: 18px; margin-bottom: 12px; margin-left: 8px;">About</h3>
+              <div class="info-card">
+                <div class="info-row">
+                  <div class="info-val">Staff‑track Engineer with 10+ years spanning fintech, telecom, and enterprise
+                    mobility. Specialist in high-throughput customer experience platforms.</div>
+                </div>
+              </div>
+
+              <h3 style="font-size: 18px; margin-bottom: 12px; margin-left: 8px;">Key Impacts</h3>
+              <div class="info-card">
+                <div class="info-row">
+                  <span class="info-label">Stability</span>
+                  <span class="info-val">Raised Crash-Free Rate from 99.60% to 99.88%.</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Speed</span>
+                  <span class="info-val">73% latency reduction on key trading screens.</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Delivery</span>
+                  <span class="info-val">Directed 8+ major releases with zero rollbacks.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Career / Timeline App -->
+          <div class="layer app-view" id="app-experience-view">
+            <div class="app-header">
+              <div class="back-btn" onclick="closeApp()">
+                <i class="ph-bold ph-caret-left"></i> Home
+              </div>
+              <span style="font-size: 18px;">Career History</span>
+            </div>
+            <div class="app-body">
+              <div class="career-track">
+                <!-- CoinDCX -->
+                <div class="career-node">
+                  <div class="c-date">Jul 2022 – Present</div>
+                  <div class="c-role">Senior Software Engineer II</div>
+                  <div class="c-comp">CoinDCX, Bengaluru</div>
+                  <div class="c-desc">Architected reusable Help Center (tickets ↓15%). Boosted Crash-Free Rate to
+                    99.88%.
+                    Achieved 73% latency reduction. Deployed Flutter Web projects & Pine Script indicators.</div>
+                </div>
+
+                <!-- Jio -->
+                <div class="career-node">
+                  <div class="c-date">Jun 2021 – Jul 2022</div>
+                  <div class="c-role">Senior Android Developer</div>
+                  <div class="c-comp">Jio Platforms, Bengaluru</div>
+                  <div class="c-desc">Maintained Jio Design System. Built reusable Compose/XML libraries powering
+                    flagship
+                    apps (MyJio, JioTV). Created productivity plugins saving 30% setup time.</div>
+                </div>
+
+                <!-- Infosys -->
+                <div class="career-node">
+                  <div class="c-date">Dec 2018 – Jun 2021</div>
+                  <div class="c-role">Technology Analyst</div>
+                  <div class="c-comp">Infosys (Telstra, BP), Bengaluru</div>
+                  <div class="c-desc">Delivered enterprise telecom features for My Telstra app. Optimized AR SDK costs
+                    for
+                    BP by $1000/yr.</div>
+                </div>
+
+                <!-- Team Computers -->
+                <div class="career-node">
+                  <div class="c-date">Feb 2017 – Nov 2018</div>
+                  <div class="c-role">Android Developer</div>
+                  <div class="c-comp">Team Computers, Gurugram</div>
+                  <div class="c-desc">Digitized HR attendance from biometric devices to mobile apps for 1500+ employees.
+                    Full lifecycle ownership.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Skills / Tech App -->
+          <div class="layer app-view" id="app-skills-view">
+            <div class="app-header">
+              <div class="back-btn" onclick="closeApp()">
+                <i class="ph-bold ph-caret-left"></i> Home
+              </div>
+              <span style="font-size: 18px;">Tech Analytics</span>
+            </div>
+            <div class="app-body">
+
+              <div class="info-card" style="padding: 24px;">
+                <div class="skill-ring-container">
+                  <div class="ring ring-1"><span>Android</span></div>
+                  <div class="ring ring-2"><span>Arch</span></div>
+                  <div class="ring ring-3"><span>Flutter</span></div>
+                </div>
+                <p style="text-align: center; color: var(--sys-gray); font-size: 13px;">Proficiency Distribution</p>
+              </div>
+
+              <h3 style="font-size: 16px; margin-bottom: 8px; margin-top: 24px;">Mobile Platforms</h3>
+              <div class="tech-list">
+                <div class="tech-tag">Android (Kotlin/Java)</div>
+                <div class="tech-tag">Jetpack Compose</div>
+                <div class="tech-tag">Flutter</div>
+                <div class="tech-tag">App Signing & Play Store</div>
+              </div>
+
+              <h3 style="font-size: 16px; margin-bottom: 8px;">Architecture</h3>
+              <div class="tech-list">
+                <div class="tech-tag">Clean Architecture</div>
+                <div class="tech-tag">Modularization</div>
+                <div class="tech-tag">Design Systems</div>
+                <div class="tech-tag">Feature Toggles</div>
+              </div>
+
+              <h3 style="font-size: 16px; margin-bottom: 8px;">Performance & Data</h3>
+              <div class="tech-list">
+                <div class="tech-tag">Coroutines/Flows</div>
+                <div class="tech-tag">CPU Profiling</div>
+                <div class="tech-tag">Offline-First (Room)</div>
+                <div class="tech-tag">Crashlytics / Sentry</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Projects / Work App -->
+          <div class="layer app-view" id="app-projects-view">
+            <div class="app-header">
+              <div class="back-btn" onclick="closeApp()">
+                <i class="ph-bold ph-caret-left"></i> Home
+              </div>
+            </div>
+            <div class="app-body">
+              <div class="store-header">Work Highlights</div>
+
+              <!-- CoinDCX -->
+              <div class="store-card">
+                <div class="store-card-main">
+                  <div class="store-icon" style="background: linear-gradient(135deg, #0052D4, #4364F7);">
+                    <i class="ph-fill ph-currency-btc"></i>
+                  </div>
+                  <div class="store-info">
+                    <div class="store-title">CoinDCX App</div>
+                    <div class="store-sub">Fintech Trading Platform</div>
+                    <div class="get-btn"
+                      onclick="window.open('https://play.google.com/store/apps/details?id=com.coindcx.btc', '_blank')">
+                      View</div>
+                  </div>
+                </div>
+                <div class="store-desc">
+                  Core engineering for high-throughput trading. Architected the Help/Support platform. Reached 99.88%
+                  crash-free rate.
+                </div>
+              </div>
+
+              <!-- MyJio -->
+              <div class="store-card">
+                <div class="store-card-main">
+                  <div class="store-icon" style="background: linear-gradient(135deg, #E60000, #FF4500);">
+                    <i class="ph-fill ph-wifi-high"></i>
+                  </div>
+                  <div class="store-info">
+                    <div class="store-title">MyJio</div>
+                    <div class="store-sub">Flagship Telecom App</div>
+                    <div class="get-btn"
+                      onclick="window.open('https://play.google.com/store/apps/details?id=com.jio.myjio', '_blank')">
+                      View
+                    </div>
+                  </div>
+                </div>
+                <div class="store-desc">
+                  Developed UI components using XML and Jetpack Compose for the internal Jio Design System utilized
+                  across
+                  the ecosystem.
+                </div>
+              </div>
+
+              <!-- Gita App -->
+              <div class="store-card">
+                <div class="store-card-main">
+                  <div class="store-icon" style="background: linear-gradient(135deg, #FF8008, #FFC837);">
+                    <i class="ph-fill ph-book-open"></i>
+                  </div>
+                  <div class="store-info">
+                    <div class="store-title">Bhagavad Gita</div>
+                    <div class="store-sub">Spiritual Reference</div>
+                    <div class="get-btn"
+                      onclick="window.open('https://play.google.com/store/apps/details?id=com.harshsharma.bhagavadgita.pro', '_blank')">
+                      View</div>
+                  </div>
+                </div>
+                <div class="store-desc">
+                  Built with clean architecture, offline-first Room database, and smooth typography for long-form
+                  reading.
+                </div>
+              </div>
+
+              <!-- Flutter Contacts -->
+              <div class="store-card">
+                <div class="store-card-main">
+                  <div class="store-icon" style="background: #24292e;">
+                    <i class="ph-fill ph-address-book"></i>
+                  </div>
+                  <div class="store-info">
+                    <div class="store-title">Flutter Contacts Base</div>
+                    <div class="store-sub">Open Source Architecture</div>
+                    <div class="get-btn" onclick="window.open('https://bit.ly/appcontacts', '_blank')">Repo</div>
+                  </div>
+                </div>
+                <div class="store-desc">
+                  Cross-platform application demonstrating clean architecture principles with 4 interchangeable storage
+                  implementations.
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Persistent Home Indicator (always on top) -->
+          <div class="home-indicator" id="homeIndicator"></div>
+
         </div>
-
-        <!-- Persistent Home Indicator (always on top) -->
-        <div class="home-indicator" id="homeIndicator"></div>
-
       </div>
     </div>
-  </div>
+
+  </div> <!-- End System Container -->
 
   <!-- OS Mechanics Scripts -->
   <script>
+    // --- Boot Sequence Logic ---
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const boot = document.getElementById('bootScreen');
+        const lock = document.getElementById('lockScreen');
+
+        boot.style.opacity = '0';
+        lock.style.opacity = '1';
+        lock.style.pointerEvents = 'auto';
+
+        setTimeout(() => {
+          boot.style.display = 'none';
+        }, 800);
+      }, 2000); // 2 second boot
+    });
+
     // --- Clock Logic ---
     function updateTime() {
       const now = new Date();
@@ -1436,6 +1836,90 @@
     env.addEventListener('mouseleave', () => {
       device.style.transform = `rotateY(0deg) rotateX(0deg)`;
     });
+
+    // --- Advanced OS: Control Center (Swipe Down) ---
+    const controlCenter = document.getElementById('controlCenter');
+    const ccCloseHandle = document.getElementById('ccCloseHandle');
+    const dynamicIsland = document.getElementById('dynamicIsland');
+
+    // Simple click to open for desktop ease
+    dynamicIsland.addEventListener('click', () => {
+      controlCenter.classList.add('active');
+    });
+
+    // Swipe down on top edge to open
+    let ccStartY = 0;
+    document.querySelector('.status-bar').addEventListener('mousedown', (e) => { ccStartY = e.clientY; });
+    document.querySelector('.status-bar').addEventListener('touchstart', (e) => { ccStartY = e.touches[0].clientY; });
+
+    function handleCCSwipe(y) {
+      if (y - ccStartY > 50) controlCenter.classList.add('active');
+    }
+
+    document.addEventListener('mouseup', (e) => { if (ccStartY) handleCCSwipe(e.clientY); ccStartY = 0; });
+    document.addEventListener('touchend', (e) => { if (ccStartY && e.changedTouches) handleCCSwipe(e.changedTouches[0].clientY); ccStartY = 0; });
+
+    // Close Control Center
+    ccCloseHandle.addEventListener('click', () => controlCenter.classList.remove('active'));
+
+    // --- Advanced OS: Dual State Switcher ---
+    let currentOS = 'ios';
+    const sysContainer = document.getElementById('systemContainer');
+    const osIcon = document.getElementById('osIcon');
+    const osLabel = document.getElementById('osLabel');
+    const toggleOSBtn = document.getElementById('toggleOS');
+
+    function switchOS() {
+      if (currentOS === 'ios') {
+        currentOS = 'android';
+        sysContainer.setAttribute('data-os', 'android');
+        osIcon.classList.replace('ph-apple-logo', 'ph-google-logo');
+        osLabel.textContent = "Android Mode";
+        toggleOSBtn.classList.add('active'); // Keep background highlight
+      } else {
+        currentOS = 'ios';
+        sysContainer.setAttribute('data-os', 'ios');
+        osIcon.classList.replace('ph-google-logo', 'ph-apple-logo');
+        osLabel.textContent = "iOS Mode";
+        toggleOSBtn.classList.add('active');
+      }
+    }
+
+    // --- Advanced OS: Material You Wallpaper Engine ---
+    const wallpapers = [
+      {
+        url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop', // Dark Abstract
+        primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)', bg: '#000000',
+        blue: '#0A84FF', green: '#30D158'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2564&auto=format&fit=crop', // Vibrant Liquid/Purple
+        primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.8)', bg: '#1A0B2E',
+        blue: '#00E5FF', green: '#00E676'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=2564&auto=format&fit=crop', // Minimalist Nature/Green
+        primary: '#F0F4F8', secondary: 'rgba(230,240,250,0.7)', bg: '#0D1A15',
+        blue: '#4DB6AC', green: '#81C784'
+      }
+    ];
+    let wallpaperIdx = 0;
+
+    function cycleWallpaper() {
+      wallpaperIdx = (wallpaperIdx + 1) % wallpapers.length;
+      const wp = wallpapers[wallpaperIdx];
+
+      const root = document.documentElement;
+      root.style.setProperty('--os-wallpaper', `url('${wp.url}')`);
+      root.style.setProperty('--text-primary', wp.primary);
+      root.style.setProperty('--text-secondary', wp.secondary);
+      root.style.setProperty('--os-bg', wp.bg);
+      root.style.setProperty('--sys-blue', wp.blue);
+      root.style.setProperty('--sys-green', wp.green);
+
+      // Close CC to show off wallpaper
+      setTimeout(() => { controlCenter.classList.remove('active'); }, 300);
+    }
 
   </script>
 </body>
