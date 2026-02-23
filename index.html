@@ -783,13 +783,22 @@
       padding: 16px 20px;
     }
 
-    /* Pull indicator to close settings */
+    /* Pull area to close settings */
+    .cc-pull-area {
+      padding: 24px;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
     .cc-pull-indicator {
-      width: 40px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 2px;
-      margin: 20px auto 0;
+      width: 50px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 4px;
     }
 
     /* 7. OPEN APP LAYER */
@@ -1307,7 +1316,12 @@
 
             </div>
 
-            <div class="cc-pull-indicator" id="ccCloseHandle"></div>
+            <div class="cc-pull-area" id="ccCloseHandle" onclick="closeControlCenter()">
+              <div style="font-size: 14px; color: rgba(255,255,255,0.8); font-weight: 500;">
+                <i class="ph-bold ph-caret-up"></i> Swipe up to close
+              </div>
+              <div class="cc-pull-indicator"></div>
+            </div>
           </div>
 
           <!-- LAYER: LOCK SCREEN -->
@@ -1372,6 +1386,14 @@
                   <i class="ph-fill ph-app-window"></i>
                 </div>
                 <div class="app-label">Work</div>
+              </div>
+
+              <!-- Settings App -->
+              <div class="app-icon-container" onclick="openControlCenter()">
+                <div class="app-icon" style="background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);">
+                  <i class="ph-fill ph-gear"></i>
+                </div>
+                <div class="app-label">Settings</div>
               </div>
             </div>
 
@@ -1842,10 +1864,16 @@
     const ccCloseHandle = document.getElementById('ccCloseHandle');
     const dynamicIsland = document.getElementById('dynamicIsland');
 
-    // Simple click to open for desktop ease
-    dynamicIsland.addEventListener('click', () => {
+    function openControlCenter() {
       controlCenter.classList.add('active');
-    });
+    }
+
+    function closeControlCenter() {
+      controlCenter.classList.remove('active');
+    }
+
+    // Simple click to open for desktop ease
+    dynamicIsland.addEventListener('click', openControlCenter);
 
     // Swipe down on top edge to open
     let ccStartY = 0;
@@ -1853,14 +1881,31 @@
     document.querySelector('.status-bar').addEventListener('touchstart', (e) => { ccStartY = e.touches[0].clientY; });
 
     function handleCCSwipe(y) {
-      if (y - ccStartY > 50) controlCenter.classList.add('active');
+      if (y - ccStartY > 40) openControlCenter();
     }
 
     document.addEventListener('mouseup', (e) => { if (ccStartY) handleCCSwipe(e.clientY); ccStartY = 0; });
     document.addEventListener('touchend', (e) => { if (ccStartY && e.changedTouches) handleCCSwipe(e.changedTouches[0].clientY); ccStartY = 0; });
 
-    // Close Control Center
-    ccCloseHandle.addEventListener('click', () => controlCenter.classList.remove('active'));
+    // Close when clicking directly on the blurred background (outside of modules)
+    controlCenter.addEventListener('click', (e) => {
+      if (e.target === controlCenter) {
+        closeControlCenter();
+      }
+    });
+
+    // Close on swipe UP anywhere inside Control Center
+    let ccCloseStartY = 0;
+    controlCenter.addEventListener('touchstart', (e) => { ccCloseStartY = e.touches[0].clientY; });
+    controlCenter.addEventListener('touchend', (e) => {
+      if (ccCloseStartY && ccCloseStartY - e.changedTouches[0].clientY > 40) {
+        closeControlCenter();
+      }
+      ccCloseStartY = 0;
+    });
+
+    // Close Control Center via the Explicit Handle
+    ccCloseHandle.addEventListener('click', closeControlCenter);
 
     // --- Advanced OS: Dual State Switcher ---
     let currentOS = 'ios';
