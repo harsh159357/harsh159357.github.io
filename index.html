@@ -13,6 +13,9 @@
     content="Harsh Sharma – Staff-track Senior Software Engineer (SDE-3) specializing in Android, Flutter, fintech, and high-throughput CX platforms.">
   <meta property="og:title" content="Harsh Sharma – Mobile Engineer">
   <meta property="og:description" content="Android | Flutter | Fintech | Performance | Reliability">
+  <meta property="og:image"
+    content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop">
+  <meta property="og:type" content="website">
 
   <!-- Modern Typography (SF Pro style substitute) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -246,7 +249,7 @@
       font-weight: 600;
       color: white;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-      pointer-events: none;
+      /* pointer-events left enabled for swipe-down gesture */
     }
 
     /* Android Mode: Status bar adjustments */
@@ -278,12 +281,14 @@
       z-index: 800;
       cursor: pointer;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-      transition: height 0.2s, bottom 0.2s, opacity 0.3s;
+      transition: height 0.2s, bottom 0.2s, opacity 0.3s, width 0.2s;
     }
 
     .home-indicator:active {
       height: 8px;
       bottom: 6px;
+      width: 110px;
+      background: rgba(255, 255, 255, 1);
     }
 
     /* Android Mode: Thinner pill or hidden depending on 'gesture navigation' */
@@ -569,6 +574,11 @@
       gap: 2px;
     }
 
+    /* Google logo: G=blue, o=red, o=yellow, g=blue, l=green, e=red */
+    .g-logo span:nth-child(1) {
+      color: #4285f4;
+    }
+
     .g-logo span:nth-child(2) {
       color: #ea4335;
     }
@@ -579,6 +589,14 @@
 
     .g-logo span:nth-child(4) {
       color: #4285f4;
+    }
+
+    .g-logo span:nth-child(5) {
+      color: #34a853;
+    }
+
+    .g-logo span:nth-child(6) {
+      color: #ea4335;
     }
 
     [data-os="android"] .android-search-widget {
@@ -665,6 +683,15 @@
       align-items: center;
       justify-content: center;
       transition: opacity 0.8s ease-in-out;
+      /* CSS fallback: auto-hide boot screen after 4s even if JS fails */
+      animation: bootFallbackHide 0.5s ease 4s forwards;
+    }
+
+    @keyframes bootFallbackHide {
+      to {
+        opacity: 0;
+        pointer-events: none;
+      }
     }
 
     .boot-logo {
@@ -882,7 +909,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       position: sticky;
       top: 0;
-      background: rgba(0, 0, 0, 0.8);
+      background: color-mix(in srgb, var(--os-bg) 85%, transparent);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       z-index: 100;
@@ -907,16 +934,13 @@
       padding-bottom: 80px;
       /* Clear home indicator */
       scroll-behavior: smooth;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
 
     /* Hide scrollbar for apps */
     .app-body::-webkit-scrollbar {
       display: none;
-    }
-
-    .app-body {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
     }
 
     /* Profile App Specifics */
@@ -1040,7 +1064,7 @@
       height: 12px;
       border-radius: 50%;
       background: var(--sys-blue);
-      border: 3px solid var(--os-bg);
+      border: 3px solid var(--sys-gray-dark);
     }
 
     .c-date {
@@ -1354,8 +1378,25 @@
           <!-- LAYER: HOME SCREEN -->
           <div class="layer home-screen" id="homeScreen">
             <div class="app-grid">
+
+              <!-- Interactive Status Widget -->
+              <div class="home-widget" onclick="openApp('app-experience-view')" role="button"
+                aria-label="View current status">
+                <div class="widget-header">
+                  <span>Status</span>
+                  <i class="ph-fill ph-speaker-hifi widget-icon"></i>
+                </div>
+                <div class="widget-title">Engineering High-Throughput Fintech</div>
+                <div class="widget-subtitle">CoinDCX • Senior SDE II</div>
+                <div class="widget-ticker">
+                  <div class="ticker-dot"></div>
+                  <span style="font-size: 12px; color: var(--sys-gray-light);">Live</span>
+                </div>
+              </div>
+
               <!-- Profile App -->
-              <div class="app-icon-container" onclick="openApp('app-profile-view')">
+              <div class="app-icon-container" onclick="openApp('app-profile-view')" role="button"
+                aria-label="Open Profile">
                 <div class="app-icon app-profile">
                   <i class="ph-fill ph-user-circle"></i>
                 </div>
@@ -1363,7 +1404,8 @@
               </div>
 
               <!-- Experience App -->
-              <div class="app-icon-container" onclick="openApp('app-experience-view')">
+              <div class="app-icon-container" onclick="openApp('app-experience-view')" role="button"
+                aria-label="Open Career">
                 <div class="app-icon app-experience">
                   <i class="ph-fill ph-briefcase"></i>
                 </div>
@@ -1371,7 +1413,7 @@
               </div>
 
               <!-- Skills App -->
-              <div class="app-icon-container" onclick="openApp('app-skills-view')">
+              <div class="app-icon-container" onclick="openApp('app-skills-view')" role="button" aria-label="Open Tech">
                 <div class="app-icon app-skills">
                   <i class="ph-fill ph-chart-polar"></i>
                 </div>
@@ -1379,7 +1421,8 @@
               </div>
 
               <!-- Projects App -->
-              <div class="app-icon-container" onclick="openApp('app-projects-view')">
+              <div class="app-icon-container" onclick="openApp('app-projects-view')" role="button"
+                aria-label="Open Work">
                 <div class="app-icon app-projects">
                   <i class="ph-fill ph-app-window"></i>
                 </div>
@@ -1387,7 +1430,7 @@
               </div>
 
               <!-- Settings App -->
-              <div class="app-icon-container" onclick="openControlCenter()">
+              <div class="app-icon-container" onclick="openControlCenter()" role="button" aria-label="Open Settings">
                 <div class="app-icon" style="background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);">
                   <i class="ph-fill ph-gear"></i>
                 </div>
@@ -1395,7 +1438,8 @@
               </div>
 
               <!-- Social: Github -->
-              <div class="app-icon-container" onclick="window.open('https://bit.ly/githarsh', '_blank')">
+              <div class="app-icon-container" onclick="window.open('https://bit.ly/githarsh', '_blank')" role="button"
+                aria-label="Open GitHub">
                 <div class="app-icon app-github">
                   <i class="ph-fill ph-github-logo"></i>
                 </div>
@@ -1403,7 +1447,8 @@
               </div>
 
               <!-- Social: LinkedIn -->
-              <div class="app-icon-container" onclick="window.open('https://bit.ly/lnkdharsh', '_blank')">
+              <div class="app-icon-container" onclick="window.open('https://bit.ly/lnkdharsh', '_blank')" role="button"
+                aria-label="Open LinkedIn">
                 <div class="app-icon app-linkedin">
                   <i class="ph-fill ph-linkedin-logo"></i>
                 </div>
@@ -1411,7 +1456,8 @@
               </div>
 
               <!-- Social: Email -->
-              <div class="app-icon-container" onclick="window.location.href='mailto:harsh159357@gmail.com'">
+              <div class="app-icon-container" onclick="window.location.href='mailto:harsh159357@gmail.com'"
+                role="button" aria-label="Send Email">
                 <div class="app-icon app-mail">
                   <i class="ph-fill ph-envelope-simple"></i>
                 </div>
@@ -1419,11 +1465,8 @@
               </div>
             </div>
 
-            <!-- Dock Details (Background styling only for iOS mode) -->
-            <div class="dock"></div>
-
             <!-- Android Search Widget (Replaces Dock in Android Mode) -->
-            <div class="android-search-widget" onclick="window.open('https://bit.ly/githarsh', '_blank')">
+            <div class="android-search-widget" role="button" aria-label="Search">
               <div class="g-logo">
                 <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
               </div>
@@ -1679,7 +1722,7 @@
           </div>
 
           <!-- Persistent Home Indicator (always on top) -->
-          <div class="home-indicator" id="homeIndicator"></div>
+          <div class="home-indicator" id="homeIndicator" role="button" aria-label="Go Home"></div>
 
         </div>
       </div>
