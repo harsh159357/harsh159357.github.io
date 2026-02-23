@@ -2292,12 +2292,7 @@
         island.style.pointerEvents = 'auto';
       }
 
-      // If the device is a Pixel or Galaxy, auto-switch to Android mode
-      if (name === 'pixel' || name === 'galaxy') {
-        if (currentOS === 'ios') switchOS();
-      } else if (name === 'iphone' || name === 'ipad') {
-        if (currentOS === 'android') switchOS();
-      }
+      // OS mode is NOT changed here — the user's choice persists independently.
 
       // Update active button styling
       document.querySelectorAll('.device-switcher-btn').forEach(btn => {
