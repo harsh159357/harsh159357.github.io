@@ -1,1010 +1,1397 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Harsh Sharma – Senior Software Engineer</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%236366f1%22>HS</text></svg>" type="image/svg+xml">
-  <meta name="description" content="Harsh Sharma – Staff-track Senior Software Engineer (SDE-3) with 10+ years in Android, Flutter, fintech, and high-throughput CX platforms at CoinDCX, Jio, and Infosys.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harsh Sharma | Senior Software Engineer</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%236366f1%22>HS</text></svg>"
+    type="image/svg+xml">
+  <meta name="description"
+    content="Harsh Sharma – Staff-track Senior Software Engineer (SDE-3) specializing in Android, Flutter, fintech, and high-throughput CX platforms.">
   <meta property="og:title" content="Harsh Sharma – Senior Software Engineer">
   <meta property="og:description" content="Android | Flutter | Fintech | Performance | Reliability | Architecture">
-  <meta property="og:type" content="website">	
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+
+  <!-- Modern Typography: Outfit for Headings, Inter for Body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Phosphor Icons for modern lightweight icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
   <style>
+    /* =========================================
+           CSS VARIABLES & THEME TOKENS
+        ========================================= */
     :root {
-      --bg-primary: #0f0f0f;
-      --bg-secondary: #1a1a1a;
-      --bg-tertiary: #252525;
-      --text-primary: #f0f0f0;
-      --text-secondary: #b0b0b0;
-      --accent: #6366f1;
-      --accent-hover: #4f46e5;
-      --border: #333;
-      --card-bg: #1e1e1e;
-      --timeline-line: #333;
-      --timeline-dot: #6366f1;
-      --shadow: rgba(0, 0, 0, 0.4);
+      /* Dark Theme (Default) */
+      --bg-base: #050505;
+      --bg-surface: rgba(20, 20, 22, 0.7);
+      --bg-surface-solid: #141416;
+      --bg-elevated: rgba(30, 30, 35, 0.6);
+
+      --text-primary: #ffffff;
+      --text-secondary: #a1a1aa;
+      --text-tertiary: #71717a;
+
+      --accent-primary: #6366f1;
+      /* Indigo */
+      --accent-glow: rgba(99, 102, 241, 0.4);
+      --accent-secondary: #a855f7;
+      /* Purple */
+      --accent-tertiary: #ec4899;
+      /* Pink */
+
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.15);
+
+      --glass-blur: blur(12px);
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 10px 30px -5px rgba(0, 0, 0, 0.7);
+      --shadow-glow: 0 0 20px var(--accent-glow);
+
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-pill: 9999px;
+
+      --transition-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+      --transition-smooth: 400ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .light-mode {
-      --bg-primary: #ffffff;
-      --bg-secondary: #f8fafc;
-      --bg-tertiary: #f1f5f9;
-      --text-primary: #1e293b;
-      --text-secondary: #64748b;
-      --accent: #4f46e5;
-      --accent-hover: #4338ca;
-      --border: #e2e8f0;
-      --card-bg: #ffffff;
-      --timeline-line: #cbd5e1;
-      --timeline-dot: #4f46e5;
-      --shadow: rgba(0, 0, 0, 0.1);
+    [data-theme="light"] {
+      --bg-base: #f8fafc;
+      --bg-surface: rgba(255, 255, 255, 0.8);
+      --bg-surface-solid: #ffffff;
+      --bg-elevated: rgba(241, 245, 249, 0.9);
+
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-tertiary: #94a3b8;
+
+      --accent-primary: #4f46e5;
+      --accent-glow: rgba(79, 70, 229, 0.2);
+      --accent-secondary: #9333ea;
+      --accent-tertiary: #e11d48;
+
+      --border-subtle: rgba(0, 0, 0, 0.08);
+      --border-hover: rgba(0, 0, 0, 0.15);
+
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+      --shadow-glow: 0 0 20px var(--accent-glow);
     }
 
+    /* =========================================
+           RESET & GLOBAL
+        ========================================= */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      transition: background-color 0.3s, color 0.3s;
+    html {
+      scroll-behavior: smooth;
     }
 
-    header {
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color var(--transition-smooth), color var(--transition-smooth);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Outfit', sans-serif;
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* custom selection */
+    ::selection {
+      background-color: var(--accent-primary);
+      color: white;
+    }
+
+    /* =========================================
+           BACKGROUND EFFECTS
+        ========================================= */
+    .bg-mesh {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      animation: float 20s infinite ease-in-out alternate;
+    }
+
+    .orb-1 {
+      top: -10%;
+      left: -10%;
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+      animation-delay: 0s;
+    }
+
+    .orb-2 {
+      bottom: -20%;
+      right: -10%;
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
+      animation-delay: -5s;
+    }
+
+    .orb-3 {
+      top: 40%;
+      left: 60%;
+      width: 40vw;
+      height: 40vw;
+      background: radial-gradient(circle, var(--accent-tertiary) 0%, transparent 70%);
+      opacity: 0.2;
+      animation-delay: -10s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(5%, 5%) scale(1.1);
+      }
+    }
+
+    .noise-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background-color: var(--bg-secondary);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      box-shadow: 0 2px 10px var(--shadow);
+      height: 100%;
+      z-index: -1;
+      opacity: 0.03;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 1.5rem;
-    }
-
-    nav a {
-      color: var(--text-primary);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: color 0.2s;
-    }
-
-    nav a:hover {
-      color: var(--accent);
-    }
-
-    .hero {
-      padding: 10rem 2rem 4rem;
-      text-align: center;
-      max-width: 900px;
+    /* =========================================
+           REUSABLE UTILITIES
+        ========================================= */
+    .container {
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 2rem;
     }
 
-    .hero h1 {
-      font-size: 3rem;
+    .glass-panel {
+      background: var(--bg-surface);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      position: relative;
+      display: inline-block;
       margin-bottom: 1rem;
     }
 
-    .hero p {
-      font-size: 1.25rem;
+    .section-subtitle {
       color: var(--text-secondary);
-      margin-bottom: 2rem;
-    }
-
-    .contact-info {
-      margin: 1.5rem 0;
       font-size: 1.1rem;
-      color: var(--text-secondary);
-    }
-
-    .hero-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1.5rem;
-      flex-wrap: wrap;
+      max-width: 600px;
     }
 
     .btn {
-      padding: 0.75rem 1.5rem;
-      background-color: var(--accent);
-      color: white;
-      border: none;
-      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.75rem;
+      border-radius: var(--radius-pill);
       font-weight: 600;
+      font-size: 1rem;
+      transition: all var(--transition-bounce);
       cursor: pointer;
-      transition: background-color 0.2s, transform 0.2s;
-      text-decoration: none;
-      display: inline-block;
+      border: none;
       position: relative;
       overflow: hidden;
+      z-index: 1;
     }
 
-    .btn:hover {
-      background-color: var(--accent-hover);
+    .btn-primary {
+      background: var(--text-primary);
+      color: var(--bg-base);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px -10px var(--text-primary);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border-hover);
+      backdrop-filter: var(--glass-blur);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
       transform: translateY(-2px);
     }
 
-    .btn::after {
-      content: '';
-      position: absolute;
-      top: 50%;
+    /* =========================================
+           NAVIGATION
+        ========================================= */
+    nav {
+      position: fixed;
+      top: 1rem;
       left: 50%;
-      width: 5px;
-      height: 5px;
-      background: rgba(255, 255, 255, 0.5);
-      opacity: 0;
-      border-radius: 100%;
-      transform: scale(1, 1) translate(-50%);
-      transform-origin: 50% 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 2rem);
+      max-width: 800px;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-pill);
+      transition: all var(--transition-smooth);
     }
 
-    .btn:active::after {
-      animation: ripple 0.6s ease-out;
+    .nav-logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.05em;
+      color: var(--text-primary);
     }
 
-    @keyframes ripple {
-      0% {
-        transform: scale(0, 0);
-        opacity: 0.5;
-      }
-      100% {
-        transform: scale(50, 50);
-        opacity: 0;
-      }
+    .nav-logo span {
+      color: var(--accent-primary);
     }
 
-    section {
-      padding: 4rem 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
+    .nav-links {
+      display: flex;
+      gap: 2rem;
     }
 
-    h2 {
-      font-size: 2.25rem;
-      margin-bottom: 2rem;
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.2s;
       position: relative;
-      padding-bottom: 0.5rem;
     }
 
-    h2::after {
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-links a::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 60px;
-      height: 4px;
-      background-color: var(--accent);
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: var(--accent-primary);
+      transition: width 0.3s ease;
       border-radius: 2px;
     }
 
-    .section-content {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
-    .section-content.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .profile-text {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      margin-bottom: 1rem;
-    }
-
-    .highlight, .counter, strong {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .timeline {
-      position: relative;
-      padding-left: 30px;
-      margin-top: 2rem;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background-color: var(--timeline-line);
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 2.5rem;
-    }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -36px;
-      top: 5px;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background-color: var(--timeline-dot);
-      border: 3px solid var(--bg-primary);
-    }
-
-    .timeline-date {
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 0.25rem;
-    }
-
-    .timeline-role {
-      font-size: 1.25rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .timeline-company {
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: var(--text-primary);
-    }
-
-    .timeline-bullets {
-      padding-left: 1.25rem;
-    }
-
-    .timeline-bullets li {
-      margin-bottom: 0.75rem;
-      color: var(--text-secondary);
-    }
-
-    .skills-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .skill-category {
-      background-color: var(--card-bg);
-      padding: 1.25rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px var(--shadow);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .skill-category:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 16px var(--shadow);
-    }
-
-    .skill-category h3 {
-      margin-bottom: 1rem;
-      color: var(--accent);
-    }
-
-    .skill-chips {
+    .nav-actions {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .chip {
-      background-color: var(--bg-tertiary);
-      color: var(--text-primary);
-      padding: 0.4rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      transition: background-color 0.2s;
-    }
-
-    .chip:hover {
-      background-color: var(--accent);
-      color: white;
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .project-card {
-      background-color: var(--card-bg);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px var(--shadow);
-      transition: transform 0.3s, box-shadow 0.3s;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-
-    .project-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 20px var(--shadow);
-    }
-
-    .project-card-header {
-      padding: 1.25rem 1.25rem 0.75rem;
-    }
-
-    .project-card-header h3 {
-      margin: 0;
-      font-size: 1.25rem;
-    }
-
-    .project-card-body {
-      padding: 0 1.25rem 1.25rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-card-body p {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-      flex-grow: 1;
-    }
-
-    .project-link {
-      margin-top: auto;
-      text-align: center;
-    }
-
-    .education-item, .strengths-item {
-      margin-bottom: 1.5rem;
-    }
-
-    .education-degree, .strengths-title {
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    .education-details, .strengths-desc {
-      color: var(--text-secondary);
-      margin-top: 0.25rem;
-    }
-
-    .contact-section {
-      text-align: center;
-    }
-
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .fab {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background-color: var(--accent);
-      color: white;
-      display: flex;
+      gap: 1rem;
       align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px var(--shadow);
-      cursor: pointer;
-      z-index: 999;
-      transition: background-color 0.2s, transform 0.2s;
-      font-size: 1.25rem;
-      text-decoration: none;
-    }
-
-    .fab:hover {
-      background-color: var(--accent-hover);
-      transform: scale(1.1);
     }
 
     .theme-toggle {
       background: none;
       border: none;
-      color: var(--text-primary);
+      color: var(--text-secondary);
       font-size: 1.25rem;
       cursor: pointer;
       transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
     }
 
     .theme-toggle:hover {
-      color: var(--accent);
+      color: var(--text-primary);
+      background: var(--border-subtle);
     }
 
+    /* Mobile Menu Button */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* =========================================
+           HERO SECTION
+        ========================================= */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 5rem;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: var(--radius-pill);
+      color: var(--accent-primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s forwards 0.2s;
+    }
+
+    .hero-badge i {
+      font-size: 1rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s forwards 0.4s;
+    }
+
+    .hero p {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: var(--text-secondary);
+      max-width: 650px;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s forwards 0.6s;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s forwards 0.8s;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-number {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s forwards 1s;
+    }
+
+    /* Hero Scroll Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-tertiary);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0;
+      animation: fadeUp 0.8s forwards 1.2s;
+    }
+
+    .mouse {
+      width: 24px;
+      height: 36px;
+      border: 2px solid var(--text-tertiary);
+      border-radius: 12px;
+      position: relative;
+    }
+
+    .mouse::before {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 4px;
+      background: var(--text-tertiary);
+      border-radius: 50%;
+      animation: scrollWheel 2s infinite;
+    }
+
+    @keyframes scrollWheel {
+      0% {
+        top: 6px;
+        opacity: 1;
+      }
+
+      100% {
+        top: 18px;
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================================
+           SECTIONS LAYOUT
+        ========================================= */
+    section {
+      padding: 8rem 0;
+      position: relative;
+    }
+
+    .reveal-element {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .reveal-element.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================
+           TIMELINE & EXPERIENCE
+        ========================================= */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      margin-top: 3rem;
+      max-width: 800px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary), transparent);
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 1.5rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.35rem;
+      /* center on the 2px line (2rem padding left of timeline container) */
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--bg-base);
+      border: 3px solid var(--accent-primary);
+      box-shadow: 0 0 10px var(--accent-glow);
+      transition: all 0.3s;
+    }
+
+    .timeline-item:hover::before {
+      background: var(--accent-primary);
+      transform: scale(1.2);
+    }
+
+    .timeline-date {
+      font-size: 0.85rem;
+      color: var(--accent-secondary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    .timeline-role {
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+      color: var(--text-primary);
+    }
+
+    .timeline-company {
+      font-size: 1.1rem;
+      color: var(--text-tertiary);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .timeline-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .timeline-bullets li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .timeline-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent-primary);
+      opacity: 0.7;
+    }
+
+    /* =========================================
+           SKILLS
+        ========================================= */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .skill-category {
+      padding: 2rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .skill-category:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-glow);
+      border-color: var(--accent-glow);
+    }
+
+    .skill-category h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .skill-category h3 i {
+      color: var(--accent-primary);
+      font-size: 1.5rem;
+    }
+
+    .skill-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-hover);
+      color: var(--text-secondary);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      transition: all 0.2s;
+      cursor: default;
+    }
+
+    .chip:hover {
+      background: var(--accent-glow);
+      border-color: var(--accent-primary);
+      color: var(--text-primary);
+      transform: translateY(-2px);
+    }
+
+    /* =========================================
+           PROJECTS
+        ========================================= */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      padding: 2.5rem;
+      height: 100%;
+      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.06), transparent 40%);
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+      border-color: var(--border-hover);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--accent-primary);
+    }
+
+    .project-links a {
+      color: var(--text-tertiary);
+      font-size: 1.5rem;
+      transition: color 0.2s;
+    }
+
+    .project-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .project-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      z-index: 1;
+      position: relative;
+    }
+
+    .project-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      flex-grow: 1;
+      margin-bottom: 1.5rem;
+      z-index: 1;
+      position: relative;
+    }
+
+    .project-footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      z-index: 1;
+      position: relative;
+      margin-top: auto;
+    }
+
+    .project-tech {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      color: var(--accent-secondary);
+      letter-spacing: 0.05em;
+    }
+
+    /* =========================================
+           FOOTER & CONTACT
+        ========================================= */
+    .footer {
+      padding: 6rem 0 3rem;
+      text-align: center;
+      border-top: 1px solid var(--border-subtle);
+      margin-top: 5rem;
+      position: relative;
+    }
+
+    .contact-cta {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 2rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-size: 1.75rem;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .social-links a:hover {
+      color: var(--bg-base);
+      background: var(--text-primary);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px -5px rgba(255, 255, 255, 0.2);
+    }
+
+    .copyright {
+      color: var(--text-tertiary);
+      font-size: 0.85rem;
+    }
+
+    /* =========================================
+           RESPONSIVE
+        ========================================= */
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 1rem;
+      nav {
+        width: 100%;
+        top: 0;
+        border-radius: 0;
         padding: 1rem;
       }
 
-      nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
+      .nav-links {
+        display: none;
+        /* Mobile menu to be implemented */
       }
 
-      .hero {
-        padding: 9rem 1.5rem 3rem;
+      .mobile-menu-btn {
+        display: block;
       }
 
-      .hero h1 {
-        font-size: 2.25rem;
+      .hero-stats {
+        gap: 1.5rem;
       }
 
-      .hero p {
-        font-size: 1.1rem;
-      }
-
-      section {
-        padding: 3rem 1.5rem;
-      }
-
-      h2 {
-        font-size: 2rem;
-      }
-
-      .timeline {
-        padding-left: 20px;
-      }
-
-      .timeline::before {
-        left: -10px;
-      }
-
-      .timeline-item::before {
-        left: -26px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero h1 {
-        font-size: 2rem;
+      .hero-actions {
+        flex-direction: column;
       }
 
       .btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.95rem;
-      }
-
-      h2 {
-        font-size: 1.75rem;
-      }
-
-      .project-card-header h3 {
-        font-size: 1.15rem;
+        width: 100%;
       }
     }
   </style>
 </head>
+
 <body>
 
-  <header>
-    <div class="logo">Harsh Sharma</div>
-    <nav>
-      <ul>
-        <li><a href="#profile">Profile</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#strengths">Strengths</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">☀️</button>
-  </header>
+  <!-- Background Orbs & Noise -->
+  <div class="bg-mesh">
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+  </div>
+  <div class="noise-overlay"></div>
 
-  <section class="hero">
-    <h1>Harsh Sharma</h1>
-    <p>Staff-track Senior Software Engineer II (SDE-3) | Fintech & Telecom | Android & Flutter</p>
-    <div class="contact-info">
-      📱 +91‑9599305737 | ✉️ harsh159357@gmail.com
+  <!-- Navigation -->
+  <nav class="glass-panel" id="navbar">
+    <div class="nav-logo">Harsh<span>.</span></div>
+
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Work</a>
     </div>
-    <div class="hero-links">
-      <a href="https://bit.ly/githarsh" class="btn" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://bit.ly/lnkdharsh" class="btn" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://bit.ly/stackharsh" class="btn" target="_blank" rel="noopener">StackOverflow</a>
+
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="ph ph-moon" id="themeIcon"></i>
+      </button>
+      <a href="#contact" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.9rem;">
+        Let's Talk
+      </a>
+      <button class="mobile-menu-btn">
+        <i class="ph ph-list"></i>
+      </button>
     </div>
-  </section>
+  </nav>
 
-  <section id="profile">
-    <h2>Profile</h2>
-    <div class="section-content">
-      <p class="profile-text">
-        Staff‑track <strong>Senior Software Engineer II (SDE‑3)</strong> with <strong>10+ years</strong> of experience spanning fintech, telecom, and enterprise mobility, specialising in <strong>Customer Experience (CX)</strong> and <strong>Help & Support platforms</strong> for high‑throughput trading systems.
-      </p>
-      <p class="profile-text">
-        Career arc: Built Android apps at Craterzone and Team Computers → delivered large‑scale telecom apps at Infosys (Telstra, BP) → architected design systems at Jio → led CX/Help platforms at CoinDCX.
-      </p>
-      <p class="profile-text">
-        <strong>Architecture & Platforms</strong>: Designed reusable frameworks (Help Center, deep link infra, design systems) adopted across squads.
-      </p>
-      <p class="profile-text">
-        <strong>Production Excellence</strong>: Raised Crash‑Free Rate from <strong>99.60%</strong> → <span class="counter" data-target="99.88">0</span>%, reduced non‑fatal errors by <strong>20%</strong>, and cut ANR rate by <strong>12%</strong>.
-      </p>
-      <p class="profile-text">
-        <strong>Performance Optimization</strong>: Achieved up to <span class="counter" data-target="73">0</span>% latency reduction across key screens, surpassing competitor benchmarks.
-      </p>
-      <p class="profile-text">
-        <strong>Release Leadership</strong>: Directed <strong>8+ major app releases</strong> with zero rollbacks, ensuring predictable delivery across QA, backend, and product.
-      </p>
-      <p class="profile-text">
-        <strong>Team Enablement</strong>: Mentored engineers, authored onboarding guides, and ran tech talks to scale team capability.
-      </p>
-      <p class="profile-text">
-        Now targeting <strong>Staff/Principal roles</strong> in fintech/infra, where customer experience, reliability, and cross‑team leadership drive business outcomes.
-      </p>
-    </div>
-  </section>
+  <!-- Main Content -->
+  <main>
 
-  <section id="experience">
-    <h2>Experience</h2>
-    <div class="section-content">
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-date">Jul 2022 – Present</div>
-          <div class="timeline-role"><strong>Senior Software Engineer II (SDE‑3)</strong></div>
-          <div class="timeline-company"><strong>CoinDCX</strong> – Bengaluru</div>
-          <ul class="timeline-bullets">
-            <li>Help & Support Platform Ownership: Architected a reusable Help Center → reduced support tickets by <strong>15%</strong> and boosted chatbot engagement by <strong>25%</strong>.</li>
-            <li>Compliance & Reliability: Delivered Re‑KYC, PAN verification with <strong>zero post‑release bugs</strong>.</li>
-            <li>Production Excellence: Raised Crash‑Free Rate from 99.60% → <strong>99.88%</strong>, cut non‑fatal errors by <strong>20%</strong>, reduced ANR rate by <strong>12%</strong>.</li>
-            <li>Performance Optimization: Delivered up to <strong>73% latency reduction</strong> across key screens, including <strong>51% faster splash→PIN</strong> and <strong>55% faster Futures Market load</strong>.</li>
-            <li>Release Leadership: Directed <strong>8+ major app releases</strong> with <strong>zero rollbacks</strong>.</li>
-            <li>Feature Velocity: Shipped <strong>30+ high‑impact features</strong> under hackathon timelines.</li>
-            <li>Team Enablement: Mentored engineers, ran Flutter performance tech talks, authored internal guides adopted across squads.</li>
-            <li>Innovation: Deployed a Flutter Web project (<strong>95% uptime</strong>) and built Pine Script trading indicators validated via backtesting.</li>
-          </ul>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-date">Jun 2021 – Jul 2022</div>
-          <div class="timeline-role"><strong>Senior Android Developer</strong></div>
-          <div class="timeline-company"><strong>Jio Platforms</strong> – Bengaluru</div>
-          <ul class="timeline-bullets">
-            <li>Jio Design System Ownership: Built reusable UI library (XML + Jetpack Compose) powering flagship apps like MyJio, JioChat, JioTV.</li>
-            <li>Developer Productivity: Created internal plugins that reduced UI setup time by <strong>30%+</strong>.</li>
-            <li>Reusable Components: Delivered typography, theming, and UI frameworks adopted across multiple Jio apps.</li>
-          </ul>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-date">Dec 2018 – Jun 2021</div>
-          <div class="timeline-role"><strong>Technology Analyst</strong></div>
-          <div class="timeline-company"><strong>Infosys</strong> (Telstra, BP clients) – Bengaluru</div>
-          <ul class="timeline-bullets">
-            <li>Enterprise‑Scale Delivery: Contributed to the <strong>My Telstra Android App</strong> serving millions of users.</li>
-            <li>Cost Optimization: Implemented alternative AR SDK for BP’s Safe2Go app → saved client <strong>$1000+ annually</strong>.</li>
-            <li>High‑Throughput Apps: Delivered features in telecom and energy apps with millions of active users.</li>
-          </ul>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-date">Feb 2017 – Nov 2018</div>
-          <div class="timeline-role"><strong>Android Developer</strong></div>
-          <div class="timeline-company"><strong>Team Computers</strong> – Gurugram</div>
-          <ul class="timeline-bullets">
-            <li>HR Transformation: Migrated attendance management from biometric to mobile → streamlined HR ops for <strong>1500+ employees</strong>.</li>
-            <li>End‑to‑End Ownership: Independently managed Android app lifecycle from prototyping to deployment.</li>
-          </ul>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-date">Jun 2015 – Feb 2017</div>
-          <div class="timeline-role"><strong>Android Developer</strong></div>
-          <div class="timeline-company"><strong>Craterzone Pvt Ltd</strong> – Noida</div>
-          <ul class="timeline-bullets">
-            <li>Feature Delivery: Implemented and updated Android apps under senior guidance.</li>
-            <li>Independent Execution: Delivered features both individually and in team settings.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="section-content">
-      <div class="skills-container">
-        <div class="skill-category">
-          <h3>Architecture & Systems</h3>
-          <div class="skill-chips">
-            <span class="chip">Clean Architecture</span>
-            <span class="chip">Modularization</span>
-            <span class="chip">Feature Toggles</span>
-            <span class="chip">Dependency Injection</span>
-            <span class="chip">Reusable Frameworks</span>
-            <span class="chip">API Centralization</span>
-            <span class="chip">Deep Link Infra</span>
-            <span class="chip">Design Systems</span>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <i class="ph-fill ph-check-circle"></i> Looking for Staff/Principal roles
           </div>
-        </div>
 
-        <div class="skill-category">
-          <h3>Mobile Platforms</h3>
-          <div class="skill-chips">
-            <span class="chip">Android (Kotlin/Java)</span>
-            <span class="chip">Jetpack Compose</span>
-            <span class="chip">Views/XML</span>
-            <span class="chip">Flutter</span>
-            <span class="chip">Material Design</span>
-            <span class="chip">Accessibility</span>
-            <span class="chip">Play Store Deployment</span>
-            <span class="chip">App Signing</span>
+          <h1>
+            Engineering <br />
+            <span class="text-gradient">high-throughput</span><br />
+            mobile platforms.
+          </h1>
+
+          <p>
+            I'm Harsh Sharma, a Senior Software Engineer II (SDE-3) with 10+ years of experience in Android, Flutter,
+            and Fintech. I build robust consumer applications focused on performance, reliability, and scale.
+          </p>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">10+</span>
+              <span class="stat-label">Years Exp</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">99.8%</span>
+              <span class="stat-label">Crash Free</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">8+</span>
+              <span class="stat-label">Major Releases</span>
+            </div>
           </div>
-        </div>
 
-        <div class="skill-category">
-          <h3>Concurrency & Data</h3>
-          <div class="skill-chips">
-            <span class="chip">Kotlin Coroutines/Flows</span>
-            <span class="chip">RxJava</span>
-            <span class="chip">LiveData</span>
-            <span class="chip">WorkManager</span>
-            <span class="chip">Room/SQLite</span>
-            <span class="chip">DataStore</span>
-            <span class="chip">Caching Strategies</span>
-            <span class="chip">Offline-first</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3>Networking & APIs</h3>
-          <div class="skill-chips">
-            <span class="chip">Retrofit/OkHttp</span>
-            <span class="chip">GraphQL</span>
-            <span class="chip">WebSockets</span>
-            <span class="chip">gRPC (familiar)</span>
-            <span class="chip">Pagination</span>
-            <span class="chip">Request Batching</span>
-            <span class="chip">Error Handling</span>
-            <span class="chip">Retry/Backoff</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3>Performance Engineering</h3>
-          <div class="skill-chips">
-            <span class="chip">Profiling (CPU/Memory/Network)</span>
-            <span class="chip">Rendering Optimization</span>
-            <span class="chip">List Diffing</span>
-            <span class="chip">Cold/Warm Start Tuning</span>
-            <span class="chip">ANR/Crash RCA</span>
-            <span class="chip">Memory Management</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3>Testing & QA</h3>
-          <div class="skill-chips">
-            <span class="chip">JUnit</span>
-            <span class="chip">Espresso</span>
-            <span class="chip">Mockito</span>
-            <span class="chip">Appium</span>
-            <span class="chip">UI Automation</span>
-            <span class="chip">Unit/Integration Tests</span>
-            <span class="chip">Contract Tests</span>
-            <span class="chip">Hermetic Tests</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3>CI/CD & Release</h3>
-          <div class="skill-chips">
-            <span class="chip">Gradle</span>
-            <span class="chip">Build Variants</span>
-            <span class="chip">Jenkins/GitHub Actions</span>
-            <span class="chip">Code Quality Gates</span>
-            <span class="chip">Automated Pipelines</span>
-            <span class="chip">Rollout Strategies</span>
-            <span class="chip">Release Management</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3>Observability & Reliability</h3>
-          <div class="skill-chips">
-            <span class="chip">Crashlytics</span>
-            <span class="chip">Sentry</span>
-            <span class="chip">Firebase Performance</span>
-            <span class="chip">Logs/Metrics Tracing</span>
-            <span class="chip">Incident Triage</span>
-            <span class="chip">Feature Flags</span>
-            <span class="chip">Runtime Safeguards</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3>Security & Compliance</h3>
-          <div class="skill-chips">
-            <span class="chip">KYC/PAN Flows</span>
-            <span class="chip">OAuth/JWT</span>
-            <span class="chip">Secure Storage</span>
-            <span class="chip">Certificate Pinning</span>
-            <span class="chip">Data Privacy</span>
-            <span class="chip">Regulatory UX</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3>Cross‑Platform & iOS</h3>
-          <div class="skill-chips">
-            <span class="chip">Flutter Channel Bridging</span>
-            <span class="chip">Platform Views</span>
-            <span class="chip">iOS Build/Signing</span>
-            <span class="chip">Swift Interop (basic)</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3>Libraries & Frameworks</h3>
-          <div class="skill-chips">
-            <span class="chip">Retrofit</span>
-            <span class="chip">OkHttp</span>
-            <span class="chip">Moshi/GSON</span>
-            <span class="chip">Glide/Coil</span>
-            <span class="chip">Dagger/Hilt</span>
-            <span class="chip">Timber</span>
-            <span class="chip">LeakCanary</span>
-            <span class="chip">Jetpack Suite</span>
-          </div>
-        </div>
-
-        <div class="skill-category">
-          <h3>Leadership & Productivity</h3>
-          <div class="skill-chips">
-            <span class="chip">Code Reviews</span>
-            <span class="chip">Mentorship</span>
-            <span class="chip">Onboarding Guides</span>
-            <span class="chip">Tech Talks</span>
-            <span class="chip">Internal Tooling</span>
-            <span class="chip">Cross-team Collaboration</span>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">
+              View My Work <i class="ph ph-arrow-right"></i>
+            </a>
+            <a href="https://bit.ly/githarsh" target="_blank" class="btn btn-secondary">
+              <i class="ph ph-github-logo"></i> GitHub Profile
+            </a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section id="projects">
-    <h2>Projects & Open Source</h2>
-    <div class="section-content">
-      <div class="projects-grid">
-        <div class="project-card">
-          <div class="project-card-header">
-            <h3>CoinDCX App</h3>
-          </div>
-          <div class="project-card-body">
-            <p>Play Store – Help & Support platform, performance-optimized trading app with 99.88% crash-free rate.</p>
-            <div class="project-link">
-              <a href="https://play.google.com/store/apps/details?id=com.coindcx.btc" class="btn" target="_blank" rel="noopener">View</a>
+      <div class="scroll-indicator">
+        <div class="mouse"></div>
+        Scroll
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="container reveal-element">
+        <div class="section-header">
+          <h2 class="section-title">Profile Summary</h2>
+          <h3 class="section-subtitle">A brief overview of my career arc and technical focus.</h3>
+        </div>
+
+        <div class="glass-panel" style="padding: 3rem;">
+          <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--text-secondary); line-height: 1.8;">
+            Staff‑track <strong style="color: var(--text-primary)">Senior Software Engineer II (SDE‑3)</strong> with
+            <strong style="color: var(--accent-primary)">10+ years</strong> of experience spanning fintech, telecom, and
+            enterprise mobility, specialising in <strong style="color: var(--text-primary)">Customer Experience
+              (CX)</strong> and <strong style="color: var(--text-primary)">Help & Support platforms</strong> for
+            high‑throughput trading systems.
+          </p>
+          <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--text-secondary); line-height: 1.8;">
+            <strong>Career arc:</strong> Built Android apps at Craterzone and Team Computers → delivered large‑scale
+            telecom apps at Infosys (Telstra, BP) → architected design systems at Jio → led CX/Help platforms at
+            CoinDCX.
+          </p>
+
+          <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
+            <div>
+              <h4 style="color: var(--accent-secondary); margin-bottom: 0.5rem; font-size: 1.1rem;">Architecture</h4>
+              <p style="color: var(--text-tertiary); font-size: 0.95rem;">Designed reusable frameworks (Help Center,
+                deep link infra, design systems) adopted across multiple squads simultaneously.</p>
             </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-card-header">
-            <h3>MyJio</h3>
-          </div>
-          <div class="project-card-body">
-            <p>Play Store – Flagship Jio app powered by reusable design system and Jetpack Compose components.</p>
-            <div class="project-link">
-              <a href="https://play.google.com/store/apps/details?id=com.jio.myjio" class="btn" target="_blank" rel="noopener">View</a>
+            <div>
+              <h4 style="color: var(--accent-secondary); margin-bottom: 0.5rem; font-size: 1.1rem;">Reliability</h4>
+              <p style="color: var(--text-tertiary); font-size: 0.95rem;">Raised Crash‑Free Rate from 99.60% to
+                <strong>99.88%</strong>, reducing non‑fatal errors by 20% and ANRs by 12% in CoinDCX.
+              </p>
             </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-card-header">
-            <h3>Bhagavad Gita App</h3>
-          </div>
-          <div class="project-card-body">
-            <p>Play Store – Spiritual reference app with clean UX and offline access.</p>
-            <div class="project-link">
-              <a href="https://play.google.com/store/apps/details?id=com.harshsharma.bhagavadgita.pro" class="btn" target="_blank" rel="noopener">View</a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-card-header">
-            <h3>My Telstra</h3>
-          </div>
-          <div class="project-card-body">
-            <p>Play Store – Enterprise-scale telecom app for Australian market (Infosys delivery).</p>
-            <div class="project-link">
-              <a href="https://play.google.com/store/apps/details?id=com.telstra.mobile.android.mytelstra" class="btn" target="_blank" rel="noopener">View</a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-card-header">
-            <h3>Flutter Web Project</h3>
-          </div>
-          <div class="project-card-body">
-            <p>Coding portfolio site with 95% uptime and 50+ visitors in 3 months.</p>
-            <div class="project-link">
-              <a href="https://bit.ly/appcontacts" class="btn" target="_blank" rel="noopener">View</a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-card-header">
-            <h3>Trading Indicators (Pine Script)</h3>
-          </div>
-          <div class="project-card-body">
-            <p>Custom moving averages, SuperTrend, validated via backtests for trading strategies.</p>
-            <!-- No link -->
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-card-header">
-            <h3>InstaTag (Android Library)</h3>
-          </div>
-          <div class="project-card-body">
-            <p>Utility library for quick tagging and metadata handling.</p>
-            <div class="project-link">
-              <a href="https://bit.ly/insta_tag" class="btn" target="_blank" rel="noopener">View</a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-card-header">
-            <h3>Contacts (Flutter App)</h3>
-          </div>
-          <div class="project-card-body">
-            <p>Cross-platform contacts manager with clean architecture and 4 storage implementations.</p>
-            <div class="project-link">
-              <a href="https://bit.ly/appcontacts" class="btn" target="_blank" rel="noopener">View</a>
+            <div>
+              <h4 style="color: var(--accent-secondary); margin-bottom: 0.5rem; font-size: 1.1rem;">Performance</h4>
+              <p style="color: var(--text-tertiary); font-size: 0.95rem;">Achieved up to <strong>73% latency
+                  reduction</strong> across key trading screens, drastically outperforming competitor benchmarks.</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="education">
-    <h2>Education</h2>
-    <div class="section-content">
-      <div class="education-item">
-        <div class="education-degree">B.Tech, Computer Science Engineering</div>
-        <div class="education-details">CT Institute of Technology, Jalandhar (2011–2015) – 76%</div>
-      </div>
-      <div class="education-item">
-        <div class="education-degree">Senior Secondary</div>
-        <div class="education-details">2011 – 75% | C.J.S Public School, Jalandhar</div>
-      </div>
-      <div class="education-item">
-        <div class="education-degree">Higher Secondary</div>
-        <div class="education-details">2009 – 72% | C.J.S Public School, Jalandhar</div>
-      </div>
-    </div>
-  </section>
+    <!-- Experience Section -->
+    <section id="experience">
+      <div class="container reveal-element">
+        <div class="section-header">
+          <h2 class="section-title">Experience</h2>
+          <p class="section-subtitle">Over a decade of engineering high-impact mobile solutions.</p>
+        </div>
 
-  <section id="strengths">
-    <h2>Strengths</h2>
-    <div class="section-content">
-      <div class="strengths-item">
-        <div class="strengths-title">Rapid learner, adaptable across mobile, cross‑platform, and infra domains</div>
-      </div>
-      <div class="strengths-item">
-        <div class="strengths-title">Strong in debugging and production issue resolution under high‑throughput conditions</div>
-      </div>
-      <div class="strengths-item">
-        <div class="strengths-title">Balances execution speed with long‑term reliability and compliance</div>
-      </div>
-      <div class="strengths-item">
-        <div class="strengths-title">Passionate about mentorship, architecture, and scaling engineering excellence</div>
-      </div>
-    </div>
-  </section>
+        <div class="timeline">
+          <!-- CoinDCX -->
+          <div class="timeline-item reveal-element">
+            <span class="timeline-date">Jul 2022 – Present</span>
+            <h3 class="timeline-role">Senior Software Engineer II (SDE‑3)</h3>
+            <div class="timeline-company">CoinDCX – Bengaluru</div>
+            <ul class="timeline-bullets">
+              <li><strong>Help & Support Platform Ownership:</strong> Architected a reusable Help Center, reducing
+                support tickets by 15% and boosting chatbot engagement by 25%.</li>
+              <li><strong>Compliance & Reliability:</strong> Delivered Re‑KYC and PAN verification with zero
+                post‑release bugs.</li>
+              <li><strong>Production Excellence:</strong> Raised Crash‑Free Rate to 99.88%, cut non‑fatal errors by 20%,
+                and reduced ANR rate by 12%.</li>
+              <li><strong>Performance Optimization:</strong> Delivered up to 73% latency reduction, including 51% faster
+                splash→PIN and 55% faster Futures Market load.</li>
+              <li><strong>Release Leadership:</strong> Directed 8+ major app releases with zero rollbacks.</li>
+              <li><strong>Innovation:</strong> Deployed a Flutter Web project (95% uptime) and built Pine Script trading
+                indicators validated via backtesting.</li>
+            </ul>
+          </div>
 
-  <section id="contact" class="contact-section">
-    <h2>Contact</h2>
-    <div class="section-content">
-      <p>📱 +91‑9599305737 | ✉️ harsh159357@gmail.com</p>
-      <div class="contact-links">
-        <a href="https://bit.ly/githarsh" class="btn" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://bit.ly/lnkdharsh" class="btn" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://bit.ly/stackharsh" class="btn" target="_blank" rel="noopener">StackOverflow</a>
+          <!-- Jio Platforms -->
+          <div class="timeline-item reveal-element">
+            <span class="timeline-date">Jun 2021 – Jul 2022</span>
+            <h3 class="timeline-role">Senior Android Developer</h3>
+            <div class="timeline-company">Jio Platforms – Bengaluru</div>
+            <ul class="timeline-bullets">
+              <li><strong>Jio Design System:</strong> Built reusable UI library (XML + Jetpack Compose) powering
+                flagship apps like MyJio, JioChat, and JioTV.</li>
+              <li><strong>Developer Productivity:</strong> Created internal plugins that reduced UI setup time by over
+                30%.</li>
+              <li><strong>Reusable Components:</strong> Delivered typography, theming, and UI frameworks adopted across
+                multiple massive-scale Jio apps.</li>
+            </ul>
+          </div>
+
+          <!-- Infosys -->
+          <div class="timeline-item reveal-element">
+            <span class="timeline-date">Dec 2018 – Jun 2021</span>
+            <h3 class="timeline-role">Technology Analyst</h3>
+            <div class="timeline-company">Infosys (Telstra, BP clients) – Bengaluru</div>
+            <ul class="timeline-bullets">
+              <li><strong>Enterprise‑Scale Delivery:</strong> Contributed to the My Telstra Android App serving millions
+                of active users.</li>
+              <li><strong>Cost Optimization:</strong> Implemented alternative AR SDK for BP’s Safe2Go app, saving client
+                $1000+ annually.</li>
+            </ul>
+          </div>
+
+          <!-- Team Computers -->
+          <div class="timeline-item reveal-element">
+            <span class="timeline-date">Feb 2017 – Nov 2018</span>
+            <h3 class="timeline-role">Android Developer</h3>
+            <div class="timeline-company">Team Computers – Gurugram</div>
+            <ul class="timeline-bullets">
+              <li><strong>HR Transformation:</strong> Migrated attendance management from biometric hardware to mobile,
+                streamlining ops for 1500+ employees.</li>
+              <li>Managed complete Android app lifecycle from rapid prototyping to production deployment independently.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Craterzone -->
+          <div class="timeline-item reveal-element">
+            <span class="timeline-date">Jun 2015 – Feb 2017</span>
+            <h3 class="timeline-role">Android Developer</h3>
+            <div class="timeline-company">Craterzone Pvt Ltd – Noida</div>
+            <ul class="timeline-bullets">
+              <li>Delivered feature implementations and updates for various Android applications.</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <a href="#contact" class="fab" aria-label="Contact me">✉️</a>
+    <!-- Skills Section -->
+    <section id="skills">
+      <div class="container reveal-element">
+        <div class="section-header">
+          <h2 class="section-title">Technical Arsenal</h2>
+          <p class="section-subtitle">Tools, architectures, and platforms I leverage to build reliable software.</p>
+        </div>
 
+        <div class="skills-grid">
+          <div class="skill-category glass-panel">
+            <h3><i class="ph-fill ph-blueprint"></i> Architecture</h3>
+            <div class="skill-chips">
+              <span class="chip">Clean Architecture</span>
+              <span class="chip">Modularization</span>
+              <span class="chip">Feature Toggles</span>
+              <span class="chip">Dependency Injection</span>
+              <span class="chip">Design Systems</span>
+            </div>
+          </div>
+
+          <div class="skill-category glass-panel">
+            <h3><i class="ph-fill ph-device-mobile"></i> Mobile Tech</h3>
+            <div class="skill-chips">
+              <span class="chip">Android (Kotlin/Java)</span>
+              <span class="chip">Jetpack Compose</span>
+              <span class="chip">Flutter</span>
+              <span class="chip">Material Design</span>
+              <span class="chip">App Signing</span>
+            </div>
+          </div>
+
+          <div class="skill-category glass-panel">
+            <h3><i class="ph-fill ph-database"></i> Concurrency & Data</h3>
+            <div class="skill-chips">
+              <span class="chip">Kotlin Coroutines/Flows</span>
+              <span class="chip">RxJava</span>
+              <span class="chip">Room/SQLite</span>
+              <span class="chip">Offline-first</span>
+            </div>
+          </div>
+
+          <div class="skill-category glass-panel">
+            <h3><i class="ph-fill ph-gauge"></i> Perf & Reliability</h3>
+            <div class="skill-chips">
+              <span class="chip">CPU/Memory Profiling</span>
+              <span class="chip">Cold/Warm Start Tuning</span>
+              <span class="chip">ANR/Crash RCA</span>
+              <span class="chip">Crashlytics</span>
+              <span class="chip">Sentry</span>
+            </div>
+          </div>
+
+          <div class="skill-category glass-panel">
+            <h3><i class="ph-fill ph-shield-check"></i> Testing & Release</h3>
+            <div class="skill-chips">
+              <span class="chip">JUnit</span>
+              <span class="chip">Espresso</span>
+              <span class="chip">CI/CD Pipelines</span>
+              <span class="chip">Code Quality Gates</span>
+              <span class="chip">Rollout Strategies</span>
+            </div>
+          </div>
+
+          <div class="skill-category glass-panel">
+            <h3><i class="ph-fill ph-users-three"></i> Leadership</h3>
+            <div class="skill-chips">
+              <span class="chip">Code Reviews</span>
+              <span class="chip">Mentorship</span>
+              <span class="chip">Tech Talks</span>
+              <span class="chip">Internal Tooling</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <div class="container reveal-element">
+        <div class="section-header">
+          <h2 class="section-title">Selected Work</h2>
+          <p class="section-subtitle">Key applications and open-source contributions.</p>
+        </div>
+
+        <div class="projects-grid">
+
+          <div class="project-card glass-panel" onmousemove="handleCardHover(event, this)">
+            <div class="project-header">
+              <div class="project-icon"><i class="ph-fill ph-currency-btc"></i></div>
+              <div class="project-links">
+                <a href="https://play.google.com/store/apps/details?id=com.coindcx.btc" target="_blank"
+                  aria-label="Play Store"><i class="ph ph-google-play-logo"></i></a>
+              </div>
+            </div>
+            <h3 class="project-title">CoinDCX App</h3>
+            <p class="project-desc">Architected the Help & Support platform and optimized performance for this massive
+              crypto trading app, achieving a 99.88% crash-free rate.</p>
+            <div class="project-footer">
+              <span class="project-tech">Android</span>
+              <span class="project-tech">Kotlin</span>
+              <span class="project-tech">Performance Tuning</span>
+            </div>
+          </div>
+
+          <div class="project-card glass-panel" onmousemove="handleCardHover(event, this)">
+            <div class="project-header">
+              <div class="project-icon"><i class="ph-fill ph-wifi-high"></i></div>
+              <div class="project-links">
+                <a href="https://play.google.com/store/apps/details?id=com.jio.myjio" target="_blank"
+                  aria-label="Play Store"><i class="ph ph-google-play-logo"></i></a>
+              </div>
+            </div>
+            <h3 class="project-title">MyJio</h3>
+            <p class="project-desc">Flagship Jio app powered by the reusable design system and Jetpack Compose
+              components I maintained and developed.</p>
+            <div class="project-footer">
+              <span class="project-tech">Design Systems</span>
+              <span class="project-tech">Jetpack Compose</span>
+            </div>
+          </div>
+
+          <div class="project-card glass-panel" onmousemove="handleCardHover(event, this)">
+            <div class="project-header">
+              <div class="project-icon"><i class="ph-fill ph-book-open"></i></div>
+              <div class="project-links">
+                <a href="https://play.google.com/store/apps/details?id=com.harshsharma.bhagavadgita.pro" target="_blank"
+                  aria-label="Play Store"><i class="ph ph-google-play-logo"></i></a>
+              </div>
+            </div>
+            <h3 class="project-title">Bhagavad Gita App</h3>
+            <p class="project-desc">Spiritual reference app featuring a clean UX, smooth typography, and full offline
+              access database architecture.</p>
+            <div class="project-footer">
+              <span class="project-tech">Android</span>
+              <span class="project-tech">Offline-First (Room)</span>
+            </div>
+          </div>
+
+          <div class="project-card glass-panel" onmousemove="handleCardHover(event, this)">
+            <div class="project-header">
+              <div class="project-icon"><i class="ph-fill ph-globe-hemisphere-west"></i></div>
+              <div class="project-links">
+                <a href="https://bit.ly/appcontacts" target="_blank" aria-label="Web App"><i
+                    class="ph ph-arrow-up-right"></i></a>
+              </div>
+            </div>
+            <h3 class="project-title">Flutter Contacts Base</h3>
+            <p class="project-desc">Cross-platform contacts manager highlighting clean architecture with 4
+              interchangeable storage implementations.</p>
+            <div class="project-footer">
+              <span class="project-tech">Flutter</span>
+              <span class="project-tech">Clean Architecture</span>
+            </div>
+          </div>
+
+          <div class="project-card glass-panel" onmousemove="handleCardHover(event, this)">
+            <div class="project-header">
+              <div class="project-icon"><i class="ph-fill ph-chart-line-up"></i></div>
+              <div class="project-links">
+                <!-- No Link -->
+              </div>
+            </div>
+            <h3 class="project-title">Trading Indicators</h3>
+            <p class="project-desc">Custom SuperTrend and moving averages written in Pine Script, rigorously validated
+              via robust backtesting logic.</p>
+            <div class="project-footer">
+              <span class="project-tech">TradingView</span>
+              <span class="project-tech">Pine Script</span>
+              <span class="project-tech">Quant</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer & Contact -->
+    <footer id="contact" class="footer container reveal-element">
+      <h2 class="section-title contact-cta">Let's build something <span class="text-gradient">exceptional.</span></h2>
+      <p class="section-subtitle" style="margin: 0 auto;">Currently exploring Staff/Principal Engineer opportunities.
+        Reach out via email or connect on LinkedIn.</p>
+
+      <div class="social-links">
+        <a href="mailto:harsh159357@gmail.com" aria-label="Email"><i class="ph-fill ph-envelope-simple"></i></a>
+        <a href="https://bit.ly/lnkdharsh" target="_blank" aria-label="LinkedIn"><i
+            class="ph-fill ph-linkedin-logo"></i></a>
+        <a href="https://bit.ly/githarsh" target="_blank" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
+        <a href="https://bit.ly/stackharsh" target="_blank" aria-label="Stack Overflow"><i
+            class="ph-fill ph-stack-overflow-logo"></i></a>
+      </div>
+
+      <p class="copyright">© 2026 Harsh Sharma. Built with <i class="ph-fill ph-heart"
+          style="color: var(--accent-tertiary);"></i> and modern web technologies.</p>
+    </footer>
+
+  </main>
+
+  <!-- Scripts -->
   <script>
-    // Theme Toggle
+    // --- Card Hover 3D Light Effect ---
+    function handleCardHover(e, card) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    }
+  </script>
+  <script>
+    // --- Theme Toggle Logic ---
     const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    const isDark = savedTheme === 'dark';
-    body.classList.toggle('light-mode', !isDark);
-    themeToggle.textContent = isDark ? '☀️' : '🌙';
+    const themeIcon = document.getElementById('themeIcon');
+    const htmlElement = document.documentElement;
+
+    // Check for saved user preference, else use system preference, default to dark
+    const getPreferredTheme = () => {
+      const savedItem = localStorage.getItem('theme');
+      if (savedItem) return savedItem;
+      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    };
+
+    const setTheme = (theme) => {
+      if (theme === 'light') {
+        htmlElement.setAttribute('data-theme', 'light');
+        themeIcon.classList.replace('ph-moon', 'ph-sun');
+      } else {
+        htmlElement.removeAttribute('data-theme');
+        themeIcon.classList.replace('ph-sun', 'ph-moon');
+      }
+      localStorage.setItem('theme', theme);
+    };
+
+    // Initialize Theme
+    setTheme(getPreferredTheme());
 
     themeToggle.addEventListener('click', () => {
-      const isNowLight = body.classList.contains('light-mode');
-      body.classList.toggle('light-mode', !isNowLight);
-      const newTheme = isNowLight ? 'dark' : 'light';
-      localStorage.setItem('theme', newTheme);
-      themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+      const currentTheme = htmlElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      setTheme(currentTheme === 'dark' ? 'light' : 'dark');
     });
 
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        if (this.getAttribute('href') === '#') return;
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          window.scrollTo({
-            top: target.offsetTop - 80,
-            behavior: 'smooth'
-          });
-        }
-      });
+    // --- Navbar Scroll Effect ---
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.style.background = 'var(--bg-elevated)';
+        navbar.style.border = '1px solid var(--border-hover)';
+        navbar.style.boxShadow = 'var(--shadow-lg)';
+      } else {
+        navbar.style.background = 'var(--bg-surface)';
+        navbar.style.border = '1px solid var(--border-subtle)';
+        navbar.style.boxShadow = 'none';
+      }
     });
 
-    // Fade-in on scroll
-    const observer = new IntersectionObserver((entries) => {
+    // --- Intersection Observer for Scroll Animations ---
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, observerOptions);
 
-    document.querySelectorAll('.section-content').forEach(el => observer.observe(el));
-
-    // Counter Animation (only once)
-    const counters = document.querySelectorAll('.counter');
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const target = parseFloat(el.getAttribute('data-target'));
-          let count = 0;
-          const step = target / 100;
-          const timer = setInterval(() => {
-            count += step;
-            if (count >= target) {
-              el.textContent = target + '%';
-              clearInterval(timer);
-            } else {
-              el.textContent = Math.ceil(count) + '%';
-            }
-          }, 15);
-          counterObserver.unobserve(el);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    counters.forEach(counter => counterObserver.observe(counter));
+    document.querySelectorAll('.reveal-element').forEach((el) => {
+      observer.observe(el);
+    });
   </script>
 </body>
+
 </html>
