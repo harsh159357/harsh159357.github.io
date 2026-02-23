@@ -510,7 +510,7 @@
       background: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%);
     }
 
-    /* The Dock (iOS) */
+    /* The Dock (iOS Background Layer) */
     .dock {
       position: absolute;
       bottom: 24px;
@@ -522,10 +522,8 @@
       -webkit-backdrop-filter: var(--glass-blur);
       border-radius: 30px;
       border: 1px solid var(--glass-border);
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      padding: 0 10px;
+      z-index: 35;
+      /* Behind the app grid */
       transition: opacity 0.3s, transform 0.3s;
     }
 
@@ -1395,26 +1393,34 @@
                 </div>
                 <div class="app-label">Settings</div>
               </div>
-            </div>
 
-            <!-- Dock -->
-            <div class="dock">
+              <!-- Social: Github -->
               <div class="app-icon-container" onclick="window.open('https://bit.ly/githarsh', '_blank')">
                 <div class="app-icon app-github">
                   <i class="ph-fill ph-github-logo"></i>
                 </div>
+                <div class="app-label">GitHub</div>
               </div>
+
+              <!-- Social: LinkedIn -->
               <div class="app-icon-container" onclick="window.open('https://bit.ly/lnkdharsh', '_blank')">
                 <div class="app-icon app-linkedin">
                   <i class="ph-fill ph-linkedin-logo"></i>
                 </div>
+                <div class="app-label">LinkedIn</div>
               </div>
+
+              <!-- Social: Email -->
               <div class="app-icon-container" onclick="window.location.href='mailto:harsh159357@gmail.com'">
                 <div class="app-icon app-mail">
                   <i class="ph-fill ph-envelope-simple"></i>
                 </div>
+                <div class="app-label">Email</div>
               </div>
             </div>
+
+            <!-- Dock Details (Background styling only for iOS mode) -->
+            <div class="dock"></div>
 
             <!-- Android Search Widget (Replaces Dock in Android Mode) -->
             <div class="android-search-widget" onclick="window.open('https://bit.ly/githarsh', '_blank')">
