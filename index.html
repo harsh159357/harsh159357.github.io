@@ -108,15 +108,15 @@
       border-radius: var(--device-radius);
       padding: 12px;
       /* Frame thickness */
-      background: #111;
+      background: var(--frame-color, #111);
       box-shadow:
-        0 0 0 2px #333,
+        0 0 0 2px var(--frame-edge, #333),
         inset 0 0 5px rgba(255, 255, 255, 0.4),
         0 40px 80px rgba(0, 0, 0, 0.8),
         0 20px 40px rgba(0, 0, 0, 0.4);
       position: relative;
       transform-style: preserve-3d;
-      transition: transform 0.1s ease, width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), border-radius 0.4s ease, padding 0.4s ease;
+      transition: transform 0.1s ease, width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), border-radius 0.4s ease, padding 0.4s ease, background 0.5s ease, box-shadow 0.5s ease;
     }
 
     /* Subtle glare on the chassis */
@@ -2259,10 +2259,38 @@
 
     // --- Device Switcher ---
     const deviceProfiles = {
-      iphone: { w: 390, h: 844, r: 45, sr: 38, pad: 12, island: 'dynamic-island', label: 'iPhone 15 Pro' },
-      pixel: { w: 380, h: 830, r: 40, sr: 34, pad: 10, island: 'hole-punch', label: 'Pixel 8' },
-      galaxy: { w: 385, h: 840, r: 35, sr: 30, pad: 10, island: 'hole-punch', label: 'Galaxy S24' },
-      ipad: { w: 520, h: 740, r: 25, sr: 20, pad: 14, island: 'none', label: 'iPad Mini' }
+      iphone: {
+        w: 390, h: 844, r: 45, sr: 38, pad: 12,
+        island: 'dynamic-island', label: 'iPhone 15 Pro',
+        frame: '#1c1c1e', edge: '#4a4a4c',       // Natural Titanium
+        glare: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 40%)',
+        shadow: '0 0 0 2px #4a4a4c, inset 0 0 5px rgba(255,255,255,0.4), 0 40px 80px rgba(0,0,0,0.8), 0 20px 40px rgba(0,0,0,0.4)',
+        btnColor: '#3a3a3c'
+      },
+      pixel: {
+        w: 375, h: 820, r: 38, sr: 32, pad: 10,
+        island: 'hole-punch', label: 'Pixel 8',
+        frame: '#2d3436', edge: '#636e72',         // Google Grey/Hazel
+        glare: 'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(99,110,114,0.06) 50%, transparent 70%)',
+        shadow: '0 0 0 2.5px #636e72, inset 0 0 4px rgba(255,255,255,0.25), 0 35px 70px rgba(0,0,0,0.7), 0 15px 30px rgba(0,0,0,0.4)',
+        btnColor: '#636e72'
+      },
+      galaxy: {
+        w: 385, h: 835, r: 32, sr: 26, pad: 8,
+        island: 'hole-punch', label: 'Galaxy S24',
+        frame: '#0d0d0d', edge: '#8395a7',         // Phantom Silver
+        glare: 'linear-gradient(145deg, rgba(131,149,167,0.15) 0%, rgba(255,255,255,0.03) 30%, transparent 60%)',
+        shadow: '0 0 0 1.5px #8395a7, inset 0 0 3px rgba(255,255,255,0.3), 0 45px 90px rgba(0,0,0,0.85), 0 20px 40px rgba(0,0,0,0.5)',
+        btnColor: '#8395a7'
+      },
+      ipad: {
+        w: 520, h: 740, r: 25, sr: 20, pad: 14,
+        island: 'none', label: 'iPad Mini',
+        frame: '#161618', edge: '#555',             // Space Grey
+        glare: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 50%)',
+        shadow: '0 0 0 3px #555, inset 0 0 8px rgba(255,255,255,0.3), 0 50px 100px rgba(0,0,0,0.8), 0 25px 50px rgba(0,0,0,0.5)',
+        btnColor: '#555'
+      }
     };
 
     let currentDevice = 'iphone';
@@ -2279,8 +2307,15 @@
       root.style.setProperty('--device-radius', p.r + 'px');
       root.style.setProperty('--screen-radius', p.sr + 'px');
 
-      // Update device padding
+      // Update device frame aesthetics
       device.style.padding = p.pad + 'px';
+      device.style.background = p.frame;
+      device.style.boxShadow = p.shadow;
+
+      // Update hardware button color
+      document.querySelectorAll('.hardware-btn').forEach(btn => {
+        btn.style.background = p.btnColor;
+      });
 
       // Handle notch visibility
       const island = document.getElementById('dynamicIsland');
