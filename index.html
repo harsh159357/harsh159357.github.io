@@ -3,900 +3,914 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Harsh Sharma | Senior Software Engineer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Harsh Sharma | Mobile Engineer</title>
+
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%236366f1%22>HS</text></svg>"
     type="image/svg+xml">
   <meta name="description"
     content="Harsh Sharma – Staff-track Senior Software Engineer (SDE-3) specializing in Android, Flutter, fintech, and high-throughput CX platforms.">
-  <meta property="og:title" content="Harsh Sharma – Senior Software Engineer">
-  <meta property="og:description" content="Android | Flutter | Fintech | Performance | Reliability | Architecture">
-  <meta property="og:type" content="website">
+  <meta property="og:title" content="Harsh Sharma – Mobile Engineer">
+  <meta property="og:description" content="Android | Flutter | Fintech | Performance | Reliability">
 
-  <!-- Modern Typography: Outfit for Headings, Inter for Body -->
+  <!-- Modern Typography (SF Pro style substitute) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Phosphor Icons for modern lightweight icons -->
+  <!-- Phosphor Icons for system icons -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
   <style>
     /* =========================================
-           CSS VARIABLES & THEME TOKENS
+           OS THEME VARIABLES
         ========================================= */
     :root {
-      /* Dark Theme (Default) */
-      --bg-base: #050505;
-      --bg-surface: rgba(20, 20, 22, 0.7);
-      --bg-surface-solid: #141416;
-      --bg-elevated: rgba(30, 30, 35, 0.6);
+      /* System Colors */
+      --os-bg: #000000;
+      --os-wallpaper: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop');
+      /* Sleek abstract dark wallpaper */
 
-      --text-primary: #ffffff;
-      --text-secondary: #a1a1aa;
-      --text-tertiary: #71717a;
+      --sys-blue: #0A84FF;
+      --sys-green: #30D158;
+      --sys-orange: #FF9F0A;
+      --sys-red: #FF453A;
+      --sys-gray: #8E8E93;
+      --sys-gray-light: #C7C7CC;
+      --sys-gray-dark: #3A3A3C;
+      --sys-gray-overlay: rgba(28, 28, 30, 0.7);
 
-      --accent-primary: #6366f1;
-      /* Indigo */
-      --accent-glow: rgba(99, 102, 241, 0.4);
-      --accent-secondary: #a855f7;
-      /* Purple */
-      --accent-tertiary: #ec4899;
-      /* Pink */
+      --text-primary: #FFFFFF;
+      --text-secondary: rgba(255, 255, 255, 0.6);
 
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-hover: rgba(255, 255, 255, 0.15);
+      --glass-bg: rgba(30, 30, 30, 0.35);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --glass-blur: blur(20px);
 
-      --glass-blur: blur(12px);
-      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
-      --shadow-lg: 0 10px 30px -5px rgba(0, 0, 0, 0.7);
-      --shadow-glow: 0 0 20px var(--accent-glow);
+      /* Device Metrics */
+      --device-width: 390px;
+      --device-height: 844px;
+      /* iPhone 13/14 Pro scale */
+      --device-radius: 45px;
+      --screen-radius: 38px;
 
-      --radius-sm: 8px;
-      --radius-md: 16px;
-      --radius-pill: 9999px;
-
-      --transition-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
-      --transition-smooth: 400ms cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    [data-theme="light"] {
-      --bg-base: #f8fafc;
-      --bg-surface: rgba(255, 255, 255, 0.8);
-      --bg-surface-solid: #ffffff;
-      --bg-elevated: rgba(241, 245, 249, 0.9);
-
-      --text-primary: #0f172a;
-      --text-secondary: #475569;
-      --text-tertiary: #94a3b8;
-
-      --accent-primary: #4f46e5;
-      --accent-glow: rgba(79, 70, 229, 0.2);
-      --accent-secondary: #9333ea;
-      --accent-tertiary: #e11d48;
-
-      --border-subtle: rgba(0, 0, 0, 0.08);
-      --border-hover: rgba(0, 0, 0, 0.15);
-
-      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-      --shadow-lg: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
-      --shadow-glow: 0 0 20px var(--accent-glow);
+      /* Animations */
+      --spring-stiff: 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      --spring-bouncy: 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-out: 300ms cubic-bezier(0.33, 1, 0.68, 1);
     }
 
     /* =========================================
-           RESET & GLOBAL
+           ENVIRONMENT (DESKTOP PRESENTATION)
         ========================================= */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
+      user-select: none;
+      /* Mobile feel */
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-base);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #0f0f11;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      /* Prevent body scroll */
       color: var(--text-primary);
-      line-height: 1.6;
-      overflow-x: hidden;
-      transition: background-color var(--transition-smooth), color var(--transition-smooth);
     }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-family: 'Outfit', sans-serif;
-      line-height: 1.2;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    ul {
-      list-style: none;
-    }
-
-    /* custom selection */
-    ::selection {
-      background-color: var(--accent-primary);
-      color: white;
+    /* Desktop specific presentation (The Desk) */
+    .environment {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% -20%, #1a1a24, #050505 80%);
+      perspective: 1500px;
     }
 
     /* =========================================
-           BACKGROUND EFFECTS
+           THE CHASSIS (HARDWARE FRAME)
         ========================================= */
-    .bg-mesh {
-      position: fixed;
+    .device {
+      width: var(--device-width);
+      height: var(--device-height);
+      border-radius: var(--device-radius);
+      padding: 12px;
+      /* Frame thickness */
+      background: #111;
+      box-shadow:
+        0 0 0 2px #333,
+        inset 0 0 5px rgba(255, 255, 255, 0.4),
+        0 40px 80px rgba(0, 0, 0, 0.8),
+        0 20px 40px rgba(0, 0, 0, 0.4);
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease;
+    }
+
+    /* Subtle glare on the chassis */
+    .device::after {
+      content: '';
+      position: absolute;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
+      right: 0;
+      bottom: 0;
+      border-radius: var(--device-radius);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    /* Buttons (Physical) */
+    .hardware-btn {
+      position: absolute;
+      background: #222;
+      border-radius: 4px;
+      box-shadow: inset 1px 0 2px rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-mute {
+      width: 3px;
+      height: 30px;
+      left: -15px;
+      top: 110px;
+    }
+
+    .btn-vol-up {
+      width: 3px;
+      height: 60px;
+      left: -15px;
+      top: 170px;
+    }
+
+    .btn-vol-down {
+      width: 3px;
+      height: 60px;
+      left: -15px;
+      top: 245px;
+    }
+
+    .btn-power {
+      width: 3px;
+      height: 90px;
+      right: -15px;
+      top: 190px;
+    }
+
+    /* =========================================
+           THE SCREEN
+        ========================================= */
+    .screen {
+      width: 100%;
+      height: 100%;
+      background-color: var(--os-bg);
+      background-image: var(--os-wallpaper);
+      background-size: cover;
+      background-position: center;
+      border-radius: var(--screen-radius);
+      position: relative;
       overflow: hidden;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+      /* Inner bezel shadow */
+    }
+
+    /* Dynamic Island / Notch */
+    .dynamic-island {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 30px;
+      background: #000;
+      border-radius: 20px;
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+      box-shadow: inset 0 -1px 2px rgba(255, 255, 255, 0.1);
+      transition: all 0.3s cubic-bezier(0.5, 1.5, 0.4, 1);
+      /* Island animations */
+      cursor: pointer;
+    }
+
+    .camera-lens {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #111;
+      box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Status Bar (Time & Icons) */
+    .status-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px 0 28px;
+      z-index: 800;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
       pointer-events: none;
     }
 
-    .bg-orb {
+    .status-right {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .status-right i {
+      font-size: 16px;
+    }
+
+    /* Bottom Home Indicator */
+    .home-indicator {
       position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.4;
-      animation: float 20s infinite ease-in-out alternate;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 130px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      z-index: 800;
+      cursor: pointer;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      transition: height 0.2s, bottom 0.2s;
     }
 
-    .orb-1 {
-      top: -10%;
-      left: -10%;
-      width: 50vw;
-      height: 50vw;
-      background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
-      animation-delay: 0s;
+    .home-indicator:active {
+      height: 8px;
+      bottom: 6px;
     }
 
-    .orb-2 {
-      bottom: -20%;
-      right: -10%;
-      width: 60vw;
-      height: 60vw;
-      background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
-      animation-delay: -5s;
-    }
-
-    .orb-3 {
-      top: 40%;
-      left: 60%;
-      width: 40vw;
-      height: 40vw;
-      background: radial-gradient(circle, var(--accent-tertiary) 0%, transparent 70%);
-      opacity: 0.2;
-      animation-delay: -10s;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translate(0, 0) scale(1);
-      }
-
-      100% {
-        transform: translate(5%, 5%) scale(1.1);
-      }
-    }
-
-    .noise-overlay {
-      position: fixed;
+    /* =========================================
+           OS LAYERS (Lock, Home, Apps)
+        ========================================= */
+    .layer {
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
-      opacity: 0.03;
-      pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      transition: transform var(--spring-stiff), opacity var(--ease-out), filter var(--ease-out);
     }
 
-    /* =========================================
-           REUSABLE UTILITIES
-        ========================================= */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
+    /* 1. LOCK SCREEN */
+    .lock-screen {
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 80px;
+      backdrop-filter: blur(0px);
+      /* Will animate to blur on swipe */
     }
 
-    .glass-panel {
-      background: var(--bg-surface);
+    .lock-icon {
+      font-size: 20px;
+      margin-bottom: 5px;
+      animation: pulseLock 2s infinite alternate;
+    }
+
+    .lock-time {
+      font-size: 80px;
+      font-weight: 200;
+      line-height: 1;
+      letter-spacing: -2px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .lock-date {
+      font-size: 20px;
+      font-weight: 500;
+      margin-top: 5px;
+      text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Simulated Lock Screen Notification */
+    .notification-stack {
+      margin-top: 40px;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .notification {
+      background: var(--glass-bg);
       backdrop-filter: var(--glass-blur);
       -webkit-backdrop-filter: var(--glass-blur);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
+      border-radius: 20px;
+      padding: 16px;
+      display: flex;
+      gap: 12px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: slideUpFade 0.6s var(--spring-bouncy) forwards 0.5s;
     }
 
-    .text-gradient {
-      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      display: inline-block;
-    }
-
-    .section-header {
-      margin-bottom: 3rem;
-    }
-
-    .section-title {
-      font-size: clamp(2.5rem, 5vw, 3.5rem);
-      position: relative;
-      display: inline-block;
-      margin-bottom: 1rem;
-    }
-
-    .section-subtitle {
-      color: var(--text-secondary);
-      font-size: 1.1rem;
-      max-width: 600px;
-    }
-
-    .btn {
-      display: inline-flex;
+    .notif-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--sys-blue);
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
-      padding: 0.8rem 1.75rem;
-      border-radius: var(--radius-pill);
-      font-weight: 600;
-      font-size: 1rem;
-      transition: all var(--transition-bounce);
-      cursor: pointer;
-      border: none;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
+      font-size: 20px;
     }
 
-    .btn-primary {
-      background: var(--text-primary);
-      color: var(--bg-base);
+    .notif-icon.recruiter {
+      background: #0077b5;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px -10px var(--text-primary);
+    /* LinkedIn style */
+
+    .notif-content {
+      flex: 1;
     }
 
-    .btn-secondary {
-      background: transparent;
-      color: var(--text-primary);
-      border: 1px solid var(--border-hover);
-      backdrop-filter: var(--glass-blur);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--text-primary);
-      background: rgba(255, 255, 255, 0.05);
-      transform: translateY(-2px);
-    }
-
-    /* =========================================
-           NAVIGATION
-        ========================================= */
-    nav {
-      position: fixed;
-      top: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 2rem);
-      max-width: 800px;
-      z-index: 100;
+    .notif-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem 1.5rem;
-      border-radius: var(--radius-pill);
-      transition: all var(--transition-smooth);
+      font-size: 13px;
+      margin-bottom: 2px;
     }
 
-    .nav-logo {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 1.25rem;
-      letter-spacing: -0.05em;
-      color: var(--text-primary);
+    .notif-title {
+      font-weight: 600;
     }
 
-    .nav-logo span {
-      color: var(--accent-primary);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .nav-links a {
-      font-size: 0.9rem;
-      font-weight: 500;
+    .notif-time {
       color: var(--text-secondary);
-      transition: color 0.2s;
-      position: relative;
     }
 
-    .nav-links a:hover {
-      color: var(--text-primary);
+    .notif-body {
+      font-size: 14px;
+      line-height: 1.3;
+      color: rgba(255, 255, 255, 0.9);
     }
 
-    .nav-links a::after {
-      content: '';
+    .swipe-hint {
       position: absolute;
-      bottom: -4px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 2px;
-      background: var(--accent-primary);
-      transition: width 0.3s ease;
-      border-radius: 2px;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-actions {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .theme-toggle {
-      background: none;
-      border: none;
+      bottom: 40px;
+      font-size: 14px;
+      font-weight: 600;
       color: var(--text-secondary);
-      font-size: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: bounce 2s infinite;
+    }
+
+    /* 2. HOME SCREEN (Behind Lock Screen initially) */
+    .home-screen {
+      z-index: 40;
+      padding: 70px 24px 0;
+      opacity: 0;
+      /* Hidden while locked */
+      transform: scale(1.1);
+      /* Zooms in when unlocking */
+      transition: transform var(--spring-stiff), opacity var(--ease-out);
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      row-gap: 24px;
+      column-gap: 16px;
+    }
+
+    .app-icon-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
       cursor: pointer;
-      transition: color 0.2s;
+    }
+
+    .app-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 14px;
+      background: var(--sys-gray-dark);
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
+      font-size: 32px;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: filter 0.2s, transform 0.1s;
     }
 
-    .theme-toggle:hover {
-      color: var(--text-primary);
-      background: var(--border-subtle);
+    .app-icon-container:active .app-icon {
+      filter: brightness(0.7);
+      transform: scale(0.95);
     }
 
-    /* Mobile Menu Button */
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text-primary);
-      font-size: 1.5rem;
-      cursor: pointer;
+    .app-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
     }
 
-    /* =========================================
-           HERO SECTION
-        ========================================= */
-    .hero {
-      min-height: 100vh;
+    /* App Specific Colors */
+    .app-profile {
+      background: linear-gradient(135deg, #7F00FF, #E100FF);
+    }
+
+    .app-experience {
+      background: linear-gradient(135deg, #FF416C, #FF4B2B);
+    }
+
+    .app-skills {
+      background: linear-gradient(135deg, #11998e, #38ef7d);
+    }
+
+    .app-projects {
+      background: linear-gradient(135deg, #00B4DB, #0083B0);
+    }
+
+    .app-github {
+      background: #24292e;
+    }
+
+    .app-linkedin {
+      background: #0077b5;
+    }
+
+    .app-mail {
+      background: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%);
+    }
+
+    /* The Dock */
+    .dock {
+      position: absolute;
+      bottom: 24px;
+      left: 12px;
+      right: 12px;
+      height: 86px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-radius: 30px;
+      border: 1px solid var(--glass-border);
       display: flex;
+      justify-content: space-around;
       align-items: center;
-      padding-top: 5rem;
-      position: relative;
+      padding: 0 10px;
     }
 
-    .hero-content {
-      max-width: 800px;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: rgba(99, 102, 241, 0.1);
-      border: 1px solid rgba(99, 102, 241, 0.2);
-      border-radius: var(--radius-pill);
-      color: var(--accent-primary);
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 2rem;
+    /* 3. OPEN APP LAYER */
+    .app-view {
+      z-index: 60;
+      background: var(--os-bg);
       opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.8s forwards 0.2s;
-    }
-
-    .hero-badge i {
-      font-size: 1rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.8s forwards 0.4s;
-    }
-
-    .hero p {
-      font-size: clamp(1.1rem, 2vw, 1.35rem);
-      color: var(--text-secondary);
-      max-width: 650px;
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.8s forwards 0.6s;
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 3rem;
-      margin-bottom: 3rem;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.8s forwards 0.8s;
-    }
-
-    .stat-item {
+      pointer-events: none;
+      transform: scale(0.8) translateY(50px);
+      border-radius: var(--screen-radius);
+      /* Keeps corner rounding when pushed back */
       display: flex;
       flex-direction: column;
     }
 
-    .stat-number {
-      font-family: 'Outfit', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      line-height: 1;
-      margin-bottom: 0.25rem;
-    }
-
-    .stat-label {
-      font-size: 0.85rem;
-      color: var(--text-tertiary);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-weight: 600;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
+    /* State Classes */
+    body.unlocked .lock-screen {
+      transform: translateY(-100%);
       opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.8s forwards 1s;
+      pointer-events: none;
     }
 
-    /* Hero Scroll Indicator */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--text-tertiary);
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      opacity: 0;
-      animation: fadeUp 0.8s forwards 1.2s;
+    body.unlocked .home-screen {
+      opacity: 1;
+      transform: scale(1);
     }
 
-    .mouse {
-      width: 24px;
-      height: 36px;
-      border: 2px solid var(--text-tertiary);
-      border-radius: 12px;
-      position: relative;
-    }
-
-    .mouse::before {
-      content: '';
-      position: absolute;
-      top: 6px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 4px;
-      height: 4px;
-      background: var(--text-tertiary);
-      border-radius: 50%;
-      animation: scrollWheel 2s infinite;
-    }
-
-    @keyframes scrollWheel {
+    /* Animations */
+    @keyframes pulseLock {
       0% {
-        top: 6px;
-        opacity: 1;
+        transform: scale(1);
+        opacity: 0.8;
       }
 
       100% {
-        top: 18px;
-        opacity: 0;
+        transform: scale(1.1);
+        opacity: 1;
       }
     }
 
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
+    @keyframes bounce {
+
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
         transform: translateY(0);
       }
+
+      40% {
+        transform: translateY(-10px);
+      }
+
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    @keyframes slideUpFade {
+      0% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     /* =========================================
-           SECTIONS LAYOUT
-        ========================================= */
-    section {
-      padding: 8rem 0;
-      position: relative;
-    }
-
-    .reveal-element {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .reveal-element.revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* =========================================
-           TIMELINE & EXPERIENCE
-        ========================================= */
-    .timeline {
-      position: relative;
-      padding-left: 2rem;
-      margin-top: 3rem;
-      max-width: 800px;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
+       APP CONTENT LAYOUTS
+    ========================================= */
+    .app-header {
+      display: flex;
+      align-items: center;
+      padding: 24px;
+      padding-top: 50px;
+      /* Clear dynamic island */
+      font-size: 24px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: sticky;
       top: 0;
-      bottom: 0;
-      left: 0;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary), transparent);
-      border-radius: 2px;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 100;
     }
 
-    .timeline-item {
-      position: relative;
-      margin-bottom: 3rem;
-      padding-left: 1.5rem;
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--sys-blue);
+      font-size: 16px;
+      font-weight: 400;
+      cursor: pointer;
+      width: fit-content;
+      margin-right: 16px;
     }
 
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -2.35rem;
-      /* center on the 2px line (2rem padding left of timeline container) */
-      top: 6px;
-      width: 14px;
-      height: 14px;
+    .app-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      padding-bottom: 80px;
+      /* Clear home indicator */
+      scroll-behavior: smooth;
+    }
+
+    /* Hide scrollbar for apps */
+    .app-body::-webkit-scrollbar {
+      display: none;
+    }
+
+    .app-body {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Profile App Specifics */
+    .profile-hero {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
-      background: var(--bg-base);
-      border: 3px solid var(--accent-primary);
-      box-shadow: 0 0 10px var(--accent-glow);
-      transition: all 0.3s;
+      background: linear-gradient(135deg, #7F00FF, #E100FF);
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      border: 3px solid #222;
     }
 
-    .timeline-item:hover::before {
-      background: var(--accent-primary);
-      transform: scale(1.2);
+    .profile-name {
+      font-size: 28px;
+      font-weight: 700;
     }
 
-    .timeline-date {
-      font-size: 0.85rem;
-      color: var(--accent-secondary);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.5rem;
-      display: inline-block;
+    .profile-title {
+      color: var(--sys-gray);
+      margin-top: 4px;
     }
 
-    .timeline-role {
-      font-size: 1.5rem;
-      margin-bottom: 0.25rem;
-      color: var(--text-primary);
+    .contact-action-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      justify-content: center;
     }
 
-    .timeline-company {
-      font-size: 1.1rem;
-      color: var(--text-tertiary);
-      margin-bottom: 1.5rem;
-      font-weight: 500;
+    .contact-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--sys-gray-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: var(--sys-blue);
+      cursor: pointer;
+      transition: opacity 0.2s;
     }
 
-    .timeline-bullets {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .timeline-bullets li {
-      position: relative;
-      padding-left: 1.5rem;
-      margin-bottom: 0.75rem;
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-    }
-
-    .timeline-bullets li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: var(--accent-primary);
+    .contact-btn:active {
       opacity: 0.7;
     }
 
-    /* =========================================
-           SKILLS
-        ========================================= */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .skill-category {
-      padding: 2rem;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .skill-category:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-glow);
-      border-color: var(--accent-glow);
-    }
-
-    .skill-category h3 {
-      font-size: 1.25rem;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--text-primary);
-    }
-
-    .skill-category h3 i {
-      color: var(--accent-primary);
-      font-size: 1.5rem;
-    }
-
-    .skill-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .chip {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-hover);
-      color: var(--text-secondary);
-      padding: 0.5rem 1rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.85rem;
-      transition: all 0.2s;
-      cursor: default;
-    }
-
-    .chip:hover {
-      background: var(--accent-glow);
-      border-color: var(--accent-primary);
-      color: var(--text-primary);
-      transform: translateY(-2px);
-    }
-
-    /* =========================================
-           PROJECTS
-        ========================================= */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2.5rem;
-      margin-top: 3rem;
-    }
-
-    .project-card {
-      display: flex;
-      flex-direction: column;
-      padding: 2.5rem;
-      height: 100%;
-      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-card::before {
-      content: '';
+    .contact-btn p {
+      font-size: 10px;
+      color: white;
+      margin-top: 40px;
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.06), transparent 40%);
-      z-index: 0;
-      opacity: 0;
-      transition: opacity 0.3s;
     }
 
-    .project-card:hover::before {
-      opacity: 1;
+    .info-card {
+      background: var(--sys-gray-dark);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
     }
 
-    .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
-      border-color: var(--border-hover);
-    }
-
-    .project-header {
+    .info-row {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 1.5rem;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .info-row:last-child {
+      border: none;
+      padding-bottom: 0;
+    }
+
+    .info-label {
+      color: var(--sys-blue);
+      width: 80px;
+    }
+
+    .info-val {
+      flex: 1;
+      text-align: left;
+      line-height: 1.4;
+    }
+
+    /* Career App Specifics (Timeline) */
+    .career-track {
       position: relative;
-      z-index: 1;
+      padding-left: 20px;
     }
 
-    .project-icon {
-      width: 50px;
-      height: 50px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: var(--accent-primary);
+    .career-track::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      bottom: 0;
+      width: 2px;
+      background: var(--sys-gray-dark);
     }
 
-    .project-links a {
-      color: var(--text-tertiary);
-      font-size: 1.5rem;
-      transition: color 0.2s;
-    }
-
-    .project-links a:hover {
-      color: var(--text-primary);
-    }
-
-    .project-title {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      z-index: 1;
+    .career-node {
       position: relative;
+      margin-bottom: 32px;
     }
 
-    .project-desc {
+    .career-node::before {
+      content: '';
+      position: absolute;
+      left: -25px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--sys-blue);
+      border: 3px solid var(--os-bg);
+    }
+
+    .c-date {
+      font-size: 12px;
+      color: var(--sys-gray);
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .c-role {
+      font-size: 18px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .c-comp {
+      font-size: 15px;
+      color: var(--sys-blue);
+      margin-bottom: 8px;
+    }
+
+    .c-desc {
+      font-size: 14px;
       color: var(--text-secondary);
-      font-size: 0.95rem;
-      flex-grow: 1;
-      margin-bottom: 1.5rem;
-      z-index: 1;
-      position: relative;
+      line-height: 1.5;
     }
 
-    .project-footer {
+    /* Skills App Specifics */
+    .skill-ring-container {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      z-index: 1;
-      position: relative;
-      margin-top: auto;
+      justify-content: space-around;
+      margin-bottom: 30px;
     }
 
-    .project-tech {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.75rem;
-      color: var(--accent-secondary);
-      letter-spacing: 0.05em;
-    }
-
-    /* =========================================
-           FOOTER & CONTACT
-        ========================================= */
-    .footer {
-      padding: 6rem 0 3rem;
-      text-align: center;
-      border-top: 1px solid var(--border-subtle);
-      margin-top: 5rem;
-      position: relative;
-    }
-
-    .contact-cta {
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin-bottom: 2rem;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin: 3rem 0;
-    }
-
-    .social-links a {
+    .ring {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      position: relative;
+      background: conic-gradient(var(--sys-blue) 0% 95%, #222 95% 100%);
+    }
+
+    .ring::after {
+      content: '';
+      position: absolute;
       width: 60px;
       height: 60px;
+      background: var(--os-bg);
       border-radius: 50%;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
+    }
+
+    .ring span {
+      position: relative;
+      z-index: 10;
+    }
+
+    .ring-2 {
+      background: conic-gradient(var(--sys-green) 0% 88%, #222 88% 100%);
+    }
+
+    .ring-3 {
+      background: conic-gradient(var(--sys-orange) 0% 92%, #222 92% 100%);
+    }
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+      margin-bottom: 24px;
+    }
+
+    .tech-tag {
+      background: var(--sys-gray-dark);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: white;
+    }
+
+    /* Work App Specifics (App Store Style) */
+    .store-header {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .store-card {
+      background: var(--sys-gray-dark);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .store-card-main {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .store-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #333, #111);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .store-info {
+      flex: 1;
+    }
+
+    .store-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .store-sub {
+      font-size: 13px;
+      color: var(--sys-gray);
+      margin-bottom: 6px;
+    }
+
+    .get-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--sys-blue);
+      padding: 6px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      width: fit-content;
+      cursor: pointer;
+    }
+
+    .store-desc {
+      font-size: 14px;
       color: var(--text-secondary);
-      font-size: 1.75rem;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      line-height: 1.4;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    .social-links a:hover {
-      color: var(--bg-base);
-      background: var(--text-primary);
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px -5px rgba(255, 255, 255, 0.2);
-    }
+    /* Media queries to handle actual mobile devices (remove chassis, full bleed) */
+    @media (max-width: 480px) {
+      .environment {
+        background: #000;
+        perspective: none;
+      }
 
-    .copyright {
-      color: var(--text-tertiary);
-      font-size: 0.85rem;
-    }
-
-    /* =========================================
-           RESPONSIVE
-        ========================================= */
-    @media (max-width: 768px) {
-      nav {
-        width: 100%;
-        top: 0;
+      .device {
+        width: 100vw;
+        height: 100vh;
         border-radius: 0;
-        padding: 1rem;
+        padding: 0;
+        box-shadow: none;
+        border: none;
+        transform: none !important;
       }
 
-      .nav-links {
+      .screen {
+        border-radius: 0;
+      }
+
+      .hardware-btn {
         display: none;
-        /* Mobile menu to be implemented */
       }
 
-      .mobile-menu-btn {
-        display: block;
-      }
-
-      .hero-stats {
-        gap: 1.5rem;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
+      .device::after {
+        display: none;
       }
     }
   </style>
@@ -904,493 +918,525 @@
 
 <body>
 
-  <!-- Background Orbs & Noise -->
-  <div class="bg-mesh">
-    <div class="bg-orb orb-1"></div>
-    <div class="bg-orb orb-2"></div>
-    <div class="bg-orb orb-3"></div>
+  <div class="environment" id="environment">
+    <div class="device" id="device">
+      <!-- Hardware Buttons -->
+      <div class="hardware-btn btn-mute"></div>
+      <div class="hardware-btn btn-vol-up"></div>
+      <div class="hardware-btn btn-vol-down"></div>
+      <div class="hardware-btn btn-power"></div>
+
+      <!-- The Screen -->
+      <div class="screen">
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+          <div class="status-time" id="statusTime">9:41</div>
+          <div class="status-right">
+            <i class="ph-fill ph-cell-signal-full"></i>
+            <i class="ph-fill ph-wifi-high"></i>
+            <i class="ph-fill ph-battery-full"></i>
+          </div>
+        </div>
+
+        <!-- Dynamic Island -->
+        <div class="dynamic-island" id="dynamicIsland">
+          <div class="camera-lens"></div>
+          <!-- Island content dynamically injected -->
+        </div>
+
+        <!-- LAYER: LOCK SCREEN -->
+        <div class="layer lock-screen" id="lockScreen">
+          <i class="ph-fill ph-lock-key lock-icon" id="padlock"></i>
+          <div class="lock-time" id="lockTime">09:41</div>
+          <div class="lock-date" id="lockDate">Wednesday, October 24</div>
+
+          <div class="notification-stack">
+            <div class="notification">
+              <div class="notif-icon recruiter">
+                <i class="ph-fill ph-linkedin-logo"></i>
+              </div>
+              <div class="notif-content">
+                <div class="notif-header">
+                  <span class="notif-title">Recruitment</span>
+                  <span class="notif-time">now</span>
+                </div>
+                <div class="notif-body">
+                  "Wow, 99.88% crash-free rate at CoinDCX? We need to talk about a Staff role."
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swipe-hint">
+            <i class="ph ph-caret-up"></i>
+            Swipe up to view portfolio
+          </div>
+        </div>
+
+        <!-- LAYER: HOME SCREEN -->
+        <div class="layer home-screen" id="homeScreen">
+          <div class="app-grid">
+            <!-- Profile App -->
+            <div class="app-icon-container" onclick="openApp('app-profile-view')">
+              <div class="app-icon app-profile">
+                <i class="ph-fill ph-user-circle"></i>
+              </div>
+              <div class="app-label">Profile</div>
+            </div>
+
+            <!-- Experience App -->
+            <div class="app-icon-container" onclick="openApp('app-experience-view')">
+              <div class="app-icon app-experience">
+                <i class="ph-fill ph-briefcase"></i>
+              </div>
+              <div class="app-label">Career</div>
+            </div>
+
+            <!-- Skills App -->
+            <div class="app-icon-container" onclick="openApp('app-skills-view')">
+              <div class="app-icon app-skills">
+                <i class="ph-fill ph-chart-polar"></i>
+              </div>
+              <div class="app-label">Tech</div>
+            </div>
+
+            <!-- Projects App -->
+            <div class="app-icon-container" onclick="openApp('app-projects-view')">
+              <div class="app-icon app-projects">
+                <i class="ph-fill ph-app-window"></i>
+              </div>
+              <div class="app-label">Work</div>
+            </div>
+          </div>
+
+          <!-- Dock -->
+          <div class="dock">
+            <div class="app-icon-container" onclick="window.open('https://bit.ly/githarsh', '_blank')">
+              <div class="app-icon app-github">
+                <i class="ph-fill ph-github-logo"></i>
+              </div>
+            </div>
+            <div class="app-icon-container" onclick="window.open('https://bit.ly/lnkdharsh', '_blank')">
+              <div class="app-icon app-linkedin">
+                <i class="ph-fill ph-linkedin-logo"></i>
+              </div>
+            </div>
+            <div class="app-icon-container" onclick="window.location.href='mailto:harsh159357@gmail.com'">
+              <div class="app-icon app-mail">
+                <i class="ph-fill ph-envelope-simple"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- APP VIEWS -->
+
+        <!-- 1. Profile / Contacts App -->
+        <div class="layer app-view" id="app-profile-view">
+          <div class="app-header">
+            <div class="back-btn" onclick="closeApp()">
+              <i class="ph-bold ph-caret-left"></i> Home
+            </div>
+          </div>
+          <div class="app-body">
+            <div class="profile-hero">
+              <div class="profile-avatar"><i class="ph-fill ph-user"></i></div>
+              <div class="profile-name">Harsh Sharma</div>
+              <div class="profile-title">Senior Software Engineer II (SDE-3)</div>
+
+              <div class="contact-action-row">
+                <div class="contact-btn" onclick="window.location.href='mailto:harsh159357@gmail.com'">
+                  <i class="ph-fill ph-envelope-simple"></i>
+                </div>
+                <div class="contact-btn" onclick="window.open('https://bit.ly/lnkdharsh', '_blank')">
+                  <i class="ph-fill ph-linkedin-logo"></i>
+                </div>
+                <div class="contact-btn" onclick="window.open('https://bit.ly/githarsh', '_blank')">
+                  <i class="ph-fill ph-github-logo"></i>
+                </div>
+              </div>
+            </div>
+
+            <h3 style="font-size: 18px; margin-bottom: 12px; margin-left: 8px;">About</h3>
+            <div class="info-card">
+              <div class="info-row">
+                <div class="info-val">Staff‑track Engineer with 10+ years spanning fintech, telecom, and enterprise
+                  mobility. Specialist in high-throughput customer experience platforms.</div>
+              </div>
+            </div>
+
+            <h3 style="font-size: 18px; margin-bottom: 12px; margin-left: 8px;">Key Impacts</h3>
+            <div class="info-card">
+              <div class="info-row">
+                <span class="info-label">Stability</span>
+                <span class="info-val">Raised Crash-Free Rate from 99.60% to 99.88%.</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Speed</span>
+                <span class="info-val">73% latency reduction on key trading screens.</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Delivery</span>
+                <span class="info-val">Directed 8+ major releases with zero rollbacks.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Career / Timeline App -->
+        <div class="layer app-view" id="app-experience-view">
+          <div class="app-header">
+            <div class="back-btn" onclick="closeApp()">
+              <i class="ph-bold ph-caret-left"></i> Home
+            </div>
+            <span style="font-size: 18px;">Career History</span>
+          </div>
+          <div class="app-body">
+            <div class="career-track">
+              <!-- CoinDCX -->
+              <div class="career-node">
+                <div class="c-date">Jul 2022 – Present</div>
+                <div class="c-role">Senior Software Engineer II</div>
+                <div class="c-comp">CoinDCX, Bengaluru</div>
+                <div class="c-desc">Architected reusable Help Center (tickets ↓15%). Boosted Crash-Free Rate to 99.88%.
+                  Achieved 73% latency reduction. Deployed Flutter Web projects & Pine Script indicators.</div>
+              </div>
+
+              <!-- Jio -->
+              <div class="career-node">
+                <div class="c-date">Jun 2021 – Jul 2022</div>
+                <div class="c-role">Senior Android Developer</div>
+                <div class="c-comp">Jio Platforms, Bengaluru</div>
+                <div class="c-desc">Maintained Jio Design System. Built reusable Compose/XML libraries powering flagship
+                  apps (MyJio, JioTV). Created productivity plugins saving 30% setup time.</div>
+              </div>
+
+              <!-- Infosys -->
+              <div class="career-node">
+                <div class="c-date">Dec 2018 – Jun 2021</div>
+                <div class="c-role">Technology Analyst</div>
+                <div class="c-comp">Infosys (Telstra, BP), Bengaluru</div>
+                <div class="c-desc">Delivered enterprise telecom features for My Telstra app. Optimized AR SDK costs for
+                  BP by $1000/yr.</div>
+              </div>
+
+              <!-- Team Computers -->
+              <div class="career-node">
+                <div class="c-date">Feb 2017 – Nov 2018</div>
+                <div class="c-role">Android Developer</div>
+                <div class="c-comp">Team Computers, Gurugram</div>
+                <div class="c-desc">Digitized HR attendance from biometric devices to mobile apps for 1500+ employees.
+                  Full lifecycle ownership.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Skills / Tech App -->
+        <div class="layer app-view" id="app-skills-view">
+          <div class="app-header">
+            <div class="back-btn" onclick="closeApp()">
+              <i class="ph-bold ph-caret-left"></i> Home
+            </div>
+            <span style="font-size: 18px;">Tech Analytics</span>
+          </div>
+          <div class="app-body">
+
+            <div class="info-card" style="padding: 24px;">
+              <div class="skill-ring-container">
+                <div class="ring ring-1"><span>Android</span></div>
+                <div class="ring ring-2"><span>Arch</span></div>
+                <div class="ring ring-3"><span>Flutter</span></div>
+              </div>
+              <p style="text-align: center; color: var(--sys-gray); font-size: 13px;">Proficiency Distribution</p>
+            </div>
+
+            <h3 style="font-size: 16px; margin-bottom: 8px; margin-top: 24px;">Mobile Platforms</h3>
+            <div class="tech-list">
+              <div class="tech-tag">Android (Kotlin/Java)</div>
+              <div class="tech-tag">Jetpack Compose</div>
+              <div class="tech-tag">Flutter</div>
+              <div class="tech-tag">App Signing & Play Store</div>
+            </div>
+
+            <h3 style="font-size: 16px; margin-bottom: 8px;">Architecture</h3>
+            <div class="tech-list">
+              <div class="tech-tag">Clean Architecture</div>
+              <div class="tech-tag">Modularization</div>
+              <div class="tech-tag">Design Systems</div>
+              <div class="tech-tag">Feature Toggles</div>
+            </div>
+
+            <h3 style="font-size: 16px; margin-bottom: 8px;">Performance & Data</h3>
+            <div class="tech-list">
+              <div class="tech-tag">Coroutines/Flows</div>
+              <div class="tech-tag">CPU Profiling</div>
+              <div class="tech-tag">Offline-First (Room)</div>
+              <div class="tech-tag">Crashlytics / Sentry</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Projects / Work App -->
+        <div class="layer app-view" id="app-projects-view">
+          <div class="app-header">
+            <div class="back-btn" onclick="closeApp()">
+              <i class="ph-bold ph-caret-left"></i> Home
+            </div>
+          </div>
+          <div class="app-body">
+            <div class="store-header">Work Highlights</div>
+
+            <!-- CoinDCX -->
+            <div class="store-card">
+              <div class="store-card-main">
+                <div class="store-icon" style="background: linear-gradient(135deg, #0052D4, #4364F7);">
+                  <i class="ph-fill ph-currency-btc"></i>
+                </div>
+                <div class="store-info">
+                  <div class="store-title">CoinDCX App</div>
+                  <div class="store-sub">Fintech Trading Platform</div>
+                  <div class="get-btn"
+                    onclick="window.open('https://play.google.com/store/apps/details?id=com.coindcx.btc', '_blank')">
+                    View</div>
+                </div>
+              </div>
+              <div class="store-desc">
+                Core engineering for high-throughput trading. Architected the Help/Support platform. Reached 99.88%
+                crash-free rate.
+              </div>
+            </div>
+
+            <!-- MyJio -->
+            <div class="store-card">
+              <div class="store-card-main">
+                <div class="store-icon" style="background: linear-gradient(135deg, #E60000, #FF4500);">
+                  <i class="ph-fill ph-wifi-high"></i>
+                </div>
+                <div class="store-info">
+                  <div class="store-title">MyJio</div>
+                  <div class="store-sub">Flagship Telecom App</div>
+                  <div class="get-btn"
+                    onclick="window.open('https://play.google.com/store/apps/details?id=com.jio.myjio', '_blank')">View
+                  </div>
+                </div>
+              </div>
+              <div class="store-desc">
+                Developed UI components using XML and Jetpack Compose for the internal Jio Design System utilized across
+                the ecosystem.
+              </div>
+            </div>
+
+            <!-- Gita App -->
+            <div class="store-card">
+              <div class="store-card-main">
+                <div class="store-icon" style="background: linear-gradient(135deg, #FF8008, #FFC837);">
+                  <i class="ph-fill ph-book-open"></i>
+                </div>
+                <div class="store-info">
+                  <div class="store-title">Bhagavad Gita</div>
+                  <div class="store-sub">Spiritual Reference</div>
+                  <div class="get-btn"
+                    onclick="window.open('https://play.google.com/store/apps/details?id=com.harshsharma.bhagavadgita.pro', '_blank')">
+                    View</div>
+                </div>
+              </div>
+              <div class="store-desc">
+                Built with clean architecture, offline-first Room database, and smooth typography for long-form reading.
+              </div>
+            </div>
+
+            <!-- Flutter Contacts -->
+            <div class="store-card">
+              <div class="store-card-main">
+                <div class="store-icon" style="background: #24292e;">
+                  <i class="ph-fill ph-address-book"></i>
+                </div>
+                <div class="store-info">
+                  <div class="store-title">Flutter Contacts Base</div>
+                  <div class="store-sub">Open Source Architecture</div>
+                  <div class="get-btn" onclick="window.open('https://bit.ly/appcontacts', '_blank')">Repo</div>
+                </div>
+              </div>
+              <div class="store-desc">
+                Cross-platform application demonstrating clean architecture principles with 4 interchangeable storage
+                implementations.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Persistent Home Indicator (always on top) -->
+        <div class="home-indicator" id="homeIndicator"></div>
+
+      </div>
+    </div>
   </div>
-  <div class="noise-overlay"></div>
 
-  <!-- Navigation -->
-  <nav class="glass-panel" id="navbar">
-    <div class="nav-logo">Harsh<span>.</span></div>
-
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Work</a>
-    </div>
-
-    <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <i class="ph ph-moon" id="themeIcon"></i>
-      </button>
-      <a href="#contact" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.9rem;">
-        Let's Talk
-      </a>
-      <button class="mobile-menu-btn">
-        <i class="ph ph-list"></i>
-      </button>
-    </div>
-  </nav>
-
-  <!-- Main Content -->
-  <main>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-      <div class="container">
-        <div class="hero-content">
-          <div class="hero-badge">
-            <i class="ph-fill ph-check-circle"></i> Looking for Staff/Principal roles
-          </div>
-
-          <h1>
-            Engineering <br />
-            <span class="text-gradient">high-throughput</span><br />
-            mobile platforms.
-          </h1>
-
-          <p>
-            I'm Harsh Sharma, a Senior Software Engineer II (SDE-3) with 10+ years of experience in Android, Flutter,
-            and Fintech. I build robust consumer applications focused on performance, reliability, and scale.
-          </p>
-
-          <div class="hero-stats">
-            <div class="stat-item">
-              <span class="stat-number">10+</span>
-              <span class="stat-label">Years Exp</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number">99.8%</span>
-              <span class="stat-label">Crash Free</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number">8+</span>
-              <span class="stat-label">Major Releases</span>
-            </div>
-          </div>
-
-          <div class="hero-actions">
-            <a href="#projects" class="btn btn-primary">
-              View My Work <i class="ph ph-arrow-right"></i>
-            </a>
-            <a href="https://bit.ly/githarsh" target="_blank" class="btn btn-secondary">
-              <i class="ph ph-github-logo"></i> GitHub Profile
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="scroll-indicator">
-        <div class="mouse"></div>
-        Scroll
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-      <div class="container reveal-element">
-        <div class="section-header">
-          <h2 class="section-title">Profile Summary</h2>
-          <h3 class="section-subtitle">A brief overview of my career arc and technical focus.</h3>
-        </div>
-
-        <div class="glass-panel" style="padding: 3rem;">
-          <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--text-secondary); line-height: 1.8;">
-            Staff‑track <strong style="color: var(--text-primary)">Senior Software Engineer II (SDE‑3)</strong> with
-            <strong style="color: var(--accent-primary)">10+ years</strong> of experience spanning fintech, telecom, and
-            enterprise mobility, specialising in <strong style="color: var(--text-primary)">Customer Experience
-              (CX)</strong> and <strong style="color: var(--text-primary)">Help & Support platforms</strong> for
-            high‑throughput trading systems.
-          </p>
-          <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--text-secondary); line-height: 1.8;">
-            <strong>Career arc:</strong> Built Android apps at Craterzone and Team Computers → delivered large‑scale
-            telecom apps at Infosys (Telstra, BP) → architected design systems at Jio → led CX/Help platforms at
-            CoinDCX.
-          </p>
-
-          <div
-            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
-            <div>
-              <h4 style="color: var(--accent-secondary); margin-bottom: 0.5rem; font-size: 1.1rem;">Architecture</h4>
-              <p style="color: var(--text-tertiary); font-size: 0.95rem;">Designed reusable frameworks (Help Center,
-                deep link infra, design systems) adopted across multiple squads simultaneously.</p>
-            </div>
-            <div>
-              <h4 style="color: var(--accent-secondary); margin-bottom: 0.5rem; font-size: 1.1rem;">Reliability</h4>
-              <p style="color: var(--text-tertiary); font-size: 0.95rem;">Raised Crash‑Free Rate from 99.60% to
-                <strong>99.88%</strong>, reducing non‑fatal errors by 20% and ANRs by 12% in CoinDCX.
-              </p>
-            </div>
-            <div>
-              <h4 style="color: var(--accent-secondary); margin-bottom: 0.5rem; font-size: 1.1rem;">Performance</h4>
-              <p style="color: var(--text-tertiary); font-size: 0.95rem;">Achieved up to <strong>73% latency
-                  reduction</strong> across key trading screens, drastically outperforming competitor benchmarks.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience">
-      <div class="container reveal-element">
-        <div class="section-header">
-          <h2 class="section-title">Experience</h2>
-          <p class="section-subtitle">Over a decade of engineering high-impact mobile solutions.</p>
-        </div>
-
-        <div class="timeline">
-          <!-- CoinDCX -->
-          <div class="timeline-item reveal-element">
-            <span class="timeline-date">Jul 2022 – Present</span>
-            <h3 class="timeline-role">Senior Software Engineer II (SDE‑3)</h3>
-            <div class="timeline-company">CoinDCX – Bengaluru</div>
-            <ul class="timeline-bullets">
-              <li><strong>Help & Support Platform Ownership:</strong> Architected a reusable Help Center, reducing
-                support tickets by 15% and boosting chatbot engagement by 25%.</li>
-              <li><strong>Compliance & Reliability:</strong> Delivered Re‑KYC and PAN verification with zero
-                post‑release bugs.</li>
-              <li><strong>Production Excellence:</strong> Raised Crash‑Free Rate to 99.88%, cut non‑fatal errors by 20%,
-                and reduced ANR rate by 12%.</li>
-              <li><strong>Performance Optimization:</strong> Delivered up to 73% latency reduction, including 51% faster
-                splash→PIN and 55% faster Futures Market load.</li>
-              <li><strong>Release Leadership:</strong> Directed 8+ major app releases with zero rollbacks.</li>
-              <li><strong>Innovation:</strong> Deployed a Flutter Web project (95% uptime) and built Pine Script trading
-                indicators validated via backtesting.</li>
-            </ul>
-          </div>
-
-          <!-- Jio Platforms -->
-          <div class="timeline-item reveal-element">
-            <span class="timeline-date">Jun 2021 – Jul 2022</span>
-            <h3 class="timeline-role">Senior Android Developer</h3>
-            <div class="timeline-company">Jio Platforms – Bengaluru</div>
-            <ul class="timeline-bullets">
-              <li><strong>Jio Design System:</strong> Built reusable UI library (XML + Jetpack Compose) powering
-                flagship apps like MyJio, JioChat, and JioTV.</li>
-              <li><strong>Developer Productivity:</strong> Created internal plugins that reduced UI setup time by over
-                30%.</li>
-              <li><strong>Reusable Components:</strong> Delivered typography, theming, and UI frameworks adopted across
-                multiple massive-scale Jio apps.</li>
-            </ul>
-          </div>
-
-          <!-- Infosys -->
-          <div class="timeline-item reveal-element">
-            <span class="timeline-date">Dec 2018 – Jun 2021</span>
-            <h3 class="timeline-role">Technology Analyst</h3>
-            <div class="timeline-company">Infosys (Telstra, BP clients) – Bengaluru</div>
-            <ul class="timeline-bullets">
-              <li><strong>Enterprise‑Scale Delivery:</strong> Contributed to the My Telstra Android App serving millions
-                of active users.</li>
-              <li><strong>Cost Optimization:</strong> Implemented alternative AR SDK for BP’s Safe2Go app, saving client
-                $1000+ annually.</li>
-            </ul>
-          </div>
-
-          <!-- Team Computers -->
-          <div class="timeline-item reveal-element">
-            <span class="timeline-date">Feb 2017 – Nov 2018</span>
-            <h3 class="timeline-role">Android Developer</h3>
-            <div class="timeline-company">Team Computers – Gurugram</div>
-            <ul class="timeline-bullets">
-              <li><strong>HR Transformation:</strong> Migrated attendance management from biometric hardware to mobile,
-                streamlining ops for 1500+ employees.</li>
-              <li>Managed complete Android app lifecycle from rapid prototyping to production deployment independently.
-              </li>
-            </ul>
-          </div>
-
-          <!-- Craterzone -->
-          <div class="timeline-item reveal-element">
-            <span class="timeline-date">Jun 2015 – Feb 2017</span>
-            <h3 class="timeline-role">Android Developer</h3>
-            <div class="timeline-company">Craterzone Pvt Ltd – Noida</div>
-            <ul class="timeline-bullets">
-              <li>Delivered feature implementations and updates for various Android applications.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-      <div class="container reveal-element">
-        <div class="section-header">
-          <h2 class="section-title">Technical Arsenal</h2>
-          <p class="section-subtitle">Tools, architectures, and platforms I leverage to build reliable software.</p>
-        </div>
-
-        <div class="skills-grid">
-          <div class="skill-category glass-panel">
-            <h3><i class="ph-fill ph-blueprint"></i> Architecture</h3>
-            <div class="skill-chips">
-              <span class="chip">Clean Architecture</span>
-              <span class="chip">Modularization</span>
-              <span class="chip">Feature Toggles</span>
-              <span class="chip">Dependency Injection</span>
-              <span class="chip">Design Systems</span>
-            </div>
-          </div>
-
-          <div class="skill-category glass-panel">
-            <h3><i class="ph-fill ph-device-mobile"></i> Mobile Tech</h3>
-            <div class="skill-chips">
-              <span class="chip">Android (Kotlin/Java)</span>
-              <span class="chip">Jetpack Compose</span>
-              <span class="chip">Flutter</span>
-              <span class="chip">Material Design</span>
-              <span class="chip">App Signing</span>
-            </div>
-          </div>
-
-          <div class="skill-category glass-panel">
-            <h3><i class="ph-fill ph-database"></i> Concurrency & Data</h3>
-            <div class="skill-chips">
-              <span class="chip">Kotlin Coroutines/Flows</span>
-              <span class="chip">RxJava</span>
-              <span class="chip">Room/SQLite</span>
-              <span class="chip">Offline-first</span>
-            </div>
-          </div>
-
-          <div class="skill-category glass-panel">
-            <h3><i class="ph-fill ph-gauge"></i> Perf & Reliability</h3>
-            <div class="skill-chips">
-              <span class="chip">CPU/Memory Profiling</span>
-              <span class="chip">Cold/Warm Start Tuning</span>
-              <span class="chip">ANR/Crash RCA</span>
-              <span class="chip">Crashlytics</span>
-              <span class="chip">Sentry</span>
-            </div>
-          </div>
-
-          <div class="skill-category glass-panel">
-            <h3><i class="ph-fill ph-shield-check"></i> Testing & Release</h3>
-            <div class="skill-chips">
-              <span class="chip">JUnit</span>
-              <span class="chip">Espresso</span>
-              <span class="chip">CI/CD Pipelines</span>
-              <span class="chip">Code Quality Gates</span>
-              <span class="chip">Rollout Strategies</span>
-            </div>
-          </div>
-
-          <div class="skill-category glass-panel">
-            <h3><i class="ph-fill ph-users-three"></i> Leadership</h3>
-            <div class="skill-chips">
-              <span class="chip">Code Reviews</span>
-              <span class="chip">Mentorship</span>
-              <span class="chip">Tech Talks</span>
-              <span class="chip">Internal Tooling</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-      <div class="container reveal-element">
-        <div class="section-header">
-          <h2 class="section-title">Selected Work</h2>
-          <p class="section-subtitle">Key applications and open-source contributions.</p>
-        </div>
-
-        <div class="projects-grid">
-
-          <div class="project-card glass-panel" onmousemove="handleCardHover(event, this)">
-            <div class="project-header">
-              <div class="project-icon"><i class="ph-fill ph-currency-btc"></i></div>
-              <div class="project-links">
-                <a href="https://play.google.com/store/apps/details?id=com.coindcx.btc" target="_blank"
-                  aria-label="Play Store"><i class="ph ph-google-play-logo"></i></a>
-              </div>
-            </div>
-            <h3 class="project-title">CoinDCX App</h3>
-            <p class="project-desc">Architected the Help & Support platform and optimized performance for this massive
-              crypto trading app, achieving a 99.88% crash-free rate.</p>
-            <div class="project-footer">
-              <span class="project-tech">Android</span>
-              <span class="project-tech">Kotlin</span>
-              <span class="project-tech">Performance Tuning</span>
-            </div>
-          </div>
-
-          <div class="project-card glass-panel" onmousemove="handleCardHover(event, this)">
-            <div class="project-header">
-              <div class="project-icon"><i class="ph-fill ph-wifi-high"></i></div>
-              <div class="project-links">
-                <a href="https://play.google.com/store/apps/details?id=com.jio.myjio" target="_blank"
-                  aria-label="Play Store"><i class="ph ph-google-play-logo"></i></a>
-              </div>
-            </div>
-            <h3 class="project-title">MyJio</h3>
-            <p class="project-desc">Flagship Jio app powered by the reusable design system and Jetpack Compose
-              components I maintained and developed.</p>
-            <div class="project-footer">
-              <span class="project-tech">Design Systems</span>
-              <span class="project-tech">Jetpack Compose</span>
-            </div>
-          </div>
-
-          <div class="project-card glass-panel" onmousemove="handleCardHover(event, this)">
-            <div class="project-header">
-              <div class="project-icon"><i class="ph-fill ph-book-open"></i></div>
-              <div class="project-links">
-                <a href="https://play.google.com/store/apps/details?id=com.harshsharma.bhagavadgita.pro" target="_blank"
-                  aria-label="Play Store"><i class="ph ph-google-play-logo"></i></a>
-              </div>
-            </div>
-            <h3 class="project-title">Bhagavad Gita App</h3>
-            <p class="project-desc">Spiritual reference app featuring a clean UX, smooth typography, and full offline
-              access database architecture.</p>
-            <div class="project-footer">
-              <span class="project-tech">Android</span>
-              <span class="project-tech">Offline-First (Room)</span>
-            </div>
-          </div>
-
-          <div class="project-card glass-panel" onmousemove="handleCardHover(event, this)">
-            <div class="project-header">
-              <div class="project-icon"><i class="ph-fill ph-globe-hemisphere-west"></i></div>
-              <div class="project-links">
-                <a href="https://bit.ly/appcontacts" target="_blank" aria-label="Web App"><i
-                    class="ph ph-arrow-up-right"></i></a>
-              </div>
-            </div>
-            <h3 class="project-title">Flutter Contacts Base</h3>
-            <p class="project-desc">Cross-platform contacts manager highlighting clean architecture with 4
-              interchangeable storage implementations.</p>
-            <div class="project-footer">
-              <span class="project-tech">Flutter</span>
-              <span class="project-tech">Clean Architecture</span>
-            </div>
-          </div>
-
-          <div class="project-card glass-panel" onmousemove="handleCardHover(event, this)">
-            <div class="project-header">
-              <div class="project-icon"><i class="ph-fill ph-chart-line-up"></i></div>
-              <div class="project-links">
-                <!-- No Link -->
-              </div>
-            </div>
-            <h3 class="project-title">Trading Indicators</h3>
-            <p class="project-desc">Custom SuperTrend and moving averages written in Pine Script, rigorously validated
-              via robust backtesting logic.</p>
-            <div class="project-footer">
-              <span class="project-tech">TradingView</span>
-              <span class="project-tech">Pine Script</span>
-              <span class="project-tech">Quant</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer & Contact -->
-    <footer id="contact" class="footer container reveal-element">
-      <h2 class="section-title contact-cta">Let's build something <span class="text-gradient">exceptional.</span></h2>
-      <p class="section-subtitle" style="margin: 0 auto;">Currently exploring Staff/Principal Engineer opportunities.
-        Reach out via email or connect on LinkedIn.</p>
-
-      <div class="social-links">
-        <a href="mailto:harsh159357@gmail.com" aria-label="Email"><i class="ph-fill ph-envelope-simple"></i></a>
-        <a href="https://bit.ly/lnkdharsh" target="_blank" aria-label="LinkedIn"><i
-            class="ph-fill ph-linkedin-logo"></i></a>
-        <a href="https://bit.ly/githarsh" target="_blank" aria-label="GitHub"><i class="ph-fill ph-github-logo"></i></a>
-        <a href="https://bit.ly/stackharsh" target="_blank" aria-label="Stack Overflow"><i
-            class="ph-fill ph-stack-overflow-logo"></i></a>
-      </div>
-
-      <p class="copyright">© 2026 Harsh Sharma. Built with <i class="ph-fill ph-heart"
-          style="color: var(--accent-tertiary);"></i> and modern web technologies.</p>
-    </footer>
-
-  </main>
-
-  <!-- Scripts -->
+  <!-- OS Mechanics Scripts -->
   <script>
-    // --- Card Hover 3D Light Effect ---
-    function handleCardHover(e, card) {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
+    // --- Clock Logic ---
+    function updateTime() {
+      const now = new Date();
+      let h = now.getHours();
+      let m = now.getMinutes();
+      const ampm = h >= 12 ? 'PM' : 'AM';
+
+      // Format for Lock Screen (24h or 12h depending on pref, doing 24h as default IT standard)
+      let lockH = h < 10 ? '0' + h : h;
+      let mins = m < 10 ? '0' + m : m;
+
+      document.getElementById('lockTime').textContent = `${lockH}:${mins}`;
+
+      // Format for Status bar (Usually no leading zero for 12h, but we'll stick to simple H:MM)
+      document.getElementById('statusTime').textContent = `${lockH}:${mins}`;
+
+      // Update Date
+      const options = { weekday: 'long', month: 'long', day: 'numeric' };
+      document.getElementById('lockDate').textContent = now.toLocaleDateString('en-US', options);
     }
-  </script>
-  <script>
-    // --- Theme Toggle Logic ---
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const htmlElement = document.documentElement;
 
-    // Check for saved user preference, else use system preference, default to dark
-    const getPreferredTheme = () => {
-      const savedItem = localStorage.getItem('theme');
-      if (savedItem) return savedItem;
-      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    };
+    setInterval(updateTime, 1000);
+    updateTime();
 
-    const setTheme = (theme) => {
-      if (theme === 'light') {
-        htmlElement.setAttribute('data-theme', 'light');
-        themeIcon.classList.replace('ph-moon', 'ph-sun');
-      } else {
-        htmlElement.removeAttribute('data-theme');
-        themeIcon.classList.replace('ph-sun', 'ph-moon');
+    // --- OS Navigation State Machine ---
+    let currentApp = null;
+    const homeScreen = document.getElementById('homeScreen');
+
+    function openApp(appId) {
+      if (!isUnlocked) return; // Prevent clicks through lockscreen
+
+      const app = document.getElementById(appId);
+      if (!app) return;
+
+      currentApp = app;
+
+      // Push home screen back
+      homeScreen.style.transform = 'scale(0.92)';
+      homeScreen.style.opacity = '0';
+      homeScreen.style.pointerEvents = 'none';
+
+      // Bring app forward
+      app.style.pointerEvents = 'auto';
+      app.style.opacity = '1';
+      app.style.transform = 'scale(1) translateY(0)';
+
+      // Scroll to top
+      app.querySelector('.app-body').scrollTop = 0;
+    }
+
+    function closeApp() {
+      if (!currentApp) return;
+
+      // Push app back and down
+      currentApp.style.pointerEvents = 'none';
+      currentApp.style.opacity = '0';
+      currentApp.style.transform = 'scale(0.8) translateY(50px)';
+
+      // Bring home screen forward
+      homeScreen.style.transform = 'scale(1)';
+      homeScreen.style.opacity = '1';
+      homeScreen.style.pointerEvents = 'auto';
+
+      currentApp = null;
+    }
+
+    // Home indicator click acts as swipe up / close app
+    document.getElementById('homeIndicator').addEventListener('click', () => {
+      if (currentApp) closeApp();
+    });
+
+    // --- Unlock Logic (Swipe Up) ---
+    const lockScreen = document.getElementById('lockScreen');
+    const padlock = document.getElementById('padlock');
+    let startY = 0;
+    let currentY = 0;
+    let isDragging = false;
+    let isUnlocked = false;
+
+    function handleTouchStart(e) {
+      if (isUnlocked) return;
+      startY = e.touches ? e.touches[0].clientY : e.clientY;
+      isDragging = true;
+      lockScreen.style.transition = 'none';
+    }
+
+    function handleTouchMove(e) {
+      if (!isDragging || isUnlocked) return;
+      currentY = e.touches ? e.touches[0].clientY : e.clientY;
+      const diff = currentY - startY;
+
+      // Only allow dragging up
+      if (diff < 0) {
+        // Diminishing returns scaling for drag
+        const dragResist = diff * 0.5;
+        lockScreen.style.transform = `translateY(${dragResist}px)`;
+
+        // Partially blur wallpaper as they swipe
+        const blurAmount = Math.min((Math.abs(diff) / 300) * 10, 10);
+        document.querySelector('.screen').style.backdropFilter = `blur(${blurAmount}px)`;
       }
-      localStorage.setItem('theme', theme);
-    };
+    }
 
-    // Initialize Theme
-    setTheme(getPreferredTheme());
+    function handleTouchEnd(e) {
+      if (!isDragging || isUnlocked) return;
+      isDragging = false;
 
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = htmlElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-      setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-    });
-
-    // --- Navbar Scroll Effect ---
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.style.background = 'var(--bg-elevated)';
-        navbar.style.border = '1px solid var(--border-hover)';
-        navbar.style.boxShadow = 'var(--shadow-lg)';
+      const diff = currentY - startY;
+      if (diff < -100) {
+        // Unlock Triggered
+        unlockDevice();
       } else {
-        navbar.style.background = 'var(--bg-surface)';
-        navbar.style.border = '1px solid var(--border-subtle)';
-        navbar.style.boxShadow = 'none';
+        // Snap back
+        lockScreen.style.transition = 'transform var(--spring-bouncy)';
+        lockScreen.style.transform = 'translateY(0)';
       }
+    }
+
+    function unlockDevice() {
+      isUnlocked = true;
+      padlock.classList.replace('ph-lock-key', 'ph-lock-key-open');
+
+      setTimeout(() => {
+        document.body.classList.add('unlocked');
+        // Clean up inline styles from drag
+        lockScreen.style.transform = '';
+      }, 200);
+    }
+
+    // Attach listeners to both touch and mouse for desktop testing
+    lockScreen.addEventListener('touchstart', handleTouchStart);
+    lockScreen.addEventListener('touchmove', handleTouchMove);
+    lockScreen.addEventListener('touchend', handleTouchEnd);
+
+    lockScreen.addEventListener('mousedown', handleTouchStart);
+    document.addEventListener('mousemove', handleTouchMove);
+    document.addEventListener('mouseup', handleTouchEnd);
+
+    // --- 3D Desktop Tilt Effect ---
+    // (Only applies on desktop wrapper)
+    const device = document.getElementById('device');
+    const env = document.getElementById('environment');
+
+    env.addEventListener('mousemove', (e) => {
+      if (window.innerWidth <= 480) return; // Disable on real mobile
+
+      const x = e.clientX / window.innerWidth - 0.5;
+      const y = e.clientY / window.innerHeight - 0.5;
+
+      // Gentle perspective rotation
+      device.style.transform = `
+                rotateY(${x * 10}deg) 
+                rotateX(${-y * 10}deg)
+            `;
     });
 
-    // --- Intersection Observer for Scroll Animations ---
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.15
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.reveal-element').forEach((el) => {
-      observer.observe(el);
+    env.addEventListener('mouseleave', () => {
+      device.style.transform = `rotateY(0deg) rotateX(0deg)`;
     });
+
   </script>
 </body>
 
