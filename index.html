@@ -176,14 +176,25 @@
       width: 100%;
       height: 100%;
       background-color: var(--os-bg);
-      background-image: var(--os-wallpaper);
-      background-size: cover;
-      background-position: center;
       border-radius: var(--screen-radius);
       position: relative;
       overflow: hidden;
       box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-      /* Inner bezel shadow */
+    }
+
+    /* Parallax Wallpaper Layer */
+    .wallpaper-layer {
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: -20px;
+      bottom: -20px;
+      background-image: var(--os-wallpaper);
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.15s ease-out;
+      z-index: 0;
+      will-change: transform;
     }
 
     /* Dynamic Island / Notch */
@@ -446,6 +457,38 @@
       align-items: center;
       gap: 6px;
       cursor: pointer;
+      position: relative;
+    }
+
+    /* Notification Badge */
+    .app-badge {
+      position: absolute;
+      top: -4px;
+      right: 4px;
+      min-width: 20px;
+      height: 20px;
+      background: #FF3B30;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 5px;
+      z-index: 10;
+      border: 2px solid var(--os-bg, #000);
+      animation: badgePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    @keyframes badgePop {
+      0% {
+        transform: scale(0);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
 
     .app-icon {
@@ -834,9 +877,21 @@
       pointer-events: none;
       transform: scale(0.8) translateY(50px);
       border-radius: var(--screen-radius);
-      /* Keeps corner rounding when pushed back */
       display: flex;
       flex-direction: column;
+      transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s ease, border-radius 0.3s ease;
+    }
+
+    .app-view.opening {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      border-radius: 0;
+    }
+
+    .app-view.closing {
+      opacity: 0;
+      transform: scale(0.6) translateY(80px);
+      border-radius: var(--screen-radius);
     }
 
     /* State Classes */
@@ -1311,6 +1366,70 @@
       .device-switcher {
         display: none;
       }
+
+      .hire-me-cta {
+        display: none;
+      }
+    }
+
+    /* =========================================
+       HIRE ME CTA (Floating outside phone)
+    ========================================= */
+    .hire-me-cta {
+      position: fixed;
+      bottom: 28px;
+      left: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      border-radius: 16px;
+      cursor: pointer;
+      z-index: 9999;
+      box-shadow: 0 8px 32px rgba(99, 102, 241, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: ctaPulse 3s ease-in-out infinite;
+    }
+
+    .hire-me-cta:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 12px 40px rgba(99, 102, 241, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .hire-me-cta:active {
+      transform: scale(0.96);
+    }
+
+    .hire-me-cta i {
+      font-size: 20px;
+    }
+
+    .hire-me-cta .cta-text {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .hire-me-cta .cta-sub {
+      font-size: 10px;
+      font-weight: 500;
+      opacity: 0.8;
+    }
+
+    @keyframes ctaPulse {
+
+      0%,
+      100% {
+        box-shadow: 0 8px 32px rgba(99, 102, 241, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      50% {
+        box-shadow: 0 8px 32px rgba(168, 85, 247, 0.6), 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
     }
   </style>
 </head>
@@ -1341,6 +1460,15 @@
         </div>
       </div>
 
+      <!-- Hire Me CTA -->
+      <a href="mailto:harsh.srma1995@gmail.com" class="hire-me-cta">
+        <i class="ph-fill ph-paper-plane-tilt"></i>
+        <div>
+          <div class="cta-text">Hire Me</div>
+          <div class="cta-sub">harsh.srma1995@gmail.com</div>
+        </div>
+      </a>
+
       <div class="device" id="device">
         <!-- Hardware Buttons -->
         <div class="hardware-btn btn-mute"></div>
@@ -1350,6 +1478,7 @@
 
         <!-- The Screen -->
         <div class="screen">
+          <div class="wallpaper-layer" id="wallpaperLayer"></div>
 
           <!-- Status Bar -->
           <div class="status-bar">
@@ -1461,7 +1590,7 @@
             <div class="app-grid">
 
               <!-- Interactive Status Widget -->
-              <div class="home-widget" onclick="openApp('app-experience-view')" role="button"
+              <div class="home-widget" onclick="openApp('app-experience-view', event)" role="button"
                 aria-label="View current status">
                 <div class="widget-header">
                   <span>Status</span>
@@ -1476,7 +1605,7 @@
               </div>
 
               <!-- Profile App -->
-              <div class="app-icon-container" onclick="openApp('app-profile-view')" role="button"
+              <div class="app-icon-container" onclick="openApp('app-profile-view', event)" role="button"
                 aria-label="Open Profile">
                 <div class="app-icon app-profile">
                   <i class="ph-fill ph-user-circle"></i>
@@ -1485,7 +1614,7 @@
               </div>
 
               <!-- Experience App -->
-              <div class="app-icon-container" onclick="openApp('app-experience-view')" role="button"
+              <div class="app-icon-container" onclick="openApp('app-experience-view', event)" role="button"
                 aria-label="Open Career">
                 <div class="app-icon app-experience">
                   <i class="ph-fill ph-briefcase"></i>
@@ -1494,7 +1623,8 @@
               </div>
 
               <!-- Skills App -->
-              <div class="app-icon-container" onclick="openApp('app-skills-view')" role="button" aria-label="Open Tech">
+              <div class="app-icon-container" onclick="openApp('app-skills-view', event)" role="button"
+                aria-label="Open Tech">
                 <div class="app-icon app-skills">
                   <i class="ph-fill ph-chart-polar"></i>
                 </div>
@@ -1502,7 +1632,7 @@
               </div>
 
               <!-- Projects App -->
-              <div class="app-icon-container" onclick="openApp('app-projects-view')" role="button"
+              <div class="app-icon-container" onclick="openApp('app-projects-view', event)" role="button"
                 aria-label="Open Work">
                 <div class="app-icon app-projects">
                   <i class="ph-fill ph-app-window"></i>
@@ -1530,19 +1660,21 @@
               <!-- Social: LinkedIn -->
               <div class="app-icon-container" onclick="window.open('https://bit.ly/lnkdharsh', '_blank')" role="button"
                 aria-label="Open LinkedIn">
+                <div class="app-badge">3</div>
                 <div class="app-icon app-linkedin">
                   <i class="ph-fill ph-linkedin-logo"></i>
                 </div>
                 <div class="app-label">LinkedIn</div>
               </div>
 
-              <!-- Social: Email -->
-              <div class="app-icon-container" onclick="window.location.href='mailto:harsh159357@gmail.com'"
+              <!-- Social: Mail -->
+              <div class="app-icon-container" onclick="window.location.href='mailto:harsh.srma1995@gmail.com'"
                 role="button" aria-label="Send Email">
+                <div class="app-badge">1</div>
                 <div class="app-icon app-mail">
                   <i class="ph-fill ph-envelope-simple"></i>
                 </div>
-                <div class="app-label">Email</div>
+                <div class="app-label">Mail</div>
               </div>
             </div>
 
@@ -2014,11 +2146,31 @@
     setInterval(updateTime, 1000);
     updateTime();
 
+    // --- Parallax Wallpaper Logic ---
+    const wallpaperLayer = document.getElementById('wallpaperLayer');
+    const deviceEl = document.getElementById('device');
+
+    deviceEl.addEventListener('mousemove', (e) => {
+      // Calculate mouse position relative to the device center
+      const rect = deviceEl.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      const moveX = ((e.clientX - centerX) / (rect.width / 2)) * 10; // Max 10px shift
+      const moveY = ((e.clientY - centerY) / (rect.height / 2)) * 10;
+
+      wallpaperLayer.style.transform = `translate(${-moveX}px, ${-moveY}px) scale(1.05)`;
+    });
+
+    deviceEl.addEventListener('mouseleave', () => {
+      wallpaperLayer.style.transform = 'translate(0px, 0px) scale(1.05)';
+    });
+
     // --- OS Navigation State Machine ---
     let currentApp = null;
     const homeScreen = document.getElementById('homeScreen');
 
-    function openApp(appId) {
+    function openApp(appId, event) {
       if (!isUnlocked) return; // Prevent clicks through lockscreen
 
       const app = document.getElementById(appId);
@@ -2031,10 +2183,28 @@
       homeScreen.style.opacity = '0';
       homeScreen.style.pointerEvents = 'none';
 
-      // Bring app forward
+      // Set transform-origin based on click location
+      if (event && event.currentTarget) {
+        const iconRect = event.currentTarget.getBoundingClientRect();
+        const screenRect = document.querySelector('.screen').getBoundingClientRect();
+
+        // Center of the clicked element relative to the screen container
+        const originX = (iconRect.left + iconRect.width / 2) - screenRect.left;
+        const originY = (iconRect.top + iconRect.height / 2) - screenRect.top;
+
+        app.style.transformOrigin = `${originX}px ${originY}px`;
+      } else {
+        app.style.transformOrigin = 'center center'; // Fallback
+      }
+
+      // Bring app forward with animation class
       app.style.pointerEvents = 'auto';
-      app.style.opacity = '1';
-      app.style.transform = 'scale(1) translateY(0)';
+
+      // Force a reflow so the transitionOrigin takes effect before classes swap
+      void app.offsetWidth;
+
+      app.classList.remove('closing');
+      app.classList.add('opening');
 
       // Scroll to top
       app.querySelector('.app-body').scrollTop = 0;
@@ -2043,10 +2213,10 @@
     function closeApp() {
       if (!currentApp) return;
 
-      // Push app back and down
+      // Push app back and down via class
       currentApp.style.pointerEvents = 'none';
-      currentApp.style.opacity = '0';
-      currentApp.style.transform = 'scale(0.8) translateY(50px)';
+      currentApp.classList.remove('opening');
+      currentApp.classList.add('closing');
 
       // Bring home screen forward
       homeScreen.style.transform = 'scale(1)';
