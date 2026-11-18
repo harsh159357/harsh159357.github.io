@@ -331,6 +331,7 @@
       padding-top: 80px;
       backdrop-filter: blur(0px);
       /* Will animate to blur on swipe */
+      cursor: pointer;
     }
 
     .lock-icon {
@@ -431,6 +432,15 @@
       align-items: center;
       gap: 8px;
       animation: bounce 2s infinite;
+      cursor: pointer;
+    }
+
+    .swipe-hint-desktop { display: none; }
+    .swipe-hint-touch { display: inline; }
+
+    @media (hover: hover) and (pointer: fine) {
+      .swipe-hint-desktop { display: inline; }
+      .swipe-hint-touch { display: none; }
     }
 
     /* 2. HOME SCREEN (Behind Lock Screen initially) */
@@ -1469,7 +1479,7 @@
   </style>
 </head>
 
-<body>
+<body class="unlocked">
 
   <!-- Data attributes control the Dual OS theme and Material You colors -->
   <div data-os="ios" data-theme="dark" id="systemContainer">
@@ -1519,11 +1529,11 @@
       </div>
 
       <!-- Hire Me CTA -->
-      <a href="mailto:harsh.srma1995@gmail.com" class="hire-me-cta">
+      <a href="mailto:harsh159357@gmail.com" class="hire-me-cta">
         <i class="ph-fill ph-paper-plane-tilt"></i>
         <div>
           <div class="cta-text">Hire Me</div>
-          <div class="cta-sub">harsh.srma1995@gmail.com</div>
+          <div class="cta-sub">harsh159357@gmail.com</div>
         </div>
       </a>
 
@@ -1637,9 +1647,10 @@
               </div>
             </div>
 
-            <div class="swipe-hint">
+            <div class="swipe-hint" id="swipeHint" role="button" aria-label="Unlock">
               <i class="ph ph-caret-up"></i>
-              Swipe up to view portfolio
+              <span class="swipe-hint-touch">Swipe up to view portfolio</span>
+              <span class="swipe-hint-desktop">Click or swipe up to view portfolio</span>
             </div>
           </div>
 
@@ -1726,7 +1737,7 @@
               </div>
 
               <!-- Social: Mail -->
-              <div class="app-icon-container" onclick="window.location.href='mailto:harsh.srma1995@gmail.com'"
+              <div class="app-icon-container" onclick="window.location.href='mailto:harsh159357@gmail.com'"
                 role="button" aria-label="Send Email">
                 <div class="app-badge">1</div>
                 <div class="app-icon app-mail">
@@ -2166,18 +2177,11 @@
   <script>
     // --- Boot Sequence Logic ---
     window.addEventListener('load', () => {
-      setTimeout(() => {
-        const boot = document.getElementById('bootScreen');
-        const lock = document.getElementById('lockScreen');
-
-        boot.style.opacity = '0';
+      const lock = document.getElementById('lockScreen');
+      if (lock) {
         lock.style.opacity = '1';
         lock.style.pointerEvents = 'auto';
-
-        setTimeout(() => {
-          boot.style.display = 'none';
-        }, 800);
-      }, 2000); // 2 second boot
+      }
     });
 
     // --- Clock Logic ---
@@ -2289,18 +2293,21 @@
       if (currentApp) closeApp();
     });
 
-    // --- Unlock Logic (Swipe Up) ---
+    // --- Unlock Logic (Swipe Up & Click to Unlock) ---
     const lockScreen = document.getElementById('lockScreen');
     const padlock = document.getElementById('padlock');
     let startY = 0;
     let currentY = 0;
     let isDragging = false;
-    let isUnlocked = false;
+    let isUnlocked = true; // Default unlocked so home screen is shown directly
+    let hasSwiped = false;
 
     function handleTouchStart(e) {
       if (isUnlocked) return;
       startY = e.touches ? e.touches[0].clientY : e.clientY;
+      currentY = startY;
       isDragging = true;
+      hasSwiped = false;
       lockScreen.style.transition = 'none';
     }
 
@@ -2308,6 +2315,10 @@
       if (!isDragging || isUnlocked) return;
       currentY = e.touches ? e.touches[0].clientY : e.clientY;
       const diff = currentY - startY;
+
+      if (Math.abs(diff) > 8) {
+        hasSwiped = true;
+      }
 
       // Only allow dragging up
       if (diff < 0) {
@@ -2326,7 +2337,7 @@
       isDragging = false;
 
       const diff = currentY - startY;
-      if (diff < -100) {
+      if (diff < -80) {
         // Unlock Triggered
         unlockDevice();
       } else {
@@ -2337,6 +2348,7 @@
     }
 
     function unlockDevice() {
+      if (isUnlocked) return;
       isUnlocked = true;
       padlock.classList.replace('ph-lock-key', 'ph-lock-key-open');
 
@@ -2347,14 +2359,21 @@
       }, 200);
     }
 
-    // Attach listeners to both touch and mouse for desktop testing
-    lockScreen.addEventListener('touchstart', handleTouchStart);
-    lockScreen.addEventListener('touchmove', handleTouchMove);
+    // Attach drag / swipe listeners
+    lockScreen.addEventListener('touchstart', handleTouchStart, { passive: true });
+    lockScreen.addEventListener('touchmove', handleTouchMove, { passive: true });
     lockScreen.addEventListener('touchend', handleTouchEnd);
 
     lockScreen.addEventListener('mousedown', handleTouchStart);
     document.addEventListener('mousemove', handleTouchMove);
     document.addEventListener('mouseup', handleTouchEnd);
+
+    // Click to unlock fallback: if user clicked without dragging/swiping
+    lockScreen.addEventListener('click', () => {
+      if (!isUnlocked && !hasSwiped) {
+        unlockDevice();
+      }
+    });
 
     // --- 3D Desktop Tilt Effect ---
     // (Only applies on desktop wrapper)
